@@ -13,7 +13,7 @@
 
 using namespace std;
 
-const char* fileName = "fractal_data/Juliadim2_4096.txt";
+const char* fileName = "line_vertical_0016_by_0008.txt";
 
 int convertToInt(string stringIn){
 	int result;
@@ -77,7 +77,13 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
 					for(int boxSumY = 0; boxSumY < boxDimension; boxSumY++){
 						for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
-							boxSum += arrayIn[boxSumX + i][boxSumY + j][boxSumZ + k];
+							if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){
+								cout << endl << "Dimensions must be powers of two!" << endl;
+								boxSum += 0;
+							}
+							else{
+								boxSum += arrayIn[boxSumX + i][boxSumY + j][boxSumZ + k];
+							}
 						}
 					}
 				}
@@ -88,9 +94,9 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 			}
 		}
 	}
-	/*printf("%s%d\n%s%d\n%s%d\n\n", "level: ", level, 
+	printf("%s%d\n%s%d\n%s%d\n\n", "level: ", level, 
 	"--box dimension: ", boxDimension, "--filled boxes: ", numberFilled);		
-	*/
+
 	return log2(numberFilled);
 }
 
@@ -150,7 +156,10 @@ int main () {
  int LOWESTLEVEL = 0;
 
  //initialize out-array
- int largestDimension = fmax(HEIGHT, fmax(WIDTH, DEPTH));
+ int largestDimension = fmin(HEIGHT, WIDTH);
+ if(DEPTH > 1){
+ 	largestDimension = fmin(largestDimension, DEPTH);
+ }
  int outArrayLength = int(log2(largestDimension) - LOWESTLEVEL + 1);
  double** outDataArray = new double* [outArrayLength];
 
@@ -168,7 +177,8 @@ int main () {
 
  printArray(outDataArray, outArrayLength, 2);
 
- printf("\n\n%s%s\n%s%.5f\n\n", "Curve: ", fileName, "Dimension: ", slope(outDataArray, outArrayLength));
+ printf("\n\n%s%s\n%s%.5f\n\n", "Curve: ", fileName, "Dimension: ", 
+ 	slope(outDataArray, outArrayLength));
 
   myfile.close();
 
