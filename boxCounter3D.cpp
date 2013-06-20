@@ -1,3 +1,9 @@
+/** Fractal analysis module utilizing boxcounting to determine 
+	the fractal dimension of a shape in the input text file.
+**/
+
+
+
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -36,6 +42,19 @@ void printArray(double** arrayIn, double HEIGHT, double WIDTH){
  	}
 }
 
+/**
+	Returns the log base 2 of the number of cells filled in a given level
+	of fractal analysis.
+	@param arrayIn is the 2-3-D array of integers that contains the data
+	@param HEIGHT
+	@param WIDTH
+	@param DPETH
+	@param level is the level of analysis to be performed. Level 0, for example, 
+	examines only the individual data points, whereas at level 1 they are merged
+	into boxes of side length 2^1, and for level l size 2^l.
+	@return log base 2 of the number of cells filled in a given level.
+
+**/
 double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 	int numberFilled = 0; //number of boxes with an element of the figure
 	int boxDimension = (int) pow(2, level);
@@ -131,7 +150,8 @@ int main () {
  int LOWESTLEVEL = 0;
 
  //initialize out-array
- int outArrayLength = int(log2(HEIGHT)) - LOWESTLEVEL + 1;
+ int largestDimension = fmax(HEIGHT, fmax(WIDTH, DEPTH));
+ int outArrayLength = int(log2(largestDimension) - LOWESTLEVEL + 1);
  double** outDataArray = new double* [outArrayLength];
 
  //printf("\n\n%d\n\n", outArrayLength);

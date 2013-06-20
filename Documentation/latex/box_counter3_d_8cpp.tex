@@ -1,0 +1,95 @@
+\hypertarget{box_counter3_d_8cpp}{\section{box\-Counter3\-D.\-cpp File Reference}
+\label{box_counter3_d_8cpp}\index{box\-Counter3\-D.\-cpp@{box\-Counter3\-D.\-cpp}}
+}
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}regression\-Module.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{box_counter3_d_8cpp_a27c8e505dc24c568074b650c79c21cb4}{convert\-To\-Int} (string string\-In)
+\item 
+void \hyperlink{box_counter3_d_8cpp_a6a03f15cb633f940d295e0d9a245286f}{print\-Array} (int $\ast$$\ast$array\-In, int H\-E\-I\-G\-H\-T, int W\-I\-D\-T\-H)
+\item 
+void \hyperlink{box_counter3_d_8cpp_a43c2ca566833c361a32cd3274ab2a6aa}{print\-Array} (double $\ast$$\ast$array\-In, double H\-E\-I\-G\-H\-T, double W\-I\-D\-T\-H)
+\item 
+double \hyperlink{box_counter3_d_8cpp_ac7f05742ec384384920c14ffd5c89b12}{box\-Counting} (int $\ast$$\ast$$\ast$array\-In, int H\-E\-I\-G\-H\-T, int W\-I\-D\-T\-H, int D\-E\-P\-T\-H, int level)
+\item 
+int \hyperlink{box_counter3_d_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \hyperlink{box_counter3_d_8cpp_a1862cb72b37ffe98140c1fcf06a28969}{file\-Name} = \char`\"{}fractal\-\_\-data/Juliadim2\-\_\-4096.\-txt\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{box_counter3_d_8cpp_ac7f05742ec384384920c14ffd5c89b12}{\index{box\-Counter3\-D.\-cpp@{box\-Counter3\-D.\-cpp}!box\-Counting@{box\-Counting}}
+\index{box\-Counting@{box\-Counting}!boxCounter3D.cpp@{box\-Counter3\-D.\-cpp}}
+\subsubsection[{box\-Counting}]{\setlength{\rightskip}{0pt plus 5cm}double box\-Counting (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$$\ast$}]{array\-In, }
+\item[{int}]{H\-E\-I\-G\-H\-T, }
+\item[{int}]{W\-I\-D\-T\-H, }
+\item[{int}]{D\-E\-P\-T\-H, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)}}\label{box_counter3_d_8cpp_ac7f05742ec384384920c14ffd5c89b12}
+Returns the log base 2 of the number of cells filled in a given level of fractal analysis. 
+\begin{DoxyParams}{Parameters}
+{\em array\-In} & is the 2-\/3-\/\-D array of integers that contains the data \\
+\hline
+{\em H\-E\-I\-G\-H\-T} & \\
+\hline
+{\em W\-I\-D\-T\-H} & \\
+\hline
+{\em D\-P\-E\-T\-H} & \\
+\hline
+{\em level} & is the level of analysis to be performed. Level 0, for example, examines only the individual data points, whereas at level 1 they are merged into boxes of side length 2$^\wedge$1, and for level l size 2$^\wedge$l. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+log base 2 of the number of cells filled in a given level. 
+\end{DoxyReturn}
+\hypertarget{box_counter3_d_8cpp_a27c8e505dc24c568074b650c79c21cb4}{\index{box\-Counter3\-D.\-cpp@{box\-Counter3\-D.\-cpp}!convert\-To\-Int@{convert\-To\-Int}}
+\index{convert\-To\-Int@{convert\-To\-Int}!boxCounter3D.cpp@{box\-Counter3\-D.\-cpp}}
+\subsubsection[{convert\-To\-Int}]{\setlength{\rightskip}{0pt plus 5cm}int convert\-To\-Int (
+\begin{DoxyParamCaption}
+\item[{string}]{string\-In}
+\end{DoxyParamCaption}
+)}}\label{box_counter3_d_8cpp_a27c8e505dc24c568074b650c79c21cb4}
+\hypertarget{box_counter3_d_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{box\-Counter3\-D.\-cpp@{box\-Counter3\-D.\-cpp}!main@{main}}
+\index{main@{main}!boxCounter3D.cpp@{box\-Counter3\-D.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{box_counter3_d_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+\hypertarget{box_counter3_d_8cpp_a6a03f15cb633f940d295e0d9a245286f}{\index{box\-Counter3\-D.\-cpp@{box\-Counter3\-D.\-cpp}!print\-Array@{print\-Array}}
+\index{print\-Array@{print\-Array}!boxCounter3D.cpp@{box\-Counter3\-D.\-cpp}}
+\subsubsection[{print\-Array}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Array (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{array\-In, }
+\item[{int}]{H\-E\-I\-G\-H\-T, }
+\item[{int}]{W\-I\-D\-T\-H}
+\end{DoxyParamCaption}
+)}}\label{box_counter3_d_8cpp_a6a03f15cb633f940d295e0d9a245286f}
+\hypertarget{box_counter3_d_8cpp_a43c2ca566833c361a32cd3274ab2a6aa}{\index{box\-Counter3\-D.\-cpp@{box\-Counter3\-D.\-cpp}!print\-Array@{print\-Array}}
+\index{print\-Array@{print\-Array}!boxCounter3D.cpp@{box\-Counter3\-D.\-cpp}}
+\subsubsection[{print\-Array}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Array (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{array\-In, }
+\item[{double}]{H\-E\-I\-G\-H\-T, }
+\item[{double}]{W\-I\-D\-T\-H}
+\end{DoxyParamCaption}
+)}}\label{box_counter3_d_8cpp_a43c2ca566833c361a32cd3274ab2a6aa}
+
+
+\subsection{Variable Documentation}
+\hypertarget{box_counter3_d_8cpp_a1862cb72b37ffe98140c1fcf06a28969}{\index{box\-Counter3\-D.\-cpp@{box\-Counter3\-D.\-cpp}!file\-Name@{file\-Name}}
+\index{file\-Name@{file\-Name}!boxCounter3D.cpp@{box\-Counter3\-D.\-cpp}}
+\subsubsection[{file\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ file\-Name = \char`\"{}fractal\-\_\-data/Juliadim2\-\_\-4096.\-txt\char`\"{}}}\label{box_counter3_d_8cpp_a1862cb72b37ffe98140c1fcf06a28969}
