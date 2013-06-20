@@ -13,7 +13,7 @@
 
 using namespace std;
 
-const char* fileName = "line_vertical_0016_by_0008.txt";
+const char* fileName = "julia_0.000_1.000_8192x8192.txt";
 
 int convertToInt(string stringIn){
 	int result;
@@ -67,6 +67,7 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 		boxDimensionZ = 1;
 	}
 	//iterates through all boxes
+	cout << "here!" << endl;
 	for(int i = 0; i < HEIGHT; i += boxDimension){
 		for(int j = 0; j < WIDTH; j += boxDimension){
 			for(int k = 0; k < DEPTH; k += boxDimensionZ){
@@ -77,13 +78,13 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
 					for(int boxSumY = 0; boxSumY < boxDimension; boxSumY++){
 						for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
-							if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){
-								cout << endl << "Dimensions must be powers of two!" << endl;
-								boxSum += 0;
-							}
-							else{
+							//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ This is to deal with dimensions that aren't
+							//	cout << endl << "Dimensions must be powers of two!" << endl;				powers of two.
+							//	boxSum += 0;
+							//}
+							//else{
 								boxSum += arrayIn[boxSumX + i][boxSumY + j][boxSumZ + k];
-							}
+							//}
 						}
 					}
 				}
@@ -91,6 +92,7 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 				if(boxSum > 0){
 					numberFilled++;
 				}
+
 			}
 		}
 	}
@@ -139,10 +141,12 @@ int main () {
  }
 
  //input to array
+ stringstream convert;
  for(int k = 0; k < DEPTH; k++){
 	for(int i = 0; i < HEIGHT; i++){
-	 	getline(myfile, line);
-	 	stringstream convert(line);
+		cout << i << endl ;
+	 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
+	 	convert.str(line);
 	 	for(int j = 0; j < WIDTH; j++){
 	 		int value;
 	 		convert >> value;
