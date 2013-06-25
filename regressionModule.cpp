@@ -9,7 +9,7 @@ double corrCoeff(double* arrayX, double* arrayY, double meanX,
 
 double mean(double* arrayIn, int arrayLength);
 
-double slope(double** arrayIn, int arrayLength){
+void slope(double** arrayIn, int arrayLength, double* regressionArray){
 	
 	double* arrayX = new double[arrayLength];
 
@@ -28,13 +28,17 @@ double slope(double** arrayIn, int arrayLength){
 	double stdevX = stdev(arrayX, meanX, arrayLength);
 	double stdevY = stdev(arrayY, meanY, arrayLength);
 
-	double slope = corrCoeff(arrayX, arrayY, meanX, meanY, stdevX, stdevY, arrayLength) 
+	double r = corrCoeff(arrayX, arrayY, meanX, meanY, stdevX, stdevY, arrayLength);
+
+	double slope = r 
 		* stdevY / stdevX;
+
 
 	delete[] arrayX;
  	delete[] arrayY;
 
- 	return slope;
+ 	regressionArray[0] = slope;
+ 	regressionArray[1] = pow(r, 2);
 }
 
 double stdev(double* arrayIn, double arrayMean, int arrayLength){

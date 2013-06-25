@@ -2,7 +2,7 @@
 
 #define REGMOD_h
 
-double slope(double** arrayIn, int arrayLength);
+void slope(double** arrayIn, int arrayLength, double* regressionArray);
 
 
 #endif

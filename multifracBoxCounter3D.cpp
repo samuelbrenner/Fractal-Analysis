@@ -13,7 +13,7 @@
 
 using namespace std;
 
-const char* fileName = "c_hdf5_plt_cnt_1000.txt";
+const char* fileName = "multifractal.txt";
 
 int convertToInt(string stringIn){
 	int result;
@@ -34,10 +34,9 @@ void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 
 void printArray(double** arrayIn, double HEIGHT, double WIDTH){
 	cout << endl;
-	printf("%7s%7s\n", "level", "log(n)");
  	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
-			printf("%7.3f ", arrayIn[i][j]);
+			printf("%3.3f ", arrayIn[i][j]);
 		}
 		printf("\n");
  	}
@@ -160,33 +159,9 @@ int main () {
 
  int LOWESTLEVEL = 0;
 
- //initialize out-array
- int largestDimension = fmin(HEIGHT, WIDTH);
- if(DEPTH > 1){
- 	largestDimension = fmin(largestDimension, DEPTH);
- }
- int outArrayLength = int(log2(largestDimension) - LOWESTLEVEL + 1);
- double** outDataArray = new double* [outArrayLength];
 
- //printf("\n\n%d\n\n", outArrayLength);
- 
- for(int i = 0; i < outArrayLength; i++){
- 	outDataArray[i] = new double[2];
- }
+ boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
 
- for(int k = 0; k < outArrayLength; k++)
- {
- 	outDataArray[k][0] = outArrayLength - 1 - (k + LOWESTLEVEL);
- 	outDataArray[k][1] = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
- }
-
- printArray(outDataArray, outArrayLength, 2);
-
- double* regressionArray = new double[2];
-
- slope(outDataArray, outArrayLength, regressionArray);
-
- printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", fileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
   myfile.close();
 

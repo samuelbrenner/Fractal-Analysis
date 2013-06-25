@@ -46,7 +46,7 @@ void printToTerminal(point** arrayIn){
 void printToFile(point** arrayIn){
 	FILE * pFile;
 	pFile = fopen("multifractal.txt", "w");
-	//fprintf(pFile, "%d\n%d\n", HEIGHT, WIDTH);
+	fprintf(pFile, "%d\n%d\n1\n", HEIGHT, WIDTH);
 	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
 			fprintf(pFile, "%-3d ", arrayIn[i][j].probability);
