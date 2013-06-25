@@ -7,8 +7,8 @@
 
 using namespace std;
 
-int HEIGHT = 16;
-int WIDTH = 16;
+int HEIGHT = 32;
+int WIDTH = 32;
 
 struct point{
 	int probability;
@@ -20,7 +20,7 @@ void assignProbabilities(point** fractalArray){
 		for(int i = 0; i < HEIGHT; i++){
 			for(int j = 0; j < WIDTH; j++){
 
-				if((i % levelDivision >= (levelDivision / 2)) || (j % levelDivision >= (levelDivision / 2))){
+				if((i % levelDivision >= (levelDivision / 2)) && (j % levelDivision >= (levelDivision / 2))){
 					fractalArray[i][j].probability *= 2;
 				}
 				else{
@@ -51,7 +51,7 @@ void printToFile(point** arrayIn){
 		for(int j = 0; j < WIDTH; j++){
 			fprintf(pFile, "%-3d ", arrayIn[i][j].probability);
 		}
-		fprintf(pFile, "\n\n");
+		fprintf(pFile, "\n");
 	}
 	fclose(pFile);
 }

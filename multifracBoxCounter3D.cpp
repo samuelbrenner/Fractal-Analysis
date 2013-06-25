@@ -161,12 +161,11 @@ int main () {
  }
 
  //input to array
- stringstream convert;
  for(int k = 0; k < DEPTH; k++){
 	for(int i = 0; i < HEIGHT; i++){
 		//cout << i << endl ;
 	 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
-	 	convert.str(line);
+	 	stringstream convert(line);
 	 	for(int j = 0; j < WIDTH; j++){
 	 		int value;
 	 		convert >> value;
