@@ -26,7 +26,7 @@ void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
 	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
-			printf("%3d", arrayIn[i][j]);
+			printf("%5d", arrayIn[i][j]);
 		}
 		printf("\n");
 	 }
@@ -55,7 +55,7 @@ void printArray(double** arrayIn, double HEIGHT, double WIDTH){
 	@return log base 2 of the number of cells filled in a given level.
 
 **/
-double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
+void boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 	int numberFilled = 0; //number of boxes with an element of the figure
 	int boxDimension = (int) pow(2, level);
 	int boxDimensionZ;
@@ -66,13 +66,26 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 	else{
 		boxDimensionZ = 1;
 	}
+
+	//creating array of course-grained data
+	int coarseHeight = HEIGHT / boxDimension;
+	int coarseWidth = WIDTH / boxDimension;
+	int coarseDepth = DEPTH / boxDimensionZ;
+
+	int*** coarseArray = new int**[coarseHeight];
+
+	for(int i = 0; i < coarseHeight; i++){
+		coarseArray[i] = new int*[coarseWidth];
+		for(int j = 0; j < coarseWidth; j++){
+			coarseArray[i][j] = new int[coarseDepth];
+		}		
+	}
+
 	//iterates through all boxes
-	//cout << "here!" << endl;
 	for(int i = 0; i < HEIGHT; i += boxDimension){
 		for(int j = 0; j < WIDTH; j += boxDimension){
 			for(int k = 0; k < DEPTH; k += boxDimensionZ){
 				int boxSum = 0;
-
 
 				//sums each box
 				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
@@ -88,18 +101,25 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 						}
 					}
 				}
-
-				if(boxSum > 0){
-					numberFilled++;
-				}
-
+				coarseArray[i / boxDimension][j / boxDimension][k / boxDimensionZ] = boxSum;
 			}
 		}
 	}
-	printf("%s%d\n%s%d\n%s%d\n\n", "level: ", level, 
-	"--box dimension: ", boxDimension, "--filled boxes: ", numberFilled);		
 
-	return log2(numberFilled);
+	int** coarseArrayForPrinting = new int*[coarseHeight];
+	for(int i = 0; i < coarseHeight; i++){
+		coarseArrayForPrinting[i] = new int[coarseWidth];
+	}
+	for(int i = 0; i < coarseHeight; i++){
+		for(int j = 0; j < coarseWidth; j++){
+			coarseArrayForPrinting[i][j] = coarseArray[i][j][0];
+		}
+	}
+
+	printArray(coarseArrayForPrinting, coarseHeight, coarseWidth);
+	
+	delete[] coarseArrayForPrinting;
+	delete[] coarseArray;
 }
 
 int main () {
@@ -155,18 +175,36 @@ int main () {
 	}
  }
 
- //printArray(elements, HEIGHT, WIDTH);
+int** elementsForPrinting = new int*[HEIGHT];
 
- int LOWESTLEVEL = 0;
+for(int i = 0; i < HEIGHT; i++){
+	elementsForPrinting[i] = new int[WIDTH];
+}
+
+for(int i = 0; i < HEIGHT; i++){
+	for(int j = 0; j < WIDTH; j++){
+		elementsForPrinting[i][j] = elements[i][j][0];
+	}
+}
+
+printArray(elementsForPrinting, HEIGHT, WIDTH);
+
+delete[] elementsForPrinting;
+
+ int LOWESTLEVEL = 3;
+
+ for(int k = 0; k < 1; k++)
+ {
+ 	boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
+ }
 
 
- boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
-
+ //printf("\n\n%s%s\n%s%.5f\n\n", "Curve: ", fileName, "Dimension: ", 
+ 	//slope(outDataArray, outArrayLength));
 
   myfile.close();
 
  delete[] elements;
- delete[] outDataArray;
  
 
   return 0;
