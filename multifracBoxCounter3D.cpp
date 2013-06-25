@@ -13,6 +13,7 @@
 using namespace std;
 
 const char* fileName = "multifractal.txt";
+
 int outArrayLength;
 
 int convertToInt(string stringIn){
@@ -163,6 +164,7 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 		falpha[i][0] = frequencyVector[i].alpha;
 		falpha[i][1] = log2(frequencyVector[i].count)/level;
 	}
+
 	outArrayLength = frequencyVector.size();
 
 
@@ -259,6 +261,7 @@ int main () {
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++)
 	{
 		cout << "Level: " << k;
+		cout << endl << outArrayLength;
 		printArray(boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL), outArrayLength, 2);
 	}
 
