@@ -7,8 +7,8 @@
 
 using namespace std;
 
-int HEIGHT = 32;
-int WIDTH = 32;
+int HEIGHT = 8;
+int WIDTH = 8;
 
 struct point{
 	int probability;

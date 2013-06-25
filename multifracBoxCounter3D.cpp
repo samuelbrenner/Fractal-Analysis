@@ -1,19 +1,19 @@
 /** Fractal analysis module utilizing boxcounting to determine 
 	the fractal dimension of a shape in the input text file.
 **/
-
-
-
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <math.h>
 #include <iostream>
 #include "regressionModule.h"
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 const char* fileName = "multifractal.txt";
+int outArrayLength;
 
 int convertToInt(string stringIn){
 	int result;
@@ -26,7 +26,7 @@ void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
 	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
-			printf("%5d", arrayIn[i][j]);
+			printf("%7d", arrayIn[i][j]);
 		}
 		printf("\n");
 	 }
@@ -42,6 +42,12 @@ void printArray(double** arrayIn, double HEIGHT, double WIDTH){
  	}
 }
 
+struct Nalpha{
+	unsigned long alpha;
+	unsigned long count;
+};
+
+
 /**
 	Returns the log base 2 of the number of cells filled in a given level
 	of fractal analysis.
@@ -55,8 +61,8 @@ void printArray(double** arrayIn, double HEIGHT, double WIDTH){
 	@return log base 2 of the number of cells filled in a given level.
 
 **/
-void boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
-	int numberFilled = 0; //number of boxes with an element of the figure
+double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
+	//return type will eventually be double**
 	int boxDimension = (int) pow(2, level);
 	int boxDimensionZ;
 
@@ -91,8 +97,10 @@ void boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
 					for(int boxSumY = 0; boxSumY < boxDimension; boxSumY++){
 						for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
-							//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ This is to deal with dimensions that aren't
-							//	cout << endl << "Dimensions must be powers of two!" << endl;				powers of two.
+							
+							//This is to deal with dimensions that aren't powers of two.
+							//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ 
+							//	cout << endl << "Dimensions must be powers of two!" << endl;				
 							//	boxSum += 0;
 							//}
 							//else{
@@ -106,105 +114,161 @@ void boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 		}
 	}
 
-	int** coarseArrayForPrinting = new int*[coarseHeight];
-	for(int i = 0; i < coarseHeight; i++){
-		coarseArrayForPrinting[i] = new int[coarseWidth];
-	}
-	for(int i = 0; i < coarseHeight; i++){
-		for(int j = 0; j < coarseWidth; j++){
-			coarseArrayForPrinting[i][j] = coarseArray[i][j][0];
+
+
+	//places coarseArray contents into a vector for counting.
+	vector<int> coarseContents;
+	for (int i = 0; i < coarseHeight; i++){
+		for (int j = 0; j < coarseWidth; j++){
+			for(int k = 0; k < coarseDepth; k++){
+				coarseContents.push_back(coarseArray[i][j][k]);
+			}
 		}
 	}
 
-	printArray(coarseArrayForPrinting, coarseHeight, coarseWidth);
-	
-	delete[] coarseArrayForPrinting;
+	//makes frequency vector
+	vector<Nalpha> frequencyVector;
+	while(coarseContents.size() > 0){
+		int frontValue = coarseContents[0];
+		unsigned long num_alpha = 0;
+		while (std::find(coarseContents.begin(), coarseContents.end(), frontValue) != coarseContents.end()){ 
+			coarseContents.erase(std::find(coarseContents.begin(), coarseContents.end(), frontValue));
+			num_alpha++;
+		}
+		Nalpha nalpha;
+		nalpha.alpha = frontValue;
+		nalpha.count = num_alpha;
+		frequencyVector.push_back(nalpha);
+	}
+
+	/*print frequencyVector
+		int** freqForPrinting = new int*[frequencyVector.size()];
+		for(int i = 0; i < frequencyVector.size(); i++){
+			freqForPrinting[i] = new int[2];
+		}
+		for(int i = 0; i < frequencyVector.size(); i++){
+			freqForPrinting[i][0] = frequencyVector[i].alpha;
+			freqForPrinting[i][1] = frequencyVector[i].count;
+		}
+		printArray(freqForPrinting, frequencyVector.size(), 2);
+		delete[] freqForPrinting;
+	*/
+
+	double** falpha = new double*[frequencyVector.size()];
+	for(int i = 0; i < frequencyVector.size(); i++){
+		falpha[i] = new double[2];
+	}
+
+	for(int i = 0; i < frequencyVector.size(); i++){
+		falpha[i][0] = frequencyVector[i].alpha;
+		falpha[i][1] = log2(frequencyVector[i].count)/level;
+	}
+	outArrayLength = frequencyVector.size();
+
+
+	/*
+		int** coarseArrayForPrinting = new int*[coarseHeight];
+		for(int i = 0; i < coarseHeight; i++){
+			coarseArrayForPrinting[i] = new int[coarseWidth];
+		}
+		for(int i = 0; i < coarseHeight; i++){
+			for(int j = 0; j < coarseWidth; j++){
+				coarseArrayForPrinting[i][j] = coarseArray[i][j][0];
+			}
+		}
+
+		printArray(coarseArrayForPrinting, coarseHeight, coarseWidth);
+		delete[] coarseArrayForPrinting;
+	*/
 	delete[] coarseArray;
+	return falpha;
 }
 
 int main () {
- ifstream myfile (fileName);
- 
- if(!(myfile.is_open())){
- 	cout << "please open the right file" << endl;
- 	return -1;
+	ifstream myfile (fileName);
 
- }
- string width;
- string height;
- string depth;
- string line;
+	if(!(myfile.is_open())){
+		cout << "please open the right file" << endl;
+		return -1;
 
-
- if(myfile.is_open()){
- 	getline (myfile, height);
- 	getline (myfile, width);
- 	getline (myfile, depth);
- 	
- }
-
- int HEIGHT = convertToInt(height);
- int WIDTH = convertToInt(width);
- int DEPTH = convertToInt(depth);
-
- printf("\n\n%s%d\n%s%d\n%s%d\n", "height: ", HEIGHT, "width: ", WIDTH, "depth: ", DEPTH);
-
- //allocate array
- int*** elements;
- elements = new int**[HEIGHT];
- 
- for(int i = 0; i < HEIGHT; i ++){
- 	elements[i] = new int*[WIDTH];
- 	for(int j = 0; j < WIDTH; j++){
- 		elements[i][j] = new int[DEPTH];
- 	}
- }
-
- //input to array
- for(int k = 0; k < DEPTH; k++){
-	for(int i = 0; i < HEIGHT; i++){
-		//cout << i << endl ;
-	 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
-	 	stringstream convert(line);
-	 	for(int j = 0; j < WIDTH; j++){
-	 		int value;
-	 		convert >> value;
-	 		elements[i][j][k] = value;
-	 	}
 	}
- }
+	string width;
+	string height;
+	string depth;
+	string line;
 
-int** elementsForPrinting = new int*[HEIGHT];
 
-for(int i = 0; i < HEIGHT; i++){
-	elementsForPrinting[i] = new int[WIDTH];
-}
-
-for(int i = 0; i < HEIGHT; i++){
-	for(int j = 0; j < WIDTH; j++){
-		elementsForPrinting[i][j] = elements[i][j][0];
+	if(myfile.is_open()){
+		getline (myfile, height);
+		getline (myfile, width);
+		getline (myfile, depth);
+		
 	}
-}
 
-printArray(elementsForPrinting, HEIGHT, WIDTH);
+	int HEIGHT = convertToInt(height);
+	int WIDTH = convertToInt(width);
+	int DEPTH = convertToInt(depth);
 
-delete[] elementsForPrinting;
+	printf("\n\n%s%d\n%s%d\n%s%d\n", "height: ", HEIGHT, "width: ", WIDTH, "depth: ", DEPTH);
 
- int LOWESTLEVEL = 3;
+	//allocate array
+	int*** elements;
+	elements = new int**[HEIGHT];
 
- for(int k = 0; k < 1; k++)
- {
- 	boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
- }
+	for(int i = 0; i < HEIGHT; i ++){
+		elements[i] = new int*[WIDTH];
+		for(int j = 0; j < WIDTH; j++){
+			elements[i][j] = new int[DEPTH];
+		}
+	}
+
+	//input to array
+	for(int k = 0; k < DEPTH; k++){
+		for(int i = 0; i < HEIGHT; i++){
+			//cout << i << endl ;
+		 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
+		 	stringstream convert(line);
+		 	for(int j = 0; j < WIDTH; j++){
+		 		int value;
+		 		convert >> value;
+		 		elements[i][j][k] = value;
+		 	}
+		}
+	}
+
+	/* Print arrayIn to test that it works
+		int** elementsForPrinting = new int*[HEIGHT];
+
+		for(int i = 0; i < HEIGHT; i++){
+			elementsForPrinting[i] = new int[WIDTH];
+		}
+
+		for(int i = 0; i < HEIGHT; i++){
+			for(int j = 0; j < WIDTH; j++){
+				elementsForPrinting[i][j] = elements[i][j][0];
+			}
+		}
+
+		printArray(elementsForPrinting, HEIGHT, WIDTH);
+
+		delete[] elementsForPrinting;
+	*/
+
+	int LOWESTLEVEL = 0;
+
+	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++)
+	{
+		cout << "Level: " << k;
+		printArray(boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL), outArrayLength, 2);
+	}
 
 
- //printf("\n\n%s%s\n%s%.5f\n\n", "Curve: ", fileName, "Dimension: ", 
- 	//slope(outDataArray, outArrayLength));
+	//printf("\n\n%s%s\n%s%.5f\n\n", "Curve: ", fileName, "Dimension: ", 
+		//slope(outDataArray, outArrayLength));
 
-  myfile.close();
+	myfile.close();
 
- delete[] elements;
- 
-
-  return 0;
+	delete[] elements;
+	
+	return 0;
 }
