@@ -1,28 +1,46 @@
 //Program to generate fractals in text.
 #include <fstream>
-#include <iostream>
+#include <string>
+#include <sstream>
 #include <math.h>
-#include <random>
+#include <iostream>
 
+using namespace std;
 
-int HEIGHT = 1024;
-int WIDTH = 1024;
-
-
-point** fractalize(point** fractalArray){
-	for(int i = 0; i < HEIGHT; i++){
-		for(int j = 0; j < WIDTH; j++){
-			fractalArray[i][j].probability = 
-			rand() % pow(HEIGHT, 2);
-
-	
-}
-
+int HEIGHT = 16;
+int WIDTH = 16;
 
 struct point{
 	double probability;
 	int value; 
+};
+
+void fractalize(point** fractalArray){
+	for(int levelDivision = HEIGHT; levelDivision > 1; levelDivision /= 2){
+		for(int i = 0; i < HEIGHT; i++){
+			for(int j = 0; j < WIDTH; j++){
+
+				if(i % levelDivision >= (levelDivision / 2) && j % levelDivision >= (levelDivision / 2)){
+					fractalArray[i][j].probability *= 0.4;
+				}
+				else{
+					fractalArray[i][j].probability *= 0.2;
+				}
+			}
+		}
+	}
 }
+
+void printArray(point** arrayIn){
+	cout << endl;
+	for(int i = 0; i < HEIGHT; i++){
+		for(int j = 0; j < WIDTH; j++){
+			printf("%3.4f ", arrayIn[i][j].probability);
+		}
+		printf("\n\n");
+	 }
+}
+
 
 int main(){
 	//initialize array
@@ -34,12 +52,14 @@ int main(){
 	//fill array with zeroes
 	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
-			fractalArray[i][j] = 0;
+			fractalArray[i][j].probability = 1;
 		}
 	}
 
 	//fill array with fractal shape
-	fractalArray = fractalize(fractalArray);
+	fractalize(fractalArray);
+
+	printArray(fractalArray);
 
 
 
