@@ -6,15 +6,13 @@
 #include <sstream>
 #include <math.h>
 #include <iostream>
-#include "regressionModule.h"
+//#include "regressionModule.h"
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
 const char* fileName = "multifractal.txt";
-
-int outArrayLength;
 
 int convertToInt(string stringIn){
 	int result;
@@ -33,9 +31,9 @@ void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	 }
 }
 
-void printArray(double** arrayIn, double HEIGHT, double WIDTH){
+void printArray(double** arrayIn, int arrayHeight, int WIDTH){
 	cout << endl;
- 	for(int i = 0; i < HEIGHT; i++){
+ 	for(int i = 0; i < arrayHeight; i++){
 		for(int j = 0; j < WIDTH; j++){
 			printf("%3.3f ", arrayIn[i][j]);
 		}
@@ -62,7 +60,7 @@ struct Nalpha{
 	@return log base 2 of the number of cells filled in a given level.
 
 **/
-double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
+double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level, int outArrayLength){
 	//return type will eventually be double**
 	int boxDimension = (int) pow(2, level);
 	int boxDimensionZ;
@@ -100,13 +98,13 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 						for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
 							
 							//This is to deal with dimensions that aren't powers of two.
-							//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ 
-							//	cout << endl << "Dimensions must be powers of two!" << endl;				
-							//	boxSum += 0;
-							//}
-							//else{
+								//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ 
+								//	cout << endl << "Dimensions must be powers of two!" << endl;				
+								//	boxSum += 0;
+								//}
+								//else{
 								boxSum += arrayIn[boxSumX + i][boxSumY + j][boxSumZ + k];
-							//}
+								//}
 						}
 					}
 				}
@@ -127,6 +125,11 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 		}
 	}
 
+
+//**********REPLACE 'ALPHA WITH REAL ALPHA.
+	//IT NEEDS TO BE LOG(MEASURE)/LOG(EPSILON)
+
+
 	//makes frequency vector
 	vector<Nalpha> frequencyVector;
 	while(coarseContents.size() > 0){
@@ -137,36 +140,37 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 			num_alpha++;
 		}
 		Nalpha nalpha;
-		nalpha.alpha = frontValue;
+		nalpha.alpha = log2(frontValue)/double(level);
 		nalpha.count = num_alpha;
 		frequencyVector.push_back(nalpha);
 	}
 
-	/*print frequencyVector
-		int** freqForPrinting = new int*[frequencyVector.size()];
-		for(int i = 0; i < frequencyVector.size(); i++){
+	cout << "FVector size: " << frequencyVector.size() << endl;
+	outArrayLength = frequencyVector.size();
+	cout << "outArrayLength: " <<outArrayLength <<endl;
+
+	//print frequencyVector
+		int** freqForPrinting = new int*[outArrayLength];
+		for(int i = 0; i < outArrayLength; i++){
 			freqForPrinting[i] = new int[2];
 		}
-		for(int i = 0; i < frequencyVector.size(); i++){
+		for(int i = 0; i < outArrayLength; i++){
 			freqForPrinting[i][0] = frequencyVector[i].alpha;
 			freqForPrinting[i][1] = frequencyVector[i].count;
 		}
-		printArray(freqForPrinting, frequencyVector.size(), 2);
+		printArray(freqForPrinting, outArrayLength, 2);
 		delete[] freqForPrinting;
-	*/
+	
 
-	double** falpha = new double*[frequencyVector.size()];
-	for(int i = 0; i < frequencyVector.size(); i++){
+	double** falpha = new double*[outArrayLength];
+	for(int i = 0; i < outArrayLength; i++){
 		falpha[i] = new double[2];
 	}
 
-	for(int i = 0; i < frequencyVector.size(); i++){
+	for(int i = 0; i < outArrayLength; i++){
 		falpha[i][0] = frequencyVector[i].alpha;
-		falpha[i][1] = log2(frequencyVector[i].count)/level;
+		falpha[i][1] = log2(frequencyVector[i].count)/double(level);
 	}
-
-	outArrayLength = frequencyVector.size();
-
 
 	/*
 		int** coarseArrayForPrinting = new int*[coarseHeight];
@@ -257,12 +261,11 @@ int main () {
 	*/
 
 	int LOWESTLEVEL = 0;
+	int outArrayLength = 0;
 
-	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++)
-	{
+	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
 		cout << "Level: " << k;
-		cout << endl << outArrayLength;
-		printArray(boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL), outArrayLength, 2);
+		printArray(boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength), outArrayLength, 2);
 	}
 
 
