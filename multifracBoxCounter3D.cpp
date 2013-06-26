@@ -125,11 +125,6 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 		}
 	}
 
-
-//**********REPLACE 'ALPHA WITH REAL ALPHA.
-	//IT NEEDS TO BE LOG(MEASURE)/LOG(EPSILON)
-
-
 	//makes frequency vector
 	vector<Nalpha> frequencyVector;
 	while(coarseContents.size() > 0){
@@ -264,7 +259,7 @@ int main () {
 	int outArrayLength = 0;
 
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
-		cout << "Level: " << k;
+		cout << "Level: " << k << endl;
 		printArray(boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength), outArrayLength, 2);
 	}
 
