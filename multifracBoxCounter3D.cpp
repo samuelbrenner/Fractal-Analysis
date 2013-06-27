@@ -176,8 +176,8 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 
 	/****************************************************************
 	*	TODO:
-	*	Finish implementing histogramming. Possibly 
-	*
+	*	Finish implementing histogramming. We need a way to return the
+	*	bin count and edge for each occupied bin.
 
 
 	*/
