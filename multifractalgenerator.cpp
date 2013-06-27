@@ -7,15 +7,17 @@
 
 using namespace std;
 
-int HEIGHT = 1024;
+int HEIGHT = 128;
 int WIDTH = HEIGHT;
+double normalizer = double(pow(5.0, log2(HEIGHT)));
 
 struct point{
-	int probability;
+	double probability;
 	int value; 
 };
 
 void assignProbabilities(point** fractalArray){
+	double fractalSum = 0.0;
 	for(int levelDivision = HEIGHT; levelDivision > 1; levelDivision /= 2){
 		for(int i = 0; i < HEIGHT; i++){
 			for(int j = 0; j < WIDTH; j++){
@@ -26,9 +28,25 @@ void assignProbabilities(point** fractalArray){
 				else{
 					fractalArray[i][j].probability *= 1;
 				}
+
+				fractalSum += fractalArray[i][j].probability;
+
 			}
 		}
 	}
+	double fractalSumNew = 0.0;
+
+	//divide each element by a certain factor so that the total probability is still one.
+	
+	for(int i = 0; i < HEIGHT; i++){
+		for(int j = 0; j < WIDTH; j++){
+			fractalArray[i][j].probability /= normalizer;
+			fractalSumNew += fractalArray[i][j].probability;
+		}
+	}
+
+	cout << normalizer << endl;
+	cout << fractalSumNew << endl;
 }
 
 
@@ -37,7 +55,7 @@ void printToTerminal(point** arrayIn){
 	cout << endl;
 	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
-			printf("%-3d ", arrayIn[i][j].probability);
+			printf("%-.8f ", arrayIn[i][j].probability);
 		}
 		printf("\n\n");
 	 }
@@ -49,7 +67,7 @@ void printToFile(point** arrayIn){
 	fprintf(pFile, "%d\n%d\n1\n", HEIGHT, WIDTH);
 	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
-			fprintf(pFile, "%-3d ", arrayIn[i][j].probability);
+			fprintf(pFile, "%-.10f ", arrayIn[i][j].probability);
 		}
 		fprintf(pFile, "\n");
 	}

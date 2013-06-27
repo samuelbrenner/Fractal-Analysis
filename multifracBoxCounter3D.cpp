@@ -9,8 +9,10 @@
 //#include "regressionModule.h"
 #include <vector>
 #include <algorithm>
+#include "include/libstat.h"
 
 using namespace std;
+
 
 const char* fileName = "multifractal.txt";
 
@@ -73,8 +75,8 @@ struct Nalpha{
 	@return log base 2 of the number of cells filled in a given level.
 
 **/
-double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level, int& outArrayLength){
-	//return type will eventually be double**
+double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level, int& outArrayLength){
+	using namespace Statistics;
 	int boxDimension = (int) pow(2, level);
 	int boxDimensionZ;
 
@@ -85,25 +87,35 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 		boxDimensionZ = 1;
 	}
 
+	//creates Histogram object
+	Histogram hist;
+	int nDataPts = HEIGHT * WIDTH / pow(boxDimension, 2);
+	int nBins = 30;
+	double* histogramArray = new double[nDataPts];
+	double minVal = 0.0;
+	double maxVal = 0.0;
+	int arrayCounter = 0;
+
+	//vector<double> coarseContents;
 	//creating array of course-grained data
-	int coarseHeight = HEIGHT / boxDimension;
-	int coarseWidth = WIDTH / boxDimension;
-	int coarseDepth = DEPTH / boxDimensionZ;
+	/*int coarseHeight = HEIGHT / boxDimension;
+		int coarseWidth = WIDTH / boxDimension;
+		int coarseDepth = DEPTH / boxDimensionZ;
+		
+		double*** coarseArray = new double**[coarseHeight];
 
-	int*** coarseArray = new int**[coarseHeight];
-
-	for(int i = 0; i < coarseHeight; i++){
-		coarseArray[i] = new int*[coarseWidth];
-		for(int j = 0; j < coarseWidth; j++){
-			coarseArray[i][j] = new int[coarseDepth];
-		}		
-	}
+		for(int i = 0; i < coarseHeight; i++){
+			coarseArray[i] = new double*[coarseWidth];
+			for(int j = 0; j < coarseWidth; j++){
+				coarseArray[i][j] = new double[coarseDepth];
+			}		
+		}*/
 
 	//iterates through all boxes
 	for(int i = 0; i < HEIGHT; i += boxDimension){
 		for(int j = 0; j < WIDTH; j += boxDimension){
 			for(int k = 0; k < DEPTH; k += boxDimensionZ){
-				int boxSum = 0;
+				double boxSum = 0;
 
 				//sums each box
 				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
@@ -121,55 +133,105 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 						}
 					}
 				}
-				coarseArray[i / boxDimension][j / boxDimension][k / boxDimensionZ] = boxSum;
+				histogramArray[arrayCounter] = boxSum;
+				arrayCounter++;
+				//coarseContents.push_back(boxSum);
 			}
 		}
 	}
+
+	computeMinMax(histogramArray, nDataPts, minVal, maxVal);
+	double binRange[] = {minVal, maxVal};
+	Histogram::HistObj* onlineHist 
+		= hist.createStaticHistogram(binRange, nBins, "onlineHist", Histogram::SPACING_LIN);
+	
+	for(int i = 0; i < nDataPts; i++){
+		hist.addDatum(onlineHist, histogramArray[i]);
+	}
+
+	//counts the number of non-empty bins
+	int nFullBins = 0;
+	for(int i = 0; i < nBins; i++){
+		if(hist.HistObj.binCount[i] != 0){
+			nFullBins++;
+		}
+	}
+
+
+	//creates array to hold falpha
+	double** falpha = new double*[nFullBins];
+	for(int i = 0; i < nFullBins; i++){
+		falpha[i] = new double[2];
+	}
+
+	//fills falpha
+	for(int i = 0; i < nBins; i++){
+		if(hist.HistObj.binCount[i] != 0){
+			falpha[i][0] = hist.hobj.binEdges[i]/double(level);
+			falpha[i][1] = log2(hist.HistObj.binCount[i])/double(level);
+		}
+	}
+
+	//hist.printObject(std::cout);
+
+	/****************************************************************
+	*	TODO:
+	*	Finish implementing histogramming. Possibly 
+	*
+
+
+	*/
+
+
+
+	delete[] histogramArray;
+
+
 
 
 
 	//places coarseArray contents into a vector for counting.
-	vector<int> coarseContents;
-	for (int i = 0; i < coarseHeight; i++){
-		for (int j = 0; j < coarseWidth; j++){
-			for(int k = 0; k < coarseDepth; k++){
-				coarseContents.push_back(coarseArray[i][j][k]);
+	
+	/*for (int i = 0; i < coarseHeight; i++){
+			for (int j = 0; j < coarseWidth; j++){
+				for(int k = 0; k < coarseDepth; k++){
+					coarseContents.push_back(coarseArray[i][j][k]);
+				}
 			}
-		}
-	}
+		}*/
 
 	//makes frequency vector
-	vector<Nalpha> frequencyVector;
-	while(coarseContents.size() > 0){
-		int measure = coarseContents[0];
-		unsigned long num_alpha = 0;
-		while (std::find(coarseContents.begin(), coarseContents.end(), measure) != coarseContents.end()){ 
-			coarseContents.erase(std::find(coarseContents.begin(), coarseContents.end(), measure));
-			num_alpha++;
-		}
-		Nalpha nalpha;
-		nalpha.alpha = log2(measure)/double(level);
-		nalpha.count = num_alpha;
-		frequencyVector.push_back(nalpha);
-	}
-
+	/*vector<Nalpha> frequencyVector;
+		while(coarseContents.size() > 0){
+			double measure = coarseContents[0];
+			int num_alpha = 0;
+			while (std::find(coarseContents.begin(), coarseContents.end(), measure) != coarseContents.end()){ 
+				coarseContents.erase(std::find(coarseContents.begin(), coarseContents.end(), measure));
+				num_alpha++;
+			}
+			Nalpha nalpha;
+			nalpha.alpha = log2(measure)/double(level);
+			nalpha.count = num_alpha;
+			frequencyVector.push_back(nalpha);
+		}*/
+/*
 	cout << "FVector size: " << frequencyVector.size() << endl;
-	outArrayLength = frequencyVector.size();
-	cout << "outArrayLength: " <<outArrayLength <<endl;
-
-	
+		outArrayLength = frequencyVector.size();
+		cout << "outArrayLength: " <<outArrayLength <<endl;
+		
 
 	double** falpha = new double*[outArrayLength];
 	for(int i = 0; i < outArrayLength; i++){
 		falpha[i] = new double[2];
 	}
 
+
 	for(int i = 0; i < outArrayLength; i++){
 		falpha[i][0] = frequencyVector[i].alpha;
 		falpha[i][1] =  log2(frequencyVector[i].count)/double(level);
 	}
 
-	/*
+	
 		int** coarseArrayForPrinting = new int*[coarseHeight];
 		for(int i = 0; i < coarseHeight; i++){
 			coarseArrayForPrinting[i] = new int[coarseWidth];
@@ -182,10 +244,12 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 
 		printArray(coarseArrayForPrinting, coarseHeight, coarseWidth);
 		delete[] coarseArrayForPrinting;
-	*/
 	
-	delete[] coarseArray;
-	return falpha;
+	
+	//delete[] coarseArray;
+	*/
+	return falpha;	
+
 }
 
 int main () {
@@ -194,7 +258,6 @@ int main () {
 	if(!(myfile.is_open())){
 		cout << "please open the right file" << endl;
 		return -1;
-
 	}
 	string width;
 	string height;
@@ -216,13 +279,13 @@ int main () {
 	printf("\n\n%s%d\n%s%d\n%s%d\n\n", "height: ", HEIGHT, "width: ", WIDTH, "depth: ", DEPTH);
 
 	//allocate array
-	int*** elements;
-	elements = new int**[HEIGHT];
+	double*** elements;
+	elements = new double**[HEIGHT];
 
 	for(int i = 0; i < HEIGHT; i ++){
-		elements[i] = new int*[WIDTH];
+		elements[i] = new double*[WIDTH];
 		for(int j = 0; j < WIDTH; j++){
-			elements[i][j] = new int[DEPTH];
+			elements[i][j] = new double[DEPTH];
 		}
 	}
 
@@ -233,7 +296,7 @@ int main () {
 		 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
 		 	stringstream convert(line);
 		 	for(int j = 0; j < WIDTH; j++){
-		 		int value;
+		 		double value;
 		 		convert >> value;
 		 		elements[i][j][k] = value;
 		 	}
@@ -263,18 +326,13 @@ int main () {
 
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
 		cout << endl << "Level: " << k + LOWESTLEVEL << endl;
-		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
-		printArray(falpha, outArrayLength, 2);
-		printToFile(falpha, k + LOWESTLEVEL, outArrayLength);
+		boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
+		//printArray(falpha, outArrayLength, 2);
+		//printToFile(falpha, k + LOWESTLEVEL, outArrayLength);
 	}
-
-
-	//printf("\n\n%s%s\n%s%.5f\n\n", "Curve: ", fileName, "Dimension: ", 
-		//slope(outDataArray, outArrayLength));
 
 	myfile.close();
 
 	delete[] elements;
-	
 	return 0;
 }
