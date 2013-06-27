@@ -42,8 +42,8 @@ void printArray(double** arrayIn, int arrayHeight, int WIDTH){
 }
 
 struct Nalpha{
-	unsigned long alpha;
-	unsigned long count;
+	double alpha;
+	double count;
 };
 
 
@@ -60,7 +60,7 @@ struct Nalpha{
 	@return log base 2 of the number of cells filled in a given level.
 
 **/
-double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level, int outArrayLength){
+double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level, int& outArrayLength){
 	//return type will eventually be double**
 	int boxDimension = (int) pow(2, level);
 	int boxDimensionZ;
@@ -128,14 +128,14 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 	//makes frequency vector
 	vector<Nalpha> frequencyVector;
 	while(coarseContents.size() > 0){
-		int frontValue = coarseContents[0];
+		int measure = coarseContents[0];
 		unsigned long num_alpha = 0;
-		while (std::find(coarseContents.begin(), coarseContents.end(), frontValue) != coarseContents.end()){ 
-			coarseContents.erase(std::find(coarseContents.begin(), coarseContents.end(), frontValue));
+		while (std::find(coarseContents.begin(), coarseContents.end(), measure) != coarseContents.end()){ 
+			coarseContents.erase(std::find(coarseContents.begin(), coarseContents.end(), measure));
 			num_alpha++;
 		}
 		Nalpha nalpha;
-		nalpha.alpha = log2(frontValue)/double(level);
+		nalpha.alpha = log2(measure)/double(level);
 		nalpha.count = num_alpha;
 		frequencyVector.push_back(nalpha);
 	}
@@ -144,17 +144,6 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 	outArrayLength = frequencyVector.size();
 	cout << "outArrayLength: " <<outArrayLength <<endl;
 
-	//print frequencyVector
-		int** freqForPrinting = new int*[outArrayLength];
-		for(int i = 0; i < outArrayLength; i++){
-			freqForPrinting[i] = new int[2];
-		}
-		for(int i = 0; i < outArrayLength; i++){
-			freqForPrinting[i][0] = frequencyVector[i].alpha;
-			freqForPrinting[i][1] = frequencyVector[i].count;
-		}
-		printArray(freqForPrinting, outArrayLength, 2);
-		delete[] freqForPrinting;
 	
 
 	double** falpha = new double*[outArrayLength];
@@ -181,6 +170,7 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 		printArray(coarseArrayForPrinting, coarseHeight, coarseWidth);
 		delete[] coarseArrayForPrinting;
 	*/
+	
 	delete[] coarseArray;
 	return falpha;
 }
@@ -210,7 +200,7 @@ int main () {
 	int WIDTH = convertToInt(width);
 	int DEPTH = convertToInt(depth);
 
-	printf("\n\n%s%d\n%s%d\n%s%d\n", "height: ", HEIGHT, "width: ", WIDTH, "depth: ", DEPTH);
+	printf("\n\n%s%d\n%s%d\n%s%d\n\n", "height: ", HEIGHT, "width: ", WIDTH, "depth: ", DEPTH);
 
 	//allocate array
 	int*** elements;
@@ -259,8 +249,9 @@ int main () {
 	int outArrayLength = 0;
 
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
-		cout << "Level: " << k << endl;
-		printArray(boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength), outArrayLength, 2);
+		cout << endl << "Level: " << k << endl;
+		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
+		printArray(falpha, outArrayLength, 2);
 	}
 
 
