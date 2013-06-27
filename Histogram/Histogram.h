@@ -18,7 +18,7 @@ void computeMinMax(double* data, int numDataPts, double& minVal, double& maxVal)
 class Histogram
 {
 
-public:
+public:	
 	enum spacing_t 
 	{
 		SPACING_LIN = 0, 
@@ -45,12 +45,12 @@ public:
 		std::string name;
 	};
 
-private:
-	std::vector<HistObj*> histObjs;
+	
 
 public:
-
-
+	int getBinCount(int binId);
+	double getBinEdges(int binId);
+	std::vector<HistObj*> histObjs;
 
 
 	Histogram();

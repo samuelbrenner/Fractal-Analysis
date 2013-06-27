@@ -12,8 +12,11 @@ namespace Statistics
 class HistObj
 {
 
-private:
-	// Number of bins
+
+
+
+public:
+		// Number of bins
 	int nBins;
 	// Edges of bins (size: nBins+1)
 	double* binEdges;
@@ -21,8 +24,6 @@ private:
 	int*	binCount;
 	// Identifying name
 	std::string name;
-
-public:
 	HistObj()
 	{
 

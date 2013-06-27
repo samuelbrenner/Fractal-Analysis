@@ -369,5 +369,12 @@ void Histogram::printObject(std::ostream& out)
 
 }
 
+int Histogram::getBinCount(int binId){
+	return binCount[binId];
+}
+
+double Histogram::getBinEdges(int binId){
+	return binEdges[binId];
+}
 
 };
