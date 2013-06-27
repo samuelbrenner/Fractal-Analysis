@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int HEIGHT = 8;
+int HEIGHT = 1024;
 int WIDTH = HEIGHT;
 
 struct point{

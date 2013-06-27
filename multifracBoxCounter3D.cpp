@@ -41,6 +41,19 @@ void printArray(double** arrayIn, int arrayHeight, int WIDTH){
  	}
 }
 
+void printToFile(double** arrayIn, int level, int HEIGHT){
+	FILE * pFile;
+	char* fileOutName = new char[20];
+	sprintf(fileOutName, "%s%d%s", "falpha_level_", level, ".txt");
+	pFile = fopen(fileOutName, "w");
+	for(int i = 0; i < HEIGHT; i++){
+		fprintf(pFile, "%.6f %.6f", arrayIn[i][0], arrayIn[i][1]);
+		fprintf(pFile, "\n");
+	}
+	fclose(pFile);
+	delete[] fileOutName;
+}
+
 struct Nalpha{
 	double alpha;
 	double count;
@@ -153,7 +166,7 @@ double** boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level
 
 	for(int i = 0; i < outArrayLength; i++){
 		falpha[i][0] = frequencyVector[i].alpha;
-		falpha[i][1] = log2(frequencyVector[i].count)/double(level);
+		falpha[i][1] =  log2(frequencyVector[i].count)/double(level);
 	}
 
 	/*
@@ -245,13 +258,14 @@ int main () {
 		delete[] elementsForPrinting;
 	*/
 
-	int LOWESTLEVEL = 0;
+	int LOWESTLEVEL = 1;
 	int outArrayLength = 0;
 
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
-		cout << endl << "Level: " << k << endl;
+		cout << endl << "Level: " << k + LOWESTLEVEL << endl;
 		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
 		printArray(falpha, outArrayLength, 2);
+		printToFile(falpha, k + LOWESTLEVEL, outArrayLength);
 	}
 
 
