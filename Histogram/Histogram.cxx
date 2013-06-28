@@ -369,12 +369,12 @@ void Histogram::printObject(std::ostream& out)
 
 }
 
-int Histogram::getBinCount(int binId){
-	return binCount[binId];
+int Histogram::getBinCount(Histogram::HistObj* hobj, int binId){
+	return hobj -> binCount[binId];
 }
 
-double Histogram::getBinEdges(int binId){
-	return binEdges[binId];
+double Histogram::getBinEdges(Histogram::HistObj* hobj, int binId){
+	return  (hobj -> binEdges[binId] + hobj -> binEdges[binId + 1]) / 2.0;
 }
 
 };

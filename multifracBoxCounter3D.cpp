@@ -151,8 +151,9 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 
 	//counts the number of non-empty bins
 	int nFullBins = 0;
+
 	for(int i = 0; i < nBins; i++){
-		if(hist.getBinCount(i) != 0){
+		if(hist.getBinCount(onlineHist, i) != 0){
 			nFullBins++;
 		}
 	}
@@ -164,11 +165,13 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 		falpha[i] = new double[2];
 	}
 
+	int falphaIndexFilledSoFar = 0;
 	//fills falpha
 	for(int i = 0; i < nBins; i++){
-		if(hist.getBinCount(i) != 0){
-			falpha[i][0] = hist.getBinEdges(i)/double(level);
-			falpha[i][1] = log2(hist.getBinCount(i))/double(level);
+		if(hist.getBinCount(onlineHist, i) != 0){
+			falpha[falphaIndexFilledSoFar][0] = hist.getBinEdges(onlineHist, i)/double(level);
+			falpha[falphaIndexFilledSoFar][1] = log2(hist.getBinCount(onlineHist, i))/double(level);
+			falphaIndexFilledSoFar++;
 		}
 	}
 

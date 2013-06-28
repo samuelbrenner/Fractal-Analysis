@@ -48,9 +48,13 @@ public:
 	
 
 public:
-	int getBinCount(int binId);
-	double getBinEdges(int binId);
+	int getBinCount(Histogram::HistObj* hobj, int binId);
+	double getBinEdges(Histogram::HistObj* hobj, int binId);
 	std::vector<HistObj*> histObjs;
+	/* You can have a multitude of histograms within each Histogram object (represented by HistObj).
+		You should pass 
+
+	*/
 
 
 	Histogram();
