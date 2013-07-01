@@ -159,6 +159,8 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 	}
 
 
+	outArrayLength = nFullBins;
+
 	//creates array to hold falpha
 	double** falpha = new double*[nFullBins];
 	for(int i = 0; i < nFullBins; i++){
@@ -329,8 +331,8 @@ int main () {
 
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
 		cout << endl << "Level: " << k + LOWESTLEVEL << endl;
-		boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
-		//printArray(falpha, outArrayLength, 2);
+		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
+		printArray(falpha, outArrayLength, 2);
 		//printToFile(falpha, k + LOWESTLEVEL, outArrayLength);
 	}
 
