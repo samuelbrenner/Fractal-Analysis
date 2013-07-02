@@ -57,11 +57,6 @@ void printToFile(double** arrayIn, int level, int HEIGHT){
 	delete[] fileOutName;
 }
 
-struct Nalpha{
-	double alpha;
-	double count;
-};
-
 
 /**
 	Returns the log base 2 of the number of cells filled in a given level

@@ -23,10 +23,10 @@ void assignProbabilities(point** fractalArray){
 			for(int j = 0; j < WIDTH; j++){
 
 				if((i % levelDivision >= (levelDivision / 2)) && (j % levelDivision >= (levelDivision / 2))){
-					fractalArray[i][j].probability *= 2;
+					fractalArray[i][j].probability *= 2.0 / 5.0;
 				}
 				else{
-					fractalArray[i][j].probability *= 1;
+					fractalArray[i][j].probability *= 1 / 5.0;
 				}
 
 				fractalSum += fractalArray[i][j].probability;
