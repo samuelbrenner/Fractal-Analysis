@@ -7,9 +7,9 @@
 
 using namespace std;
 
-int HEIGHT = 128;
+int HEIGHT = pow(2, 7);
 int WIDTH = HEIGHT;
-double normalizer = double(pow(5.0, log2(HEIGHT)));
+double normalizer = 1;//double(pow(5.0, log2(HEIGHT)));
 
 struct point{
 	double probability;

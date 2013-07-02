@@ -49,7 +49,7 @@ void printToFile(double** arrayIn, int level, int HEIGHT){
 	sprintf(fileOutName, "%s%d%s", "falpha_level_", level, ".txt");
 	pFile = fopen(fileOutName, "w");
 	for(int i = 0; i < HEIGHT; i++){
-		fprintf(pFile, "%.6f %.6f", arrayIn[i][0], arrayIn[i][1]);
+		fprintf(pFile, "%.8f %.8f", arrayIn[i][0], arrayIn[i][1]);
 		fprintf(pFile, "\n");
 	}
 	fclose(pFile);
@@ -90,7 +90,7 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 	//creates Histogram object
 	Histogram hist;
 	int nDataPts = HEIGHT * WIDTH / pow(boxDimension, 2);
-	int nBins = 30;
+	int nBins = 100;
 	double* histogramArray = new double[nDataPts];
 	double minVal = 0.0;
 	double maxVal = 0.0;
@@ -171,23 +171,15 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 	//fills falpha
 	for(int i = 0; i < nBins; i++){
 		if(hist.getBinCount(onlineHist, i) != 0){
-			falpha[falphaIndexFilledSoFar][0] = hist.getBinEdges(onlineHist, i)/double(level);
-			falpha[falphaIndexFilledSoFar][1] = log2(hist.getBinCount(onlineHist, i))/double(level);
+			falpha[falphaIndexFilledSoFar][0] = log2(hist.getBinEdges(onlineHist, i))/double(level); //alpha
+			falpha[falphaIndexFilledSoFar][1] = log2(hist.getBinCount(onlineHist, i))/double(level); //falpha
 			falphaIndexFilledSoFar++;
 		}
 	}
 
 	//hist.printObject(std::cout);
 
-	/****************************************************************
-	*	TODO:
-	*	Finish implementing histogramming. We need a way to return the
-	*	bin count and edge for each occupied bin.
-
-
-	*/
-
-
+	
 
 	delete[] histogramArray;
 
@@ -333,7 +325,7 @@ int main () {
 		cout << endl << "Level: " << k + LOWESTLEVEL << endl;
 		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
 		printArray(falpha, outArrayLength, 2);
-		//printToFile(falpha, k + LOWESTLEVEL, outArrayLength);
+		printToFile(falpha, k + LOWESTLEVEL, outArrayLength);
 	}
 
 	myfile.close();

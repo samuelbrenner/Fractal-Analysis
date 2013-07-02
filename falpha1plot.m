@@ -3,5 +3,5 @@ alpha = falpha1(:,1);
 f = falpha1(:,2);
 figure;
 hold on;
-plot([0, 10],[0, 10]);
+plot([0, 1],[0, 1]);
 scatter(alpha, f);

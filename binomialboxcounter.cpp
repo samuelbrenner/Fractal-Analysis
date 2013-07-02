@@ -9,11 +9,12 @@
 //#include "regressionModule.h"
 #include <vector>
 #include <algorithm>
-#include "include/libstat.h"
+//#include "include/libstat.h"  	for histogramming
 
 using namespace std;
 
-
+int qMin = -20;
+int qMax = 20;
 const char* fileName = "binomial.txt";
 
 int convertToInt(string stringIn){
@@ -75,8 +76,8 @@ struct Nalpha{
 	@return log base 2 of the number of cells filled in a given level.
 
 **/
-double** boxCounting(double* arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level, int& outArrayLength){
-	using namespace Statistics;
+double** boxCounting(double* arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
+
 	int boxDimension = (int) pow(2, level);
 	int boxDimensionZ;
 
@@ -87,165 +88,74 @@ double** boxCounting(double* arrayIn, int HEIGHT, int WIDTH, int DEPTH, int leve
 		boxDimensionZ = 1;
 	}
 
-	//creates Histogram object
-	Histogram hist;
 	int nDataPts = HEIGHT / boxDimension;
-	int nBins = 100;
-	double* histogramArray = new double[nDataPts];
-	double minVal = 0.0;
-	double maxVal = 0.0;
-	int arrayCounter = 0;
-
-	//vector<double> coarseContents;
-	//creating array of course-grained data
-	/*int coarseHeight = HEIGHT / boxDimension;
-		int coarseWidth = WIDTH / boxDimension;
-		int coarseDepth = DEPTH / boxDimensionZ;
-		
-		double*** coarseArray = new double**[coarseHeight];
-
-		for(int i = 0; i < coarseHeight; i++){
-			coarseArray[i] = new double*[coarseWidth];
-			for(int j = 0; j < coarseWidth; j++){
-				coarseArray[i][j] = new double[coarseDepth];
-			}		
-		}*/
-
-	//iterates through all boxes
-	for(int i = 0; i < HEIGHT; i += boxDimension){
-		//for(int j = 0; j < WIDTH; j += boxDimension){
-			//for(int k = 0; k < DEPTH; k += boxDimensionZ){
-				double boxSum = 0;
-
-				//sums each box
-				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
-					//for(int boxSumY = 0; boxSumY < boxDimension; boxSumY++){
-						//for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
-							
-							//This is to deal with dimensions that aren't powers of two.
-								//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ 
-								//	cout << endl << "Dimensions must be powers of two!" << endl;				
-								//	boxSum += 0;
-								//}
-								//else{
-								boxSum += arrayIn[boxSumX + i];//[boxSumY + j][boxSumZ + k];
-								//}
-						//}
-					//}
-				}
-				histogramArray[arrayCounter] = boxSum;
-				arrayCounter++;
-				//coarseContents.push_back(boxSum);
-			//}
-		//}
-	}
-
-	computeMinMax(histogramArray, nDataPts, minVal, maxVal);
-	double binRange[] = {minVal, maxVal};
-	Histogram::HistObj* onlineHist 
-		= hist.createStaticHistogram(binRange, nBins, "onlineHist", Histogram::SPACING_LIN);
+	int falphaSize = qMax - qMin + 1;
 	
-	for(int i = 0; i < nDataPts; i++){
-		hist.addDatum(onlineHist, histogramArray[i]);
-	}
-
-	//counts the number of non-empty bins
-	int nFullBins = 0;
-
-	for(int i = 0; i < nBins; i++){
-		if(hist.getBinCount(onlineHist, i) != 0){
-			nFullBins++;
-		}
-	}
-
-
-	outArrayLength = nFullBins;
-
 	//creates array to hold falpha
-	double** falpha = new double*[nFullBins];
-	for(int i = 0; i < nFullBins; i++){
+	double** falpha = new double*[falphaSize];
+	for(int i = 0; i < qMax - qMin + 1; i++){
 		falpha[i] = new double[2];
 	}
 
-	int falphaIndexFilledSoFar = 0;
-	//fills falpha
-	for(int i = 0; i < nBins; i++){
-		if(hist.getBinCount(onlineHist, i) != 0){
-			//level is already log2(boxsize)
-			falpha[falphaIndexFilledSoFar][0] = log2(hist.getBinEdges(onlineHist, i))/double(level); //alpha
-			falpha[falphaIndexFilledSoFar][1] = log2(hist.getBinCount(onlineHist, i))/double(level); //falpha
-			falphaIndexFilledSoFar++;
+
+	for(int q = qMin; q <= qMax; q++){
+
+		double* probability = new double[nDataPts];
+		double sumOfProbabilitiesQthMoment = 0;
+		int arrayCounter = 0;
+		double fOfQ = 0.0;
+		double alphaOfQ = 0.0;
+		//iterates through all boxes
+		for(int i = 0; i < HEIGHT; i += boxDimension){
+			//for(int j = 0; j < WIDTH; j += boxDimension){
+				//for(int k = 0; k < DEPTH; k += boxDimensionZ){
+					double boxSum = 0;
+
+					//sums each box
+					for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
+						//for(int boxSumY = 0; boxSumY < boxDimension; boxSumY++){
+							//for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
+								
+								//This is to deal with dimensions that aren't powers of two.
+									//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ 
+									//	cout << endl << "Dimensions must be powers of two!" << endl;				
+									//	boxSum += 0;
+									//}
+									//else{
+									boxSum += arrayIn[boxSumX + i];//[boxSumY + j][boxSumZ + k];
+									//}
+							//}
+						//}
+					}
+
+					probability[arrayCounter] = boxSum;
+					arrayCounter++;
+					//coarseContents.push_back(boxSum);
+				//}
+			//}
 		}
-	}
-
-	//hist.printObject(std::cout);
-
-	
-
-	delete[] histogramArray;
-
-
-
-
-
-	//places coarseArray contents into a vector for counting.
-	
-	/*for (int i = 0; i < coarseHeight; i++){
-			for (int j = 0; j < coarseWidth; j++){
-				for(int k = 0; k < coarseDepth; k++){
-					coarseContents.push_back(coarseArray[i][j][k]);
-				}
-			}
-		}*/
-
-	//makes frequency vector
-	/*vector<Nalpha> frequencyVector;
-		while(coarseContents.size() > 0){
-			double measure = coarseContents[0];
-			int num_alpha = 0;
-			while (std::find(coarseContents.begin(), coarseContents.end(), measure) != coarseContents.end()){ 
-				coarseContents.erase(std::find(coarseContents.begin(), coarseContents.end(), measure));
-				num_alpha++;
-			}
-			Nalpha nalpha;
-			nalpha.alpha = log2(measure)/double(level);
-			nalpha.count = num_alpha;
-			frequencyVector.push_back(nalpha);
-		}*/
-/*
-	cout << "FVector size: " << frequencyVector.size() << endl;
-		outArrayLength = frequencyVector.size();
-		cout << "outArrayLength: " <<outArrayLength <<endl;
 		
-
-	double** falpha = new double*[outArrayLength];
-	for(int i = 0; i < outArrayLength; i++){
-		falpha[i] = new double[2];
-	}
-
-
-	for(int i = 0; i < outArrayLength; i++){
-		falpha[i][0] = frequencyVector[i].alpha;
-		falpha[i][1] =  log2(frequencyVector[i].count)/double(level);
-	}
-
-	
-		int** coarseArrayForPrinting = new int*[coarseHeight];
-		for(int i = 0; i < coarseHeight; i++){
-			coarseArrayForPrinting[i] = new int[coarseWidth];
-		}
-		for(int i = 0; i < coarseHeight; i++){
-			for(int j = 0; j < coarseWidth; j++){
-				coarseArrayForPrinting[i][j] = coarseArray[i][j][0];
-			}
+		for(int i = 0; i < nDataPts; i++){
+			sumOfProbabilitiesQthMoment += pow(probability[i], q);
 		}
 
-		printArray(coarseArrayForPrinting, coarseHeight, coarseWidth);
-		delete[] coarseArrayForPrinting;
+		for(int i = 0; i < nDataPts; i++){
+			double normalizedMeasure = pow(probability[i], q) / sumOfProbabilitiesQthMoment;
+			//cout << log2(normalizedMeasure) << endl;
+			fOfQ += normalizedMeasure * log2(normalizedMeasure) / log2(double(boxDimension) / HEIGHT);
+			
+			alphaOfQ += normalizedMeasure * log2(probability[i]) / log2(double(boxDimension) / HEIGHT);
+			
+		}
+
+		//cout << "f(q) = " << fOfQ << endl;
+		//cout << "alpha(q) = " << alphaOfQ <<endl;
+		falpha[int(q - qMin)][0] = alphaOfQ;
+		falpha[int(q - qMin)][1] = fOfQ;
+		delete[] probability;
+	}
+
 	
-	
-	//delete[] coarseArray;
-	*/
 	return falpha;	
 
 }
@@ -276,7 +186,7 @@ int main () {
 	//int WIDTH = convertToInt(width);
 	//int DEPTH = convertToInt(depth);
 
-	printf("\n\n%s%d\n%s%d\n%s%d\n\n", "height: ", HEIGHT);// "width: ", WIDTH, "depth: ", DEPTH);
+	printf("\n\n%s%d", "height: ", HEIGHT);// "width: ", WIDTH, "depth: ", DEPTH);
 
 	//allocate array
 	double* elements;
@@ -303,32 +213,19 @@ int main () {
 		}
 	//}
 
-	/* Print arrayIn to test that it works
-		int** elementsForPrinting = new int*[HEIGHT];
-
+	 /*Print arrayIn to test that it works
 		for(int i = 0; i < HEIGHT; i++){
-			elementsForPrinting[i] = new int[WIDTH];
-		}
+			printf("\nElement: %-7d%f", i, elements[i]);
+		}*/
+	
 
-		for(int i = 0; i < HEIGHT; i++){
-			for(int j = 0; j < WIDTH; j++){
-				elementsForPrinting[i][j] = elements[i][j][0];
-			}
-		}
-
-		printArray(elementsForPrinting, HEIGHT, WIDTH);
-
-		delete[] elementsForPrinting;
-	*/
-
-	int LOWESTLEVEL = 1;
-	int outArrayLength = 0;
+	int LOWESTLEVEL = 0;
 
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
 		cout << endl << "Level: " << k + LOWESTLEVEL << endl;
-		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL, outArrayLength);
-		printArray(falpha, outArrayLength, 2);
-		printToFile(falpha, k + LOWESTLEVEL, outArrayLength);
+		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
+		printArray(falpha, qMax - qMin + 1, 2);
+		printToFile(falpha, k + LOWESTLEVEL, qMax - qMin + 1);
 	}
 
 	myfile.close();

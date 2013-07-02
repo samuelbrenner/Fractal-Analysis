@@ -64,7 +64,7 @@ void printToFile(point* arrayIn){
 	pFile = fopen("binomial.txt", "w");
 	fprintf(pFile, "%d\n", HEIGHT);
 	for(int i = 0; i < HEIGHT; i++){
-		fprintf(pFile, "%d    ", i); //print indices so we can display easily in Matlab
+		//fprintf(pFile, "%d    ", i); //print indices so we can display easily in Matlab
 		fprintf(pFile, "%-.10f ", arrayIn[i].probability);
 		fprintf(pFile, "\n");
 	}
