@@ -7,9 +7,9 @@
 
 using namespace std;
 
-int HEIGHT = pow(2, 7);
+int HEIGHT = pow(2, 2);
 int WIDTH = HEIGHT;
-double normalizer = 1;//double(pow(5.0, log2(HEIGHT)));
+//double normalizer = 1;//double(pow(5.0, log2(HEIGHT)));
 
 struct point{
 	double probability;
@@ -38,15 +38,14 @@ void assignProbabilities(point** fractalArray){
 
 	//divide each element by a certain factor so that the total probability is still one.
 	
-	for(int i = 0; i < HEIGHT; i++){
-		for(int j = 0; j < WIDTH; j++){
-			fractalArray[i][j].probability /= normalizer;
-			fractalSumNew += fractalArray[i][j].probability;
-		}
-	}
-
-	cout << normalizer << endl;
-	cout << fractalSumNew << endl;
+	//for(int i = 0; i < HEIGHT; i++){
+		//for(int j = 0; j < WIDTH; j++){
+		//	fractalArray[i][j].probability /= normalizer;
+		//	fractalSumNew += fractalArray[i][j].probability;
+	//	}
+	//}
+	//cout << normalizer << endl;
+	//cout << fractalSumNew << endl;
 }
 
 

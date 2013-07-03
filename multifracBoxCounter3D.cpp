@@ -13,7 +13,7 @@
 using namespace std;
 
 
-const char* fileName = "multifractal.txt";
+const char* fileName = "fractal_data/Juliadim2_4096.txt";
 double qMin = -10;
 double qMax = 10;
 
@@ -68,7 +68,6 @@ void printToFile(double** arrayIn, int level, int HEIGHT){
 	examines only the individual data points, whereas at level 1 they are merged
 	into boxes of side length 2^1, and for level l size 2^l.
 	@return log base 2 of the number of cells filled in a given level.
-
 **/
 double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 	int boxDimension = (int) pow(2, level);
@@ -136,7 +135,6 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 					}
 					probability[arrayCounter] = boxSum;
 					arrayCounter++;
-					//coarseContents.push_back(boxSum);
 				}
 			}
 		}
@@ -200,6 +198,7 @@ int main () {
 		}
 	}
 
+	double arraySum = 0.0;
 	//input to array
 	for(int k = 0; k < DEPTH; k++){
 		for(int i = 0; i < HEIGHT; i++){
@@ -210,7 +209,20 @@ int main () {
 		 		double value;
 		 		convert >> value;
 		 		elements[i][j][k] = value;
+		 		arraySum += value;
 		 	}
+		}
+	}
+
+	//check to see if array is normalized
+	if((arraySum - 1)/10.0 != 0){
+		//normalize values if they don't sum to one.
+		for(int i = 0; i < HEIGHT; i++){
+			for(int j = 0; j < WIDTH; j++){
+				for(int k = 0; k < DEPTH; k++){
+					elements[i][j][k] /= arraySum;
+				}
+			}
 		}
 	}
 

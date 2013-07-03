@@ -1,4 +1,4 @@
-falpha1 = importdata('falpha_level_0.txt');
+falpha1 = importdata('falpha_level_11.txt');
 alpha = falpha1(:,1);
 f = falpha1(:,2);
 figure;
