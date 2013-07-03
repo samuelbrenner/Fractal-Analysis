@@ -1,5 +1,10 @@
 /** Fractal analysis module utilizing boxcounting to determine 
 	the fractal dimension of a shape in the input text file.
+
+
+	TODO:
+	*update documentation
+	*
 **/
 #include <fstream>
 #include <string>
@@ -57,7 +62,7 @@ void printToFile(double** arrayIn, int level, int HEIGHT){
 	delete[] fileOutName;
 }
 
-/**
+/**	UPDATE THIS
 	Returns the log base 2 of the number of cells filled in a given level
 	of fractal analysis.
 	@param arrayIn is the 2-3-D array of integers that contains the data
@@ -197,7 +202,7 @@ int main () {
 			elements[i][j] = new double[DEPTH];
 		}
 	}
-
+	bool haveZeros = false;
 	double arraySum = 0.0;
 	//input to array
 	for(int k = 0; k < DEPTH; k++){
@@ -210,21 +215,41 @@ int main () {
 		 		convert >> value;
 		 		elements[i][j][k] = value;
 		 		arraySum += value;
+		 		if (elements[i][j][k] == 0){
+		 			haveZeros = true;
+		 		}
 		 	}
 		}
 	}
 
+
+
 	//check to see if array is normalized
-	if((arraySum - 1)/10.0 != 0){
+	if(((arraySum - 1)/10.0 != 0) || haveZeros){
 		//normalize values if they don't sum to one.
 		for(int i = 0; i < HEIGHT; i++){
 			for(int j = 0; j < WIDTH; j++){
 				for(int k = 0; k < DEPTH; k++){
+					if(haveZeros){
+						elements[i][j][k]++;
+						cout << "HAVEZEROS IS TRUE!" << endl;
+					}
 					elements[i][j][k] /= arraySum;
 				}
 			}
 		}
 	}
+
+	//makes sure we don't have zeros in the data
+	for(int i = 0; i < HEIGHT; i++){
+		for(int j = 0; j < WIDTH; j++){
+			for(int k = 0; k < DEPTH; k++){
+				elements[i][j][k] /= arraySum;
+			}
+		}
+	}
+
+	
 
 	/* Print arrayIn to test that it works
 		int** elementsForPrinting = new int*[HEIGHT];
