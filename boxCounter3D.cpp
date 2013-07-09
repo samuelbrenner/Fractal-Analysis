@@ -10,17 +10,11 @@
 #include <math.h>
 #include <iostream>
 #include "regressionModule.h"
+#include "dataReader.h"
 
 using namespace std;
 
 const char* fileName = "c_hdf5_plt_cnt_1000.txt";
-
-int convertToInt(string stringIn){
-	int result;
-	stringstream convert(stringIn);
- 	convert >> result;
- 	return result;
-}
 
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
@@ -104,95 +98,48 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 }
 
 int main () {
- ifstream myfile (fileName);
- 
- if(!(myfile.is_open())){
- 	cout << "please open the right file" << endl;
- 	return -1;
+	int HEIGHT, WIDTH, DEPTH;
+	int*** elements;
+	bool haveZeros = false;
+	int arraySum;
 
- }
- string width;
- string height;
- string depth;
- string line;
+	elements = dataReaderBinary<int>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
 
+	//printArray(elements, HEIGHT, WIDTH);
 
- if(myfile.is_open()){
- 	getline (myfile, height);
- 	getline (myfile, width);
- 	getline (myfile, depth);
- 	
- }
+	int LOWESTLEVEL = 0;
 
- int HEIGHT = convertToInt(height);
- int WIDTH = convertToInt(width);
- int DEPTH = convertToInt(depth);
-
- printf("\n\n%s%d\n%s%d\n%s%d\n", "height: ", HEIGHT, "width: ", WIDTH, "depth: ", DEPTH);
-
- //allocate array
- int*** elements;
- elements = new int**[HEIGHT];
- 
- for(int i = 0; i < HEIGHT; i ++){
- 	elements[i] = new int*[WIDTH];
- 	for(int j = 0; j < WIDTH; j++){
- 		elements[i][j] = new int[DEPTH];
- 	}
- }
-
- //input to array
- stringstream convert;
- for(int k = 0; k < DEPTH; k++){
-	for(int i = 0; i < HEIGHT; i++){
-		//cout << i << endl ;
-	 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
-	 	convert.str(line);
-	 	for(int j = 0; j < WIDTH; j++){
-	 		int value;
-	 		convert >> value;
-	 		elements[i][j][k] = value;
-	 	}
+	//initialize out-array
+	int largestDimension = fmin(HEIGHT, WIDTH);
+	if(DEPTH > 1){
+		largestDimension = fmin(largestDimension, DEPTH);
 	}
- }
+	int outArrayLength = int(log2(largestDimension) - LOWESTLEVEL + 1);
+	double** outDataArray = new double* [outArrayLength];
 
- //printArray(elements, HEIGHT, WIDTH);
+	//printf("\n\n%d\n\n", outArrayLength);
 
- int LOWESTLEVEL = 0;
+	for(int i = 0; i < outArrayLength; i++){
+		outDataArray[i] = new double[2];
+	}
 
- //initialize out-array
- int largestDimension = fmin(HEIGHT, WIDTH);
- if(DEPTH > 1){
- 	largestDimension = fmin(largestDimension, DEPTH);
- }
- int outArrayLength = int(log2(largestDimension) - LOWESTLEVEL + 1);
- double** outDataArray = new double* [outArrayLength];
+	for(int k = 0; k < outArrayLength; k++)
+	{
+		outDataArray[k][0] = outArrayLength - 1 - (k + LOWESTLEVEL);
+		outDataArray[k][1] = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
+	}
 
- //printf("\n\n%d\n\n", outArrayLength);
- 
- for(int i = 0; i < outArrayLength; i++){
- 	outDataArray[i] = new double[2];
- }
+	printArray(outDataArray, outArrayLength, 2);
 
- for(int k = 0; k < outArrayLength; k++)
- {
- 	outDataArray[k][0] = outArrayLength - 1 - (k + LOWESTLEVEL);
- 	outDataArray[k][1] = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
- }
+	double* regressionArray = new double[2];
 
- printArray(outDataArray, outArrayLength, 2);
+	slope(outDataArray, outArrayLength, regressionArray);
 
- double* regressionArray = new double[2];
+	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", fileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
- slope(outDataArray, outArrayLength, regressionArray);
+	delete[] elements;
+	delete[] outDataArray;
 
- printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", fileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
-  myfile.close();
-
- delete[] elements;
- delete[] outDataArray;
- 
-
-  return 0;
+	return 0;
 }

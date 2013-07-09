@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int HEIGHT = pow(2, 2);
+int HEIGHT = pow(2, 9);
 int WIDTH = HEIGHT;
 //double normalizer = 1;//double(pow(5.0, log2(HEIGHT)));
 
@@ -26,7 +26,7 @@ void assignProbabilities(point** fractalArray){
 					fractalArray[i][j].probability *= 2.0 / 5.0;
 				}
 				else{
-					fractalArray[i][j].probability *= 1 / 5.0;
+					fractalArray[i][j].probability *= 1.0 / 5.0;
 				}
 
 				fractalSum += fractalArray[i][j].probability;

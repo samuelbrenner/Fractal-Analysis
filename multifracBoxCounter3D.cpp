@@ -4,30 +4,25 @@
 
 	TODO:
 	*update documentation
-	*
+	*make documentation explain calculations as they happen w/ citations too.
 **/
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <math.h>
 #include <iostream>
-//#include "regressionModule.h"
-#include <vector>
 #include <algorithm>
+#include "dataReader.h"
+#include "dataCorrection.h"
+
 
 using namespace std;
 
 
-const char* fileName = "fractal_data/Juliadim2_4096.txt";
+const char* fileName = "multifractal.txt";
+
 double qMin = -10;
 double qMax = 10;
-
-int convertToInt(string stringIn){
-	int result;
-	stringstream convert(stringIn);
- 	convert >> result;
- 	return result;
-}
 
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
@@ -167,108 +162,13 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 }
 
 int main () {
-	ifstream myfile (fileName);
+    int HEIGHT, WIDTH, DEPTH;
+    double*** elements;
+    bool haveZeros = false;
+    double arraySum;
 
-	if(!(myfile.is_open())){
-		cout << "please open the right file" << endl;
-		return -1;
-	}
-	string width;
-	string height;
-	string depth;
-	string line;
-
-
-	if(myfile.is_open()){
-		getline (myfile, height);
-		getline (myfile, width);
-		getline (myfile, depth);
-		
-	}
-
-	int HEIGHT = convertToInt(height);
-	int WIDTH = convertToInt(width);
-	int DEPTH = convertToInt(depth);
-
-	printf("\n\n%s%d\n%s%d\n%s%d\n\n", "height: ", HEIGHT, "width: ", WIDTH, "depth: ", DEPTH);
-
-	//allocate array
-	double*** elements;
-	elements = new double**[HEIGHT];
-
-	for(int i = 0; i < HEIGHT; i ++){
-		elements[i] = new double*[WIDTH];
-		for(int j = 0; j < WIDTH; j++){
-			elements[i][j] = new double[DEPTH];
-		}
-	}
-	bool haveZeros = false;
-	double arraySum = 0.0;
-	//input to array
-	for(int k = 0; k < DEPTH; k++){
-		for(int i = 0; i < HEIGHT; i++){
-			//cout << i << endl ;
-		 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
-		 	stringstream convert(line);
-		 	for(int j = 0; j < WIDTH; j++){
-		 		double value;
-		 		convert >> value;
-		 		elements[i][j][k] = value;
-		 		arraySum += value;
-		 		if (elements[i][j][k] == 0){
-		 			haveZeros = true;
-		 		}
-		 	}
-		}
-	}
-
-
-
-	//check to see if array is normalized
-	if(((arraySum - 1)/10.0 != 0) || haveZeros){
-		//normalize values if they don't sum to one.
-		for(int i = 0; i < HEIGHT; i++){
-			for(int j = 0; j < WIDTH; j++){
-				for(int k = 0; k < DEPTH; k++){
-					if(haveZeros){
-						elements[i][j][k]++;
-						cout << "HAVEZEROS IS TRUE!" << endl;
-					}
-					elements[i][j][k] /= arraySum;
-				}
-			}
-		}
-	}
-
-	//makes sure we don't have zeros in the data
-	for(int i = 0; i < HEIGHT; i++){
-		for(int j = 0; j < WIDTH; j++){
-			for(int k = 0; k < DEPTH; k++){
-				elements[i][j][k] /= arraySum;
-			}
-		}
-	}
-
-	
-
-	/* Print arrayIn to test that it works
-		int** elementsForPrinting = new int*[HEIGHT];
-
-		for(int i = 0; i < HEIGHT; i++){
-			elementsForPrinting[i] = new int[WIDTH];
-		}
-
-		for(int i = 0; i < HEIGHT; i++){
-			for(int j = 0; j < WIDTH; j++){
-				elementsForPrinting[i][j] = elements[i][j][0];
-			}
-		}
-
-		printArray(elementsForPrinting, HEIGHT, WIDTH);
-
-		delete[] elementsForPrinting;
-	*/
-
+    elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //if reading in text, change the call to dataReaderASCII
+    dataCorrection<double>(elements, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
 	int LOWESTLEVEL = 0;
 
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
@@ -278,8 +178,8 @@ int main () {
 		printToFile(falpha, k + LOWESTLEVEL, qMax - qMin + 1);
 	}
 
-	myfile.close();
-
+	
+	//delete[] buffer;
 	delete[] elements;
 	return 0;
 }
