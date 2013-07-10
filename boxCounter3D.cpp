@@ -11,10 +11,11 @@
 #include <iostream>
 #include "regressionModule.h"
 #include "dataReader.h"
+#include "interpolation.h"
 
 using namespace std;
 
-const char* fileName = "c_hdf5_plt_cnt_1000.txt";
+const char* fileName = "c_hdf5_plt_cnt_1000_uncorrected.txt";
 
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
@@ -35,6 +36,19 @@ void printArray(double** arrayIn, double HEIGHT, double WIDTH){
 		}
 		printf("\n");
  	}
+}
+
+void printToFile(int*** arrayIn, int HEIGHT, int WIDTH){
+	FILE * pFile;
+	pFile = fopen("fractalOut.txt", "w");
+	//fprintf(pFile, "%d\n%d\n1\n", HEIGHT, WIDTH);
+	for(int i = 0; i < HEIGHT; i++){
+		for(int j = 0; j < WIDTH; j++){
+			fprintf(pFile, "%2d", arrayIn[i][j][0]);
+		}
+		fprintf(pFile, "\n");
+	}
+	fclose(pFile);
 }
 
 /**
@@ -99,13 +113,14 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 
 int main () {
 	int HEIGHT, WIDTH, DEPTH;
-	int*** elements;
+	double*** elements;
 	bool haveZeros = false;
-	int arraySum;
+	double arraySum;
+	int*** elementsInterpolated;
 
-	elements = dataReaderBinary<int>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
-
-	//printArray(elements, HEIGHT, WIDTH);
+	elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
+	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
+	printToFile(elementsInterpolated, HEIGHT, WIDTH);
 
 	int LOWESTLEVEL = 0;
 
@@ -126,7 +141,7 @@ int main () {
 	for(int k = 0; k < outArrayLength; k++)
 	{
 		outDataArray[k][0] = outArrayLength - 1 - (k + LOWESTLEVEL);
-		outDataArray[k][1] = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
+		outDataArray[k][1] = boxCounting(elementsInterpolated, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
 	}
 
 	printArray(outDataArray, outArrayLength, 2);
@@ -138,6 +153,7 @@ int main () {
 	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", fileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
 	delete[] elements;
+	delete[] elementsInterpolated;
 	delete[] outDataArray;
 
 

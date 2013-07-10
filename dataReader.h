@@ -8,7 +8,8 @@
 using namespace std;
 
 template <class T>
-
+T*** dataReaderASCII(const char* fileName, int& HEIGHT, int& WIDTH, int& DEPTH, bool& haveZeros, T& arraySum);
+template <class T>
 T*** dataReaderBinary(const char* fileName, int& HEIGHT, int& WIDTH, int& DEPTH, bool& haveZeros, T& arraySum){
 	ifstream myfile (fileName, ios::in | ios::binary);
 	char buffer[100];

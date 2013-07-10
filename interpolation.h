@@ -22,27 +22,48 @@ int*** interpolate(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, double v
 
 	for(int i = 1; i < HEIGHT - 1; i++){
 		for(int j = 1; j < WIDTH -1; j++){
-			if(arrayIn[i][j][1] < valueToFind){
-				if(arrayIn[i + 1][j][1] > valueToFind){
-					
+			int k = 0;
+				if(arrayIn[i][j][k] < valueToFind){
+					if(arrayIn[i + 1][j][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i + 1][j][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i + 1][j][k] = 1;
+						}
+					}
+					if(arrayIn[i][j + 1][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j + 1][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j + 1][k] = 1;
+						}
+					}
+					if(arrayIn[i][j - 1][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j - 1][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j - 1][k] = 1;
+						}
+					}
+					if(arrayIn[i - 1][j][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i - 1][j][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i - 1][j][k] = 1;
+						}
+					}
 				}
-				else if(arrayIn[i][j + 1][1] > valueToFind){
-
-				}
-				else if(arrayIn[i][j - 1][1] > valueToFind){
-
-				}
-				else if(arrayIn[i - 1][j][1] > valueToFind){
-
-				}
-			}
 		}
 	}
 
 
 
 
-
+return arrayOut;
 }
 
 
