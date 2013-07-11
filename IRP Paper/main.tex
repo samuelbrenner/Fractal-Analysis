@@ -1,0 +1,132 @@
+% APJ Reference: http://aas.org/journals/authors/common_instruct#_Toc2
+
+\documentclass[iop]{emulateapj}
+% \documentclass[12pt,preprint]{aastex}
+
+
+% Define the sun symbol for use with solar mass
+% \newcommand{\Sun}{\odot}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+% \usepackage{amssymb}
+%\usepackage{xfrac}
+% \usepackage{amsmath}
+\usepackage{hyperref}
+% \usepackage{multirow}
+% \usepackage{array}
+% \usepackage[lofdepth,lotdepth]{subfig}
+% \usepackage{todonotes}
+% \usepackage{float}
+
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=black
+}
+
+% \newcolumntype{x}[1]{%
+% >{\centering\hspace{0pt}}p{#1}}%
+
+\newcommand{\tn}{\tabularnewline}
+
+
+\bibliographystyle{apj}
+
+\shortauthors{Handy, Plewa, Odrzwolek}
+\shorttitle{Supernova models tuned to SN 1987A}
+
+%--------------------
+%	Begin document
+%--------------------
+\begin{document}
+%
+\title{Toward Connecting Core-Collapse Supernova Explosions with Observations of Their Supernova Remnants: \\
+Characteristics of approximate explosion models tuned to energetics of SN 1987A}
+%
+\author{Timothy Handy\altaffilmark{1}}
+\email{tah09e@fsu.edu}
+%
+\author{Tomasz Plewa\altaffilmark{1}}
+\email{tplewa@fsu.edu}
+%
+\author{Andrzej Odrzwolek\altaffilmark{2}}
+\email{andrzej's email}
+%
+\altaffiltext{1}{Florida State University}
+\altaffiltext{2}{Jagiellonian University}
+%
+%
+%
+%--------------------
+%	Begin Abstract
+%--------------------
+\begin{abstract}
+This is the abstract!
+\end{abstract}
+%
+%
+%
+%--------------------
+%	Begin keywords
+%--------------------
+\keywords{supernovae}
+%
+%
+%
+%--------------------
+%	Begin Body
+%--------------------
+
+\section{First}
+Hello
+\subsection{Subsection 1}
+World
+\subsubsection{Subsubsection 1}
+Diving pretty deep here
+\subsubsection{Subsubsection 2}
+Test
+
+\section{Testing References}
+
+\cite{kifonidis+03}
+
+\citep{kifonidis+06}
+
+\citet{kifonidis+06}
+
+\cite{kifonidis+03,kifonidis+06}
+
+\citep{kifonidis+03,kifonidis+06}
+
+\citet{kifonidis+03,kifonidis+06}
+
+%
+%
+%
+%--------------------
+%	Begin ackownledgements
+%--------------------
+\section{Acknowledgments}\label{s:ack}
+%
+%
+%
+The work of TH and TP has been supported by the LLNL subcontract
+No.\ B595681. The work of TP, CCK, and RPD has been supported by the
+DOE grant DE-FG52-09NA29548. This research used resources of the
+National Energy Research Scientific Computing Center, which is
+supported by the Office of Science of the U.S.\ Department of Energy
+under Contract No.\ DE-AC02-05CH11231.
+%
+%
+%
+%--------------------
+%	Begin references
+%--------------------
+\bibliographystyle{apj}
+\bibliography{main}
+%
+%
+%
+\end{document}
