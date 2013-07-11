@@ -16,6 +16,8 @@
 using namespace std;
 
 const char* fileName = "c_hdf5_plt_cnt_1000_uncorrected.txt";
+//const char* fileName = "first(phillip's).txt";
+
 
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;

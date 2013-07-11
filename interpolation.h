@@ -20,9 +20,19 @@ int*** interpolate(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, double v
 		}
 	}
 
+	//Makes the interpolater able to handle planar data
+	int startingDepthIndex = 0;
+	if(DEPTH != 1){
+		startingDepthIndex = 1;
+	}
+	else{
+		DEPTH++;
+	}
+
 	for(int i = 1; i < HEIGHT - 1; i++){
 		for(int j = 1; j < WIDTH -1; j++){
-			int k = 0;
+			for(int k = startingDepthIndex; k < DEPTH - 1; k++){
+				//cout << endl << k << endl;
 				if(arrayIn[i][j][k] < valueToFind){
 					if(arrayIn[i + 1][j][k] > valueToFind){
 						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i + 1][j][k] - arrayIn[i][j][k])) == 0){
@@ -56,7 +66,25 @@ int*** interpolate(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, double v
 							arrayOut[i - 1][j][k] = 1;
 						}
 					}
+					if(arrayIn[i][j][k + 1] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j][k + 1] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j][k + 1] = 1;
+						}
+					}
+					if(arrayIn[i][j][k - 1] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j][k - 1] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j][k - 1] = 1;
+						}
+					}
+
 				}
+			}
 		}
 	}
 
