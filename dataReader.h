@@ -1,3 +1,34 @@
+/** 
+	Module to read in the data to be used in fractal and multifractal analysis.
+
+	Implemented in multifracBoxCounter3D.cpp:
+		Multifractal analysis module utilizing boxcounting to determine 
+		the multifractal spectrum of a measure in the input text/binary file.
+
+		Prints the data that forms the multifractal spectrum to a text file
+		that can later be analyzed in Matlab or another visualization program.
+
+		The algorithm used is described in:
+			A. Chhabra and R. V. Jensen, Phys. Rev. Lett. 62, 1330 (1989).
+
+		@author Samuel Brenner
+		@version July 11, 2013
+
+	Implemented in boxCounter3D.cpp:
+		Fractal analysis module utilizing boxcounting to determine 
+		the fractal dimension of a shape in the input text/binary file.
+
+		Prints to terminal:
+			- the results at each level of analysis
+			- the overall dimension as determined by least-squares regression
+			- an R^2 value
+
+		@author Samuel Brenner
+		@version July 11, 2013
+
+	@author Samuel Brenner
+	@version July 11, 2013
+**/
 #ifndef dataReader_h
 #define dataReader_h
 #include <fstream>
@@ -94,8 +125,8 @@ T*** dataReaderASCII(const char* fileName, int& HEIGHT, int& WIDTH, int& DEPTH, 
 	//input to array
 	for(int k = 0; k < DEPTH; k++){
 		for(int i = 0; i < HEIGHT; i++){
-			//cout << i << endl ;
-		 	getline(myfile, line);					//will implement getchar later to read in one character at a time, and eventually binary files
+			//cout << i << endl;
+		 	getline(myfile, line);					
 		 	stringstream convert(line);
 		 	for(int j = 0; j < WIDTH; j++){
 		 		T value;

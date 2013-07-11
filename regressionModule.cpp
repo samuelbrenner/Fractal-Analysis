@@ -1,3 +1,27 @@
+/**
+	Module to run regression for boxcounting.
+	
+	Changes a double[3] such that regressionArray[0] = slope,
+	regressionArray[1] = R^2, and regressionArray[2] = y-int.
+
+	Implemented in boxCounter3D.cpp:
+		Fractal analysis module utilizing boxcounting to determine 
+		the fractal dimension of a shape in the input text/binary file.
+
+		Prints to terminal:
+			- the results at each level of analysis
+			- the overall dimension as determined by least-squares regression
+			- an R^2 value
+			
+		@author Samuel Brenner
+		@version July 11, 2013
+
+	@author Samuel Brenner
+	@version July 11, 2013
+
+**/
+
+
 #include "regressionModule.h"
 
 #include <math.h>
@@ -11,24 +35,24 @@ double mean(double* arrayIn, int arrayLength);
 
 void slope(double** arrayIn, int arrayLength, double* regressionArray){
 	
-	double* arrayX = new double[arrayLength];
+	double* arrayX = new double[3];
 
-	for(int i = 0; i < arrayLength; i++){
+	for(int i = 0; i < 3; i++){
 		arrayX[i] = arrayIn[i][0];
 	}
 
-	double* arrayY = new double[arrayLength];
-	for(int i = 0; i < arrayLength; i++){
+	double* arrayY = new double[3];
+	for(int i = 0; i < 3; i++){
 		arrayY[i] = arrayIn[i][1];
 	}
 
-	double meanX = mean(arrayX, arrayLength);
-	double meanY = mean(arrayY, arrayLength);
+	double meanX = mean(arrayX, 3);
+	double meanY = mean(arrayY, 3);
 
-	double stdevX = stdev(arrayX, meanX, arrayLength);
-	double stdevY = stdev(arrayY, meanY, arrayLength);
+	double stdevX = stdev(arrayX, meanX, 3);
+	double stdevY = stdev(arrayY, meanY, 3);
 
-	double r = corrCoeff(arrayX, arrayY, meanX, meanY, stdevX, stdevY, arrayLength);
+	double r = corrCoeff(arrayX, arrayY, meanX, meanY, stdevX, stdevY, 3);
 
 	double slope = r 
 		* stdevY / stdevX;
@@ -39,6 +63,7 @@ void slope(double** arrayIn, int arrayLength, double* regressionArray){
 
  	regressionArray[0] = slope;
  	regressionArray[1] = pow(r, 2);
+ 	regressionArray[2] = meanY - slope * meanX;
 }
 
 double stdev(double* arrayIn, double arrayMean, int arrayLength){

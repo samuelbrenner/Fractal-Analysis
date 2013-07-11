@@ -1,10 +1,15 @@
-/** Fractal analysis module utilizing boxcounting to determine 
-	the fractal dimension of a shape in the input text file.
+/** 
+	Multifractal analysis module utilizing boxcounting to determine 
+	the multifractal spectrum of a measure in the input text/binary file.
 
+	Prints the data that forms the multifractal spectrum to a text file
+	that can later be analyzed in Matlab or another visualization program.
 
-	TODO:
-	*update documentation
-	*make documentation explain calculations as they happen w/ citations too.
+	The algorithm used is described in:
+		A. Chhabra and R. V. Jensen, Phys. Rev. Lett. 62, 1330 (1989).
+
+	@author Samuel Brenner
+	@version July 11, 2013
 **/
 #include <fstream>
 #include <string>
@@ -19,10 +24,11 @@
 using namespace std;
 
 
-const char* fileName = "multifractal.txt";
+const char* fileName = "multifractal.txt"; //filename of input data--can also be binary
 
-double qMin = -10;
+double qMin = -10;	//minimum and maximum values of the moment used in 
 double qMax = 10;
+double qIncrement = 1.0; //the step used between each value of q tested.
 
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
@@ -47,7 +53,7 @@ void printArray(double** arrayIn, int arrayHeight, int WIDTH){
 void printToFile(double** arrayIn, int level, int HEIGHT){
 	FILE * pFile;
 	char* fileOutName = new char[20];
-	sprintf(fileOutName, "%s%d%s", "falpha_level_", level, ".txt");
+	sprintf(fileOutName, "%s%d%s", "falphaout/falpha_level_", level, ".txt");
 	pFile = fopen(fileOutName, "w");
 	for(int i = 0; i < HEIGHT; i++){
 		fprintf(pFile, "%.8f %.8f", arrayIn[i][0], arrayIn[i][1]);
@@ -57,20 +63,21 @@ void printToFile(double** arrayIn, int level, int HEIGHT){
 	delete[] fileOutName;
 }
 
-/**	UPDATE THIS
-	Returns the log base 2 of the number of cells filled in a given level
-	of fractal analysis.
-	@param arrayIn is the 2-3-D array of integers that contains the data
+/**	
+	Returns in a double** the data points that make up the plot of f(alpha) vs. alpha.
+	The analysis is performed using the method of moments described in Chhabra and Jensen, 
+	1989 (Phys. Rev. Lett.).
+	@param arrayIn is the 2-/3-D array of doubles that contains the data
 	@param HEIGHT
 	@param WIDTH
 	@param DPETH
 	@param level is the level of analysis to be performed. Level 0, for example, 
 	examines only the individual data points, whereas at level 1 they are merged
 	into boxes of side length 2^1, and for level l size 2^l.
-	@return log base 2 of the number of cells filled in a given level.
+	@return alpha vs. f(alpha)
 **/
 double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
-	int boxDimension = (int) pow(2, level);
+	int boxDimension = (int) pow(2, level); //side length of the boxes that we'll use to coarse-grain the data, in pixels.
 	int boxDimensionZ;
 
 	if(DEPTH != 1){
@@ -89,33 +96,22 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 		falpha[i] = new double[2];
 	}
 
-	for(double q = qMin; q <= qMax; q++){
-		double* probability = new double[nDataPts];
+	/**	iterates over all values of q to be tested, where q is the "microscope for exploring different regions of the measure",
+		an exaggerating exponent that gives us the qth moment of the measure. We parametrize the relationship f(alpha) vs. alpha
+		in terms of q to find functions f(q) and alpha(q). These values are then added to the falpha out-array.
+	**/
+	for(double q = qMin; q <= qMax; q += qIncrement){
+		double* probability = new double[nDataPts]; //an array of all the non-normalized measures taken in.
 		double sumOfProbabilitiesQthMoment = 0.0;
 		int arrayCounter = 0;
 		double fOfQ = 0.0;
 		double alphaOfQ = 0.0;
 
-		//vector<double> coarseContents;
-		//creating array of course-grained data
-		/*int coarseHeight = HEIGHT / boxDimension;
-			int coarseWidth = WIDTH / boxDimension;
-			int coarseDepth = DEPTH / boxDimensionZ;
-			
-			double*** coarseArray = new double**[coarseHeight];
-
-			for(int i = 0; i < coarseHeight; i++){
-				coarseArray[i] = new double*[coarseWidth];
-				for(int j = 0; j < coarseWidth; j++){
-					coarseArray[i][j] = new double[coarseDepth];
-				}		
-			}*/
-
 		//iterates through all boxes
 		for(int i = 0; i < HEIGHT; i += boxDimension){
 			for(int j = 0; j < WIDTH; j += boxDimension){
 				for(int k = 0; k < DEPTH; k += boxDimensionZ){
-					double boxSum = 0;
+					double boxSum = 0.0;
 
 					//sums each box
 					for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
@@ -139,21 +135,20 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 			}
 		}
 	
-	
 		for(int i = 0; i < nDataPts; i++){
-			sumOfProbabilitiesQthMoment += pow(probability[i], q);
+			sumOfProbabilitiesQthMoment += pow(probability[i], q); //the denominator in eqn. 6 of Chhabra and Jensen
 		}
 
 		double log2size = log2(double(boxDimension) / HEIGHT);
 
 		for(int i = 0; i < nDataPts; i++){
-			double normalizedMeasure = pow(probability[i], q) / sumOfProbabilitiesQthMoment;
+			double normalizedMeasure = pow(probability[i], q) / sumOfProbabilitiesQthMoment; //eqn. 6 of Chhabra and Jensen
 			//cout << log2(normalizedMeasure) << endl;
-			fOfQ += normalizedMeasure * log2(normalizedMeasure);
-			alphaOfQ += normalizedMeasure * log2(probability[i]);
+			fOfQ += normalizedMeasure * log2(normalizedMeasure); //the numerator of eqn. 7 of Chhabra and Jensen
+			alphaOfQ += normalizedMeasure * log2(probability[i]); //the numerator of eqn. 8 of Chhabra and Jensen
 		}
 
-		falpha[int(q - qMin)][0] = alphaOfQ / log2size;
+		falpha[int(q - qMin)][0] = alphaOfQ / log2size; //the final divisions in each equation
 		falpha[int(q - qMin)][1] = fOfQ / log2size;
 		delete[] probability;
 	}
@@ -167,15 +162,24 @@ int main () {
     bool haveZeros = false;
     double arraySum;
 
-    elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //if reading in text, change the call to dataReaderASCII
-    dataCorrection<double>(elements, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
-	int LOWESTLEVEL = 0;
+    elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); 
+    //elements = dataReaderBinary<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
 
+    /**	
+    	Corrects the data by removing zeros (does so by adding one to every value in the array)
+    	and normalizing the array so that the sum of all the elements is one.
+    **/
+    dataCorrection<double>(elements, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
+
+	int LOWESTLEVEL = 0; 	//the lowest level of coarse-graining, where level == 0 examines each individual pixel as its own box.
+							//level = log2(box's side length) so that side length = 1 when level == 0.
+
+	//iterates over all levels to be tested, going from LOWESTLEVEL to the highest possible level permitted by the arrayIn size.
 	for(int k = 0; k < log2(HEIGHT) - LOWESTLEVEL; k++){
 		cout << endl << "Level: " << k + LOWESTLEVEL << endl;
 		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
 		printArray(falpha, qMax - qMin + 1, 2);
-		printToFile(falpha, k + LOWESTLEVEL, qMax - qMin + 1);
+		printToFile(falpha, k + LOWESTLEVEL, qMax - qMin + 1); //This spectrum output can then be analyzed in Matlab or another visualization program.
 	}
 
 	

@@ -1,5 +1,14 @@
 /** Fractal analysis module utilizing boxcounting to determine 
-	the fractal dimension of a shape in the input text file.
+	the fractal dimension of a shape in the input text/binary file.
+
+	Prints to terminal:
+		- the results at each level of analysis
+		- the overall dimension as determined by least-squares regression
+		- an R^2 value
+		
+	@author Samuel Brenner
+	@version July 11, 2013
+
 **/
 
 
@@ -15,8 +24,10 @@
 
 using namespace std;
 
-const char* fileName = "c_hdf5_plt_cnt_1000_uncorrected.txt";
+const char* fileName = "c_hdf5_plt_cnt_1000.txt";
 //const char* fileName = "first(phillip's).txt";
+
+const char* outFileName = "logN-vs-logE.txt";
 
 
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
@@ -40,13 +51,13 @@ void printArray(double** arrayIn, double HEIGHT, double WIDTH){
  	}
 }
 
-void printToFile(int*** arrayIn, int HEIGHT, int WIDTH){
+void printToFile(double** arrayIn, int HEIGHT, int WIDTH, double slope, double yint){
 	FILE * pFile;
-	pFile = fopen("fractalOut.txt", "w");
-	//fprintf(pFile, "%d\n%d\n1\n", HEIGHT, WIDTH);
-	for(int i = 0; i < HEIGHT; i++){
+	pFile = fopen(outFileName, "w");
+	fprintf(pFile, "slope: %f\nintercept: %f\n", slope, yint);
+	for(int i = HEIGHT - 1; i >= 0; i--){
 		for(int j = 0; j < WIDTH; j++){
-			fprintf(pFile, "%2d", arrayIn[i][j][0]);
+			fprintf(pFile, "%-2.6f ", arrayIn[i][j]);
 		}
 		fprintf(pFile, "\n");
 	}
@@ -122,7 +133,7 @@ int main () {
 
 	elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
 	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
-	printToFile(elementsInterpolated, HEIGHT, WIDTH);
+	//printToFile(elementsInterpolated, HEIGHT, WIDTH);
 
 	int LOWESTLEVEL = 0;
 
@@ -148,16 +159,18 @@ int main () {
 
 	printArray(outDataArray, outArrayLength, 2);
 
-	double* regressionArray = new double[2];
+	double* regressionArray = new double[3];
 
 	slope(outDataArray, outArrayLength, regressionArray);
 
 	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", fileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
+	printToFile(outDataArray, outArrayLength, 2, regressionArray[0], regressionArray[2]);
+
 	delete[] elements;
 	delete[] elementsInterpolated;
 	delete[] outDataArray;
-
+	delete[] regressionArray;
 
 	return 0;
 }

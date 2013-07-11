@@ -1,3 +1,22 @@
+/** 
+	Module to remove zeros from an array and normalize it.
+	Implemented in multifracBoxCounter3D.cpp:
+		Multifractal analysis module utilizing boxcounting to determine 
+		the multifractal spectrum of a measure in the input text/binary file.
+
+		Prints the data that forms the multifractal spectrum to a text file
+		that can later be analyzed in Matlab or another visualization program.
+
+		The algorithm used is described in:
+			A. Chhabra and R. V. Jensen, Phys. Rev. Lett. 62, 1330 (1989).
+
+		@author Samuel Brenner
+		@version July 11, 2013
+
+	@author Samuel Brenner
+	@version July 11, 2013
+**/
+	
 #ifndef dataCorrection_h
 #define dataCorrection_h
 using namespace std;
