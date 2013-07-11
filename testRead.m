@@ -36,7 +36,7 @@ figure
 hold on;
 
 % Plot the raw data points
-plot(data(:,1),data(:,2),'k-o','linewidth',3)
+plot(data(:,1),data(:,2),'ko','linewidth',3)
 
 % Plot the regression line
 % This involves either hardcoding the domain (the X's) of the line,

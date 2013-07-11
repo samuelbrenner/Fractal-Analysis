@@ -8,7 +8,7 @@
 
 %----------------------------------------------------------------------------------------
 
-Before we discuss multifractals, we begin with a discussion of normal, or mono-fractals. We note the intuitive properties present in a simple example and how they differ from nonfractal geometry, and then 
+Before we discuss multifractals, we begin with a discussion of normal, or mono-fractals. We note the intuitive properties present in a simple example and how they differ from non-fractal geometry, and then 
 
 %----------------------------------------------------------------------------------------
 \section{An example of a fractal: the Koch snowflake (See Figure \ref{fig:kochcurve})}
@@ -28,7 +28,7 @@ We note the most obvious properties of this fractal that separate it from a non-
 
 \section{Characterizing fractals}
 
-As seen above, whereas non-fractal sets\footnote{We use the word ``set" to more precisely refer to what might be simply called a shape. After all, every shape is just a set, possibly infinite, of points.}  have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension, most notably \textit{Hausdorff dimension}.
+As seen above, whereas non-fractal sets\footnote{We use the word ``set" to more precisely refer to what might be simply called a shape. After all, every shape is just a set, possibly infinite, of points.}  have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
 
 \subsection{Spaces, sets, and measures}
 
@@ -38,8 +38,7 @@ Before we venture further into classifying fractals by their dimension, we need 
 \begin{mydef}
 We define an n-dimensional space $ \mathbb{R}^{n} $ to be the set of all points that can be identified by an ordered n-ple of real numbers. Hence, for example, any point $ \alpha $ in $ \mathbb{R}^{5} $ can be identified by the ordered 5-ple $ \alpha = (\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}, \alpha_{5})$ where $ \alpha_{1} ... \alpha_{5} \in \mathbb{R} $.\end{mydef}
 
-We will now work by analogy to discuss the concept of a \textit{measure}\footnote{Analogy adapted from \citep{mandelbrotmultifractal}}. Consider a geographical map of some landmass, with a function $ \mu(\mathcal{S}) $ that denotes the amount of groundwater below any subset $ \mathcal{S} $ of the landmass. We note three intuitive properties of this measure $ \mu $:
-\begin{enumerate}
+We will now work by analogy to discuss the concept of a \textit{measure}\footnote{Analogy adapted from \citep{mandelbrotmultifractal}}. Consider a geographical map of some landmass, with a function $ \mu(\mathcal{S}) $ that denotes the amount of groundwater below any subset $ \mathcal{S} $ of the landmass. We note three intuitive properties of this measure $ \mu $:\begin{enumerate}
 \item The measure of any subset of the space---or the amount of groundwater under any plot of land on the landmass---gives a numerical indication of the plot of land's magnitude. That is, it describes the plot's size when measured by groundwater content.
 \item\label{measureofanullset} There should be no water under a plot of land with no size. 
 \item\label{measureofsubsets} If a plot of land $ A $ contains another plot of land $ B $, there should be less or as much groundwater under $B$ as there is under $A$. 
@@ -50,41 +49,34 @@ We now formalize these properties below.
 \begin{mydef}
 We define a measure $ \mu $ to be a function on a space $ \mathbb{R}^{n} $ that assigns a positive number to each subset $ \mathcal{S} $ of $ \mathbb{R}^{n} $ such that:
 
-{\addtolength{\leftskip}{10mm}
+\begin{itemize}
+\item Because $\mu$ should characterize a set by its size in some sense, it is meaningless to have a nonzero size for any set with no elements. This is reflected in Property \ref{measureofanullset} above.
 \begin{equation}
 \mu(\emptyset) = 0
 \end{equation}
-Because $\mu$ should characterize a set by its size in some sense, it is meaningless to have a nonzero size for any set with no elements. This is reflected in Property \ref{measureofanullset} above.
+\item The size of a set should be smaller than (or equal to, if $ A = B $, i.e., $B$ is not a proper subset of $A$) the size of a set that contains the first set and other elements too. This is reflected in Property \ref{measureofsubsets} above.
 \begin{equation}
 \mu(B) \le \mu(A) \mathrm{ \quad if \quad }  B \subset A.
 \end{equation} 
-The size of a set should be smaller than (or equal to, if $ A = B $, i.e., $B$ is not a proper subset of $A$) the size of a set that contains the first set and other elements too. This is reflected in Property \ref{measureofsubsets} above.
+\item The measure of a union of subsets should never be larger than the sum of the measures of the individual subsets: 
 \begin{equation}
 \mu\left(\bigcup_{i=1}^{\infty} A_i\right) \le \sum_{i=1}^{\infty} \mu(A_i) 
 \end{equation}
-
-}
-
+Allowing for the measure of the union to be smaller than the sum of the individual measures accounts for overlap between the subsets; if, for all pairs of subsets $A_1$ and $A_2$, $A_1 \cap A_2 = \emptyset$, the measure of the union should be equal to the sum of the individual measures. In short, the measure should be distributive over addition.
+\end{itemize}
+We call the space on which the measure resides the \textit{support} of the measure.
 \end{mydef}
 
-\section{And now multifractals too?}
+\subsection{The dimension of a fractal}
+Recall that in the example of the Koch curve above, we struggled to classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as a kind of analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
 
-\citep{mandelbrotmultifractal}
+\subsubsection{What we mean by ``dimension''}
+Consider a line segment of length $ L_0 $. Note that when the segment is scaled by $\epsilon$, a number greater than one, into smaller pieces of equal size, each segment produced has length $L_0/\epsilon$. Now we repeat our exploration with a square of side length $ L_0 $. Here, when the square is scaled by a factor $\epsilon$, the smaller squares produced have an area $1/\epsilon^2$ the original. Again, when we repeat this procedure with a cube of side length $ L_0 $ we find that the cubes produced all have volumes $1/\epsilon^3$ the original. Hence, we generalize that the number of pieces $n$ produced from scaling by a factor of $\epsilon$ is given by 
+\begin{equation}n = 1/\epsilon^D\end{equation}
+where $D$ is the dimension of the shape. We can now manipulate this equation to yield
+\begin{equation}\label{dimensionEqn} D = \frac{\log{n}}{\log{(1/\epsilon)}}\end{equation}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+We now return to the Koch curve. We recognize the first iteration $E_1$ as the fundamental unit of all other iterations of the curve. That is, we can replace each of the four line segments that make up $E_1$ with a scaled-down copy of the original $E_1$ in order to reach the next iteration, and by repeating this process ad infinitum we can reach the final curve $F$. We can, however, view this process in the framework established in the example above, so that each iteration replaces one line segment with a length $L_0$ with four others, each of which has a length of $L_0/3$.
 
 
 

@@ -11,8 +11,9 @@
 \contentsline {section}{\numberline {1.1}An example of a fractal: the Koch snowflake (See Figure \ref {fig:kochcurve})}{1}{section.15}
 \contentsline {section}{\numberline {1.2}Characterizing fractals}{2}{section.20}
 \contentsline {subsection}{\numberline {1.2.1}Spaces, sets, and measures}{2}{subsection.22}
-\contentsline {section}{\numberline {1.3}And now multifractals too?}{4}{section.33}
+\contentsline {subsection}{\numberline {1.2.2}The dimension of a fractal}{4}{subsection.33}
+\contentsline {subsubsection}{\numberline {1.2.2.1}What we mean by ``dimension''}{4}{subsubsection.34}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Appendix Title Here}{5}{appendix.34}
+\contentsline {chapter}{\numberline {A}Appendix Title Here}{6}{appendix.37}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{6}{dummy.35}
+\contentsline {chapter}{Bibliography}{7}{dummy.38}
