@@ -14,6 +14,6 @@
 \contentsline {subsection}{\numberline {1.2.2}The dimension of a fractal}{4}{subsection.33}
 \contentsline {subsubsection}{\numberline {1.2.2.1}What we mean by ``dimension''}{4}{subsubsection.34}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Appendix Title Here}{6}{appendix.37}
+\contentsline {chapter}{\numberline {A}Appendix Title Here}{6}{appendix.38}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{7}{dummy.38}
+\contentsline {chapter}{Bibliography}{7}{dummy.39}
