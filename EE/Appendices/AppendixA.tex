@@ -1,9 +1,412 @@
 % Appendix A
-
-\chapter{Appendix Title Here} % Main appendix title
-
+\chapter{Source Code of Computational Modules Used} % Main appendix title
+\usepackage{listings}
+\lstset{language=C++} 
 \label{AppendixA} % For referencing this appendix elsewhere, use \ref{AppendixA}
 
-\lhead{Appendix A. \emph{Appendix Title Here}} % This is for the header on each page - perhaps a shortened title
+\lhead{Appendix A. \emph{Source Code}} % This is for the header on each page - perhaps a shortened title
 
-Write your Appendix content here.
+\begin{lstlisting}
+/** Fractal analysis module utilizing boxcounting to determine 
+	the fractal dimension of a shape in the input text/binary file.
+
+	Prints to terminal:
+		- the results at each level of analysis
+		- the overall dimension as determined by least-squares regression
+		- an R^2 value
+		
+	@author Samuel Brenner
+	@version July 11, 2013
+
+**/
+
+
+
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <math.h>
+#include <iostream>
+#include "regressionModule.h"
+#include "dataReader.h"
+#include "interpolation.h"
+
+using namespace std;
+
+const char* fileName = "c_hdf5_plt_cnt_1000.txt";
+//const char* fileName = "first(phillip's).txt";
+
+const char* outFileName = "logN-vs-logE.txt";
+
+
+void printArray(int** arrayIn, int HEIGHT, int WIDTH){
+	cout << endl;
+	for(int i = 0; i < HEIGHT; i++){
+		for(int j = 0; j < WIDTH; j++){
+			printf("%3d", arrayIn[i][j]);
+		}
+		printf("\n");
+	 }
+}
+
+void printArray(double** arrayIn, double HEIGHT, double WIDTH){
+	cout << endl;
+	printf("%7s%7s\n", "level", "log(n)");
+ 	for(int i = 0; i < HEIGHT; i++){
+		for(int j = 0; j < WIDTH; j++){
+			printf("%7.3f ", arrayIn[i][j]);
+		}
+		printf("\n");
+ 	}
+}
+
+void printToFile(double** arrayIn, int HEIGHT, int WIDTH, double slope, double yint){
+	FILE * pFile;
+	pFile = fopen(outFileName, "w");
+	fprintf(pFile, "slope: %f\nintercept: %f\n", slope, yint);
+	for(int i = HEIGHT - 1; i >= 0; i--){
+		for(int j = 0; j < WIDTH; j++){
+			fprintf(pFile, "%-2.6f ", arrayIn[i][j]);
+		}
+		fprintf(pFile, "\n");
+	}
+	fclose(pFile);
+}
+
+/**
+	Returns the log base 2 of the number of cells filled in a given level
+	of fractal analysis.
+	@param arrayIn is the 2-3-D array of integers that contains the data
+	@param HEIGHT
+	@param WIDTH
+	@param DPETH
+	@param level is the level of analysis to be performed. Level 0, for example, 
+	examines only the individual data points, whereas at level 1 they are merged
+	into boxes of side length 2^1, and for level l size 2^l.
+	@return log base 2 of the number of cells filled in a given level.
+
+**/
+double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
+	int numberFilled = 0; //number of boxes with an element of the figure
+	int boxDimension = (int) pow(2, level);
+	int boxDimensionZ;
+
+	if(DEPTH != 1){
+		boxDimensionZ = boxDimension;
+	}
+	else{
+		boxDimensionZ = 1;
+	}
+	//iterates through all boxes
+	//cout << "here!" << endl;
+	for(int i = 0; i < HEIGHT; i += boxDimension){
+		for(int j = 0; j < WIDTH; j += boxDimension){
+			for(int k = 0; k < DEPTH; k += boxDimensionZ){
+				int boxSum = 0;
+
+
+				//sums each box
+				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
+					for(int boxSumY = 0; boxSumY < boxDimension; boxSumY++){
+						for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
+							//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ This is to deal with dimensions that aren't
+							//	cout << endl << "Dimensions must be powers of two!" << endl;				powers of two.
+							//	boxSum += 0;
+							//}
+							//else{
+								boxSum += arrayIn[boxSumX + i][boxSumY + j][boxSumZ + k];
+							//}
+						}
+					}
+				}
+
+				if(boxSum > 0){
+					numberFilled++;
+				}
+
+			}
+		}
+	}
+	printf("%s%d\n%s%d\n%s%d\n\n", "level: ", level, 
+	"--box dimension: ", boxDimension, "--filled boxes: ", numberFilled);		
+
+	return log2(numberFilled);
+}
+
+int main () {
+	int HEIGHT, WIDTH, DEPTH;
+	double*** elements;
+	bool haveZeros = false;
+	double arraySum;
+	int*** elementsInterpolated;
+
+	elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
+	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
+	//printToFile(elementsInterpolated, HEIGHT, WIDTH);
+
+	int LOWESTLEVEL = 0;
+
+	//initialize out-array
+	int largestDimension = fmin(HEIGHT, WIDTH);
+	if(DEPTH > 1){
+		largestDimension = fmin(largestDimension, DEPTH);
+	}
+	int outArrayLength = int(log2(largestDimension) - LOWESTLEVEL + 1);
+	double** outDataArray = new double* [outArrayLength];
+
+	//printf("\n\n%d\n\n", outArrayLength);
+
+	for(int i = 0; i < outArrayLength; i++){
+		outDataArray[i] = new double[2];
+	}
+
+	for(int k = 0; k < outArrayLength; k++)
+	{
+		outDataArray[k][0] = outArrayLength - 1 - (k + LOWESTLEVEL);
+		outDataArray[k][1] = boxCounting(elementsInterpolated, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
+	}
+
+	printArray(outDataArray, outArrayLength, 2);
+
+	double* regressionArray = new double[3];
+
+	slope(outDataArray, outArrayLength, regressionArray);
+
+	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", fileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
+
+	printToFile(outDataArray, outArrayLength, 2, regressionArray[0], regressionArray[2]);
+
+	delete[] elements;
+	delete[] elementsInterpolated;
+	delete[] outDataArray;
+	delete[] regressionArray;
+
+	return 0;
+}
+
+/**
+	Module to interpolate the isocontour at some pre-specified value inside a 2- or 3-D array.
+
+	Implemented in boxCounter3D.cpp:
+		Fractal analysis module utilizing boxcounting to determine 
+		the fractal dimension of a shape in the input text/binary file.
+
+		Prints to terminal:
+			- the results at each level of analysis
+			- the overall dimension as determined by least-squares regression
+			- an R^2 value
+			
+		@author Samuel Brenner
+		@version July 11, 2013
+
+	@author Samuel Brenner
+	@version July 11, 2013
+
+**/
+
+#ifndef interpolation_h
+#define interpolation_h
+
+int*** interpolate(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, double valueToFind){
+	//Declare and initialize arrayOut. If any values in the arrayIn happen to be the valueToFind,
+	//we'll initialize the corresponding arrayOut to a 1; otherwise it'll be a 0.
+	int*** arrayOut = new int**[HEIGHT];
+	for(int i = 0; i < HEIGHT; i++){
+		arrayOut[i] = new int*[WIDTH];
+		for(int j = 0; j < WIDTH; j++){
+			arrayOut[i][j] = new int[DEPTH];
+			for(int k = 0; k < DEPTH; k++){
+				//performs a preliminary check so that we don't miss any values that are exactly == valueToFind
+				if(arrayIn[i][j][k] == valueToFind){
+					arrayOut[i][j][k] = 1;
+				}
+				else{
+					arrayOut[i][j][k] = 0;
+				}
+			}
+		}
+	}
+
+	//Makes the interpolater able to handle planar data
+	int startingDepthIndex = 0;
+	if(DEPTH != 1){
+		startingDepthIndex = 1;
+	}
+	else{
+		DEPTH++;
+	}
+
+	/*
+		Iterates over all entries in the array that aren't on the edge of the array, unless the array is 2D: for 2D
+		arrays the program ignores the edge condition in the third dimension.
+
+		For each entry analyzed, we check to see if the value is lower than valueToFind. If so, the neighbors on all 
+		six sides (four if planar data) are checked against it to determine if there is some crossing over valueToFind
+		in between the two. Then we determine which cell should contain that crossing and assign it a 1 in the 
+		corresponding cell of the outArray.
+	*/
+	for(int i = 1; i < HEIGHT - 1; i++){
+		for(int j = 1; j < WIDTH -1; j++){
+			for(int k = startingDepthIndex; k < DEPTH - 1; k++){
+				if(arrayIn[i][j][k] < valueToFind){
+					if(arrayIn[i + 1][j][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i + 1][j][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i + 1][j][k] = 1;
+						}
+					}
+					if(arrayIn[i][j + 1][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j + 1][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j + 1][k] = 1;
+						}
+					}
+					if(arrayIn[i][j - 1][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j - 1][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j - 1][k] = 1;
+						}
+					}
+					if(arrayIn[i - 1][j][k] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i - 1][j][k] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i - 1][j][k] = 1;
+						}
+					}
+					if(arrayIn[i][j][k + 1] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j][k + 1] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j][k + 1] = 1;
+						}
+					}
+					if(arrayIn[i][j][k - 1] > valueToFind){
+						if(int((valueToFind - arrayIn[i][j][k]) / (arrayIn[i][j][k - 1] - arrayIn[i][j][k])) == 0){
+							arrayOut[i][j][k] = 1;
+						}
+						else{
+							arrayOut[i][j][k - 1] = 1;
+						}
+					}
+
+				}
+			}
+		}
+	}
+
+return arrayOut;
+}
+
+#endif
+
+/**
+	Module to run regression for boxcounting.
+	
+	Changes a double[3] such that regressionArray[0] = slope,
+	regressionArray[1] = R^2, and regressionArray[2] = y-int.
+
+	Implemented in boxCounter3D.cpp:
+		Fractal analysis module utilizing boxcounting to determine 
+		the fractal dimension of a shape in the input text/binary file.
+
+		Prints to terminal:
+			- the results at each level of analysis
+			- the overall dimension as determined by least-squares regression
+			- an R^2 value
+			
+		@author Samuel Brenner
+		@version July 11, 2013
+
+	@author Samuel Brenner
+	@version July 11, 2013
+
+**/
+
+
+#include "regressionModule.h"
+
+#include <math.h>
+
+double stdev(double* arrayIn, double arrayMean, int arrayLength);
+
+double corrCoeff(double* arrayX, double* arrayY, double meanX, 
+	double meanY, double stdevX, double stdevY, int length);
+
+double mean(double* arrayIn, int arrayLength);
+
+void slope(double** arrayIn, int arrayLength, double* regressionArray){
+	
+	double* arrayX = new double[3];
+
+	for(int i = 0; i < 3; i++){
+		arrayX[i] = arrayIn[i][0];
+	}
+
+	double* arrayY = new double[3];
+	for(int i = 0; i < 3; i++){
+		arrayY[i] = arrayIn[i][1];
+	}
+
+	double meanX = mean(arrayX, 3);
+	double meanY = mean(arrayY, 3);
+
+	double stdevX = stdev(arrayX, meanX, 3);
+	double stdevY = stdev(arrayY, meanY, 3);
+
+	double r = corrCoeff(arrayX, arrayY, meanX, meanY, stdevX, stdevY, 3);
+
+	double slope = r 
+		* stdevY / stdevX;
+
+
+	delete[] arrayX;
+ 	delete[] arrayY;
+
+ 	regressionArray[0] = slope;
+ 	regressionArray[1] = pow(r, 2);
+ 	regressionArray[2] = meanY - slope * meanX;
+}
+
+double stdev(double* arrayIn, double arrayMean, int arrayLength){
+
+	double squaresSum = 0;
+
+	for(int i = 0; i < arrayLength; i++){
+		squaresSum += pow(arrayIn[i] - arrayMean, 2);
+	}
+
+	return sqrt(squaresSum / (arrayLength - 1));
+}
+
+double corrCoeff(double* arrayX, double* arrayY, double meanX, 
+	double meanY, double stdevX, double stdevY, int length){
+
+	double sum = 0;
+
+	for(int i = 0; i < length; i++){
+		sum += (arrayX[i] - meanX) * (arrayY[i] - meanY);
+	}
+
+	return sum / (stdevX * stdevY * (length - 1));
+}
+
+double mean(double* arrayIn, int arrayLength){
+	double sum = 0;
+
+	for(int i = 0; i < arrayLength; i++){
+		sum += arrayIn[i];
+	}
+
+	return sum / arrayLength;
+}
+
+\end{lstlisting}
