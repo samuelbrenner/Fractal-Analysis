@@ -11,7 +11,7 @@
 Before we discuss multifractals, we begin with a discussion of normal, or mono-fractals. We note the intuitive properties present in a simple example and how they differ from non-fractal geometry, and then 
 
 %----------------------------------------------------------------------------------------
-\section{An example of a fractal: the Koch snowflake (See Figure \ref{fig:kochcurve})}
+\section{An example of a fractal: the Koch snowflake (See Figure \ref{fig:kochcurve})}\label{fractalexample}
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{Chapters/Figures/Kochcurve.png} 
@@ -81,7 +81,9 @@ We now return to the Koch curve. We recognize the first iteration $E_1$ as the f
 
 What does this dimension mean? Again, it seems intuitive that the dimension would be between one and two---this generalization of dimension should resemble the more familiar case of non-fractional dimensions, and the Koch curve is certainly greater than one-dimensional while not filling the entire plane as a two-dimensional shape would.
 
-We now seek to formalize our understanding of dimension. 
+We now seek to formalize our understanding of dimension\footnote{`There is no one dimension that can only describe a fractal set; many different types of dimension exist, and all provide very different conceptions of a fractal's properties\citep{fractaltextbook}.} We wish  and do so in such a way that allows us to handle fractal objects that are not strictly self-similar\footnote{As mentioned in Section \ref{fractalbasics}, fractals are not as concretely defined as one would hope, and we tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Section \ref{fractalbasics}---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}.
+
+The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well.} with side length \epsilon. We extend the number of replacements $n$ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. 
 
 
 
