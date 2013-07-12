@@ -83,7 +83,41 @@ What does this dimension mean? Again, it seems intuitive that the dimension woul
 
 We now seek to formalize our understanding of dimension\footnote{`There is no one dimension that can only describe a fractal set; many different types of dimension exist, and all provide very different conceptions of a fractal's properties\citep{fractaltextbook}.} We wish  and do so in such a way that allows us to handle fractal objects that are not strictly self-similar\footnote{As mentioned in Section \ref{fractalbasics}, fractals are not as concretely defined as one would hope, and we tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Section \ref{fractalbasics}---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}.
 
-The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well.} with side length \epsilon. We extend the number of replacements $n$ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. 
+The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well.} with side length \epsilon. We extend the number of replacements $n$ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. The box-counting dimension is given by the limit of this extension of Equation \ref{dimensionEqn} as the side \epsilon approaches zero.
+
+\begin{mydef} We define the box-counting dimension of a fractal set $ F $, $\operatorname{dim}_B F $, as follows:
+\begin{equation}\operatorname{dim}_B F = \lim_{\epsilon \to 0} \frac{\logN_\epsilon(F)}{-\log\epsilon}
+\end{equation}
+where $N_\epsilon(F)$ is the number of cubes of side-length $\epsilon$ that cover the fractal set $F$.
+\end{mydef}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
