@@ -132,8 +132,9 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 }
 
 int main (int argc, char* argv[]) {
-	char* outFileName = argv[2];
 	char* inFileName = argv[1];
+	char* outFileName = new char[50];
+	sprintf(outFileName, "%s_plot.txt", inFileName);
 	int HEIGHT, WIDTH, DEPTH;
 	double*** elements;
 	bool haveZeros = false;
@@ -176,13 +177,16 @@ int main (int argc, char* argv[]) {
 	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", inFileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
 	printToFile(outDataArray, outArrayLength, 2, regressionArray[0], regressionArray[2], outFileName);
-
-	printToFile(elementsInterpolated, HEIGHT, WIDTH, "elementsInterpolated.txt");
+	char* interpolatedOutName = new char[50];
+	sprintf(interpolatedOutName, "%s_interpolated.txt", inFileName);
+	printToFile(elementsInterpolated, HEIGHT, WIDTH, interpolatedOutName);
 
 	delete[] elements;
 	delete[] elementsInterpolated;
 	delete[] outDataArray;
 	delete[] regressionArray;
+	delete[] outFileName;
+	delete[] interpolatedOutName;
 
 	return 0;
 }
