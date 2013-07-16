@@ -24,12 +24,6 @@
 
 using namespace std;
 
-const char* fileName = "c_hdf5_plt_cnt_1000.txt";
-//const char* fileName = "first(phillip's).txt";
-
-const char* outFileName = "logN-vs-logE.txt";
-
-
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
 	for(int i = 0; i < HEIGHT; i++){
@@ -51,7 +45,7 @@ void printArray(double** arrayIn, double HEIGHT, double WIDTH){
  	}
 }
 
-void printToFile(double** arrayIn, int HEIGHT, int WIDTH, double slope, double yint){
+void printToFile(double** arrayIn, int HEIGHT, int WIDTH, double slope, double yint, char* outFileName){
 	FILE * pFile;
 	pFile = fopen(outFileName, "w");
 	fprintf(pFile, "slope: %f\nintercept: %f\n", slope, yint);
@@ -124,14 +118,16 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 	return log2(numberFilled);
 }
 
-int main () {
+int main (int argc, char* argv[]) {
+	char* outFileName = argv[2];
+	char* inFileName = argv[1];
 	int HEIGHT, WIDTH, DEPTH;
 	double*** elements;
 	bool haveZeros = false;
 	double arraySum;
 	int*** elementsInterpolated;
 
-	elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
+	elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
 	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
 	//printToFile(elementsInterpolated, HEIGHT, WIDTH);
 
@@ -163,9 +159,9 @@ int main () {
 
 	slope(outDataArray, outArrayLength, regressionArray);
 
-	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", fileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
+	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", inFileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
-	printToFile(outDataArray, outArrayLength, 2, regressionArray[0], regressionArray[2]);
+	printToFile(outDataArray, outArrayLength, 2, regressionArray[0], regressionArray[2], outFileName);
 
 	delete[] elements;
 	delete[] elementsInterpolated;

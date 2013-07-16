@@ -20,11 +20,7 @@
 #include "dataReader.h"
 #include "dataCorrection.h"
 
-
 using namespace std;
-
-
-const char* fileName = "multifractal.txt"; //filename of input data--can also be binary
 
 double qMin = -10;	//minimum and maximum values of the moment used in 
 double qMax = 10;
@@ -50,10 +46,10 @@ void printArray(double** arrayIn, int arrayHeight, int WIDTH){
  	}
 }
 
-void printToFile(double** arrayIn, int level, int HEIGHT){
+void printToFile(double** arrayIn, int level, int HEIGHT, char* fileOutDirectory){
 	FILE * pFile;
 	char* fileOutName = new char[20];
-	sprintf(fileOutName, "%s%d%s", "falphaout/falpha_level_", level, ".txt");
+	sprintf(fileOutName, "%s%s%d%s", fileOutDirectory, "/falpha/falpha_level_", level, ".txt");
 	pFile = fopen(fileOutName, "w");
 	for(int i = 0; i < HEIGHT; i++){
 		fprintf(pFile, "%.8f %.8f", arrayIn[i][0], arrayIn[i][1]);
@@ -156,13 +152,15 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 	return falpha;
 }
 
-int main () {
+int main (int argc, char* argv[]) {
+	char* fileInName = argv[1];
+	char* fileOutDirectory = argv[2];
     int HEIGHT, WIDTH, DEPTH;
     double*** elements;
     bool haveZeros = false;
     double arraySum;
-
-    elements = dataReaderASCII<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); 
+   
+    elements = dataReaderASCII<double>(fileInName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); 
     //elements = dataReaderBinary<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
 
     /**	
@@ -179,7 +177,7 @@ int main () {
 		cout << endl << "Level: " << k + LOWESTLEVEL << endl;
 		double** falpha = boxCounting(elements, HEIGHT, WIDTH, DEPTH, k + LOWESTLEVEL);
 		printArray(falpha, qMax - qMin + 1, 2);
-		printToFile(falpha, k + LOWESTLEVEL, qMax - qMin + 1); //This spectrum output can then be analyzed in Matlab or another visualization program.
+		printToFile(falpha, k + LOWESTLEVEL, qMax - qMin + 1, fileOutDirectory); //This spectrum output can then be analyzed in Matlab or another visualization program.
 	}
 
 	
