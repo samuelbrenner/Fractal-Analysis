@@ -12,5 +12,5 @@ pdf: clean
 	
 clean:
 	
-	rm -rf *aux *spl *out *log *bbl *blg *dvi *ps *pdf
+	rm -f *aux *spl *out *log *bbl *blg *dvi *ps *pdf
 	

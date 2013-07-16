@@ -128,8 +128,8 @@ int main (int argc, char* argv[]) {
 	double arraySum;
 	int*** elementsInterpolated;
 
-	elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
-	//elements = dataReaderBinary<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
+	//elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
+	elements = dataReaderBinary<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
 	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
 	//printToFile(elementsInterpolated, HEIGHT, WIDTH);
 
