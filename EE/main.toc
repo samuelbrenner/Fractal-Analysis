@@ -15,7 +15,7 @@
 \contentsline {chapter}{\numberline {3}Applications}{8}{chapter.42}
 \vspace {2em}
 \contentsline {chapter}{\numberline {A}Source Code of Box-Counting Module}{9}{appendix.43}
-\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{17}{appendix.447}
-\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{21}{appendix.641}
+\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{18}{appendix.447}
+\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{23}{appendix.641}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{24}{dummy.747}
+\contentsline {chapter}{Bibliography}{26}{dummy.747}

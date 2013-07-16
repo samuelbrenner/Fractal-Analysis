@@ -1,7 +1,7 @@
 % Appendix A
 \chapter{Source Code of Box-Counting Module} % Main appendix title
 \label{AppendixA} % For referencing this appendix elsewhere, use \ref{AppendixA}
-\lstset{language=C++} 
+
 
 
 \lhead{Appendix A. \emph{Box-Counting Module}} % This is for the header on each page - perhaps a shortened title
@@ -52,12 +52,12 @@ void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 void printArray(double** arrayIn, double HEIGHT, double WIDTH){
 	cout << endl;
 	printf("%7s%7s\n", "level", "log(n)");
- 	for(int i = 0; i < HEIGHT; i++){
+	for(int i = 0; i < HEIGHT; i++){
 		for(int j = 0; j < WIDTH; j++){
 			printf("%7.3f ", arrayIn[i][j]);
 		}
 		printf("\n");
- 	}
+	}
 }
 
 void printToFile(double** arrayIn, int HEIGHT, int WIDTH, double slope, double yint){
@@ -369,11 +369,11 @@ void slope(double** arrayIn, int arrayLength, double* regressionArray){
 
 
 	delete[] arrayX;
- 	delete[] arrayY;
+	delete[] arrayY;
 
- 	regressionArray[0] = slope;
- 	regressionArray[1] = pow(r, 2);
- 	regressionArray[2] = meanY - slope * meanX;
+	regressionArray[0] = slope;
+	regressionArray[1] = pow(r, 2);
+	regressionArray[2] = meanY - slope * meanX;
 }
 
 double stdev(double* arrayIn, double arrayMean, int arrayLength){

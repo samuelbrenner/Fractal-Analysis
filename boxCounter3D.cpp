@@ -94,8 +94,9 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 				for(int boxSumX = 0; boxSumX < boxDimension; boxSumX++){
 					for(int boxSumY = 0; boxSumY < boxDimension; boxSumY++){
 						for(int boxSumZ = 0; boxSumZ < boxDimensionZ; boxSumZ++){
-							//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ This is to deal with dimensions that aren't
-							//	cout << endl << "Dimensions must be powers of two!" << endl;				powers of two.
+							//This is to deal with dimensions that aren't powers of two.
+							//if(boxSumX + i >= HEIGHT || boxSumY + j >= WIDTH || boxSumZ + k >= DEPTH){ 
+							//	cout << endl << "Dimensions must be powers of two!" << endl;
 							//	boxSum += 0;
 							//}
 							//else{
@@ -127,7 +128,8 @@ int main (int argc, char* argv[]) {
 	double arraySum;
 	int*** elementsInterpolated;
 
-	elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //change to dataReaderASCII to read in text files
+	elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
+	//elements = dataReaderBinary<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
 	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
 	//printToFile(elementsInterpolated, HEIGHT, WIDTH);
 
