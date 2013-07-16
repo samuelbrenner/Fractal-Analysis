@@ -1,7 +1,6 @@
 
 
-matrix2 = importdata('c_hdf5_plt_cnt_1000_uncorrected.txt');
+matrix2 = importdata('elementsInterpolated.txt');
 
 
-
-contour(matrix2);
+imagesc(matrix2);

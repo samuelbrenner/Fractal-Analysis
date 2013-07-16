@@ -58,6 +58,18 @@ void printToFile(double** arrayIn, int HEIGHT, int WIDTH, double slope, double y
 	fclose(pFile);
 }
 
+void printToFile(int*** arrayIn, int HEIGHT, int WIDTH, char* outFileName){
+	FILE * pFile;
+	pFile = fopen(outFileName, "w");
+	for(int i = HEIGHT - 1; i >= 0; i--){
+		for(int j = 0; j < WIDTH; j++){
+			fprintf(pFile, "%d ", arrayIn[i][j][0]);
+		}
+		fprintf(pFile, "\n");
+	}
+	fclose(pFile);
+}
+
 /**
 	Returns the log base 2 of the number of cells filled in a given level
 	of fractal analysis.
@@ -164,6 +176,8 @@ int main (int argc, char* argv[]) {
 	printf("\n\n%s%s\n\n%s%.5f\n%s%1.3f\n\n", "Curve: ", inFileName, "Dimension: ", regressionArray[0], "R^2: ", regressionArray[1]);
 
 	printToFile(outDataArray, outArrayLength, 2, regressionArray[0], regressionArray[2], outFileName);
+
+	printToFile(elementsInterpolated, HEIGHT, WIDTH, "elementsInterpolated.txt");
 
 	delete[] elements;
 	delete[] elementsInterpolated;

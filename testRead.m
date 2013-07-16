@@ -1,7 +1,7 @@
 clear all; close all; clc;
 
 % Load in the data
-filename = 'logN-vs-logE.txt';
+filename = 'fractalOut.txt';
 [header,data] = hdrload(filename);
 
 % Initialize data to be read from header
