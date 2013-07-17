@@ -85,7 +85,7 @@ class ChessGUI_pygame:
 			for c in range(boardSize):
 				(screenX,screenY) = self.ConvertToScreenCoords((r,c))
 				self.screen.blit(self.white_square,(screenX,screenY))
-				    		    
+								
 		#draw row/column labels around the edge of the board
 		chessboard_obj = ChessBoard(0)#need a dummy object to access some of ChessBoard's methods....
 		color = (255,255,255)#white
@@ -217,7 +217,7 @@ if __name__ == "__main__":
 				 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\
 				 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\
 				 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\
-                                 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\
+				 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\
 				 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\
 				 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\
 				 ['e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],\

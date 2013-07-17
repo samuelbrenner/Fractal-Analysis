@@ -63,7 +63,6 @@
 """
 
 from ChessBoard import ChessBoard
-from ChessAI import ChessAI_random, ChessAI_defense, ChessAI_offense
 from ChessPlayer import ChessPlayer
 from ChessGUI_text import ChessGUI_text
 from ChessGUI_pygame import ChessGUI_pygame
@@ -86,46 +85,12 @@ class PythonChessMain:
 	def SetUp(self,options):
 		#gameSetupParams: Player 1 and 2 Name, Color, Human/AI level
 		if self.debugMode:
-			player1Name = 'Kasparov'
-			player1Type = 'human'
-			player1Color = 'white'
-			player2Name = 'Light Blue'
-			player2Type = 'randomAI'
-			player2Color = 'black'		
+			
 		else:
 			GameParams = TkinterGameSetupParams()
 			(player1Name, player1Color, player1Type, player2Name, player2Color, player2Type) = GameParams.GetGameSetupParams()
 
-		self.player = [0,0]
-		if player1Type == 'human':
-			self.player[0] = ChessPlayer(player1Name,player1Color)
-		elif player1Type == 'randomAI':
-			self.player[0] = ChessAI_random(player1Name,player1Color)
-		elif player1Type == 'defenseAI':
-			self.player[0] = ChessAI_defense(player1Name,player1Color)
-		elif player1Type == 'offenseAI':
-			self.player[0] = ChessAI_offense(player1Name,player1Color)
-			
-		if player2Type == 'human':
-			self.player[1] = ChessPlayer(player2Name,player2Color)
-		elif player2Type == 'randomAI':
-			self.player[1] = ChessAI_random(player2Name,player2Color)
-		elif player2Type == 'defenseAI':
-			self.player[1] = ChessAI_defense(player2Name,player2Color)
-		elif player2Type == 'offenseAI':
-			self.player[1] = ChessAI_offense(player2Name,player2Color)
-			
-		if 'AI' in self.player[0].GetType() and 'AI' in self.player[1].GetType():
-			self.AIvsAI = True
-		else:
-			self.AIvsAI = False
-			
-		if options.pauseSeconds > 0:
-			self.AIpause = True
-			self.AIpauseSeconds = int(options.pauseSeconds)
-		else:
-			self.AIpause = False
-			
+		
 		#create the gui object - didn't do earlier because pygame conflicts with any gui manager (Tkinter, WxPython...)
 		if options.text:
 			self.guitype = 'text'
@@ -138,22 +103,11 @@ class PythonChessMain:
 				self.Gui = ChessGUI_pygame(1)
 			
 	def MainLoop(self):
-		currentPlayerIndex = 0
-		turnCount = 0
-		while not self.Rules.IsCheckmate(self.Board.GetState(),self.player[currentPlayerIndex].color):
+		for x in range (10):
 			board = self.Board.GetState()
-			currentColor = self.player[currentPlayerIndex].GetColor()
 			self.Gui.Draw(board)
-			
-			if self.player[currentPlayerIndex].GetType() == 'AI':
-				moveTuple = self.player[currentPlayerIndex].GetMove(self.Board.GetState(), currentColor) 
-			else:
-				moveTuple = self.Gui.GetPlayerInput(board,currentColor)
-			time.sleep(self.AIpauseSeconds)
-		
-		self.Gui.PrintMessage("CHECKMATE!")
-		winnerIndex = (currentPlayerIndex+1)%2
-		self.Gui.PrintMessage(self.player[winnerIndex].GetName()+" ("+self.player[winnerIndex].GetColor()+") won the game!")
+			self.Board.generate()
+			time.sleep(2)
 		self.Gui.EndGame(board)
 		
 

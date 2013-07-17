@@ -11,45 +11,63 @@
  
 import string
 
+def isFull(a):
+	if a == 'f':
+		return True
+	else:
+		return False
+
 class ChessBoard:
 	def __init__(self,setupType=0):
 		self.squares = [['e','e','e','e','e','e','e','e'],\
 						['e','e','e','e','e','e','e','e'],\
 						['e','e','e','e','e','e','e','e'],\
-						['e','e','e','e','e','e','e','e'],\
+						['e','e','e','f','f','f','e','e'],\
 						['e','e','e','e','e','e','e','e'],\
 						['e','e','e','e','e','e','e','e'],\
 						['e','e','e','e','e','e','e','e'],\
 						['e','e','e','e','e','e','e','e']]
 						
-					
 			
 	def GetState(self):
 		return self.squares
+
+	def isValid(self, indexIn, dimension):
+		if dimension == 'x':
+			if indexIn >= 0 and indexIn <= len(self.squares):
+				return True
+			else
+				return False
+		elif dimension == 'y':
+			if indexIn >= 0 and indexIn <= len(self.squares[0]):
+				return True
+			else
+				return False
+
+	def generate(self):
+		new_board = self.squares
+		for x in range(len(self.squares)):
+			for y in range(len(self.squares[0])):
+				neighborCount = 0
+				for dx in range(-1, 2):
+					for dy in range(-1, 2):
+						if isValid(x + dx, 'x') and isValid(y + dy, 'y') and dx != 0 and dy != 0 and isFull(self.squares[x + dx][y + dy]):
+							neighborCount += 1
+				if isFull(self.squares[x][y]):
+					if neighborCount < 2 or neigborCount > 3:
+						new_board[x][y] = 'e'
+					else:
+						new_board[x][y] = 'f'
+				else:
+					if neighborCount == 3:
+						new_board[x][y] = 'f'
+		return new_board
+
+
 		
 	
 		
-	def GetFullString(self,p):
-		if 'b' in p:
-			name = "black "
-		else:
-			name = "white "
-			
-		if 'P' in p:
-			name = name + "pawn"
-		if 'R' in p:
-			name = name + "rook"
-		if 'T' in p:
-			name = name + "knight"
-		if 'B' in p:
-			name = name + "bishop"
-		if 'Q' in p:
-			name = name + "queen"
-		if 'K' in p:
-			name = name + "king"
-			
-		return name
-	
+
 	"""def MovePiece(self,moveTuple):
 		fromSquare_r = moveTuple[0][0]
 		fromSquare_c = moveTuple[0][1]
