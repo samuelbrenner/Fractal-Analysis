@@ -1,7 +1,7 @@
 clear all; close all; clc;
 
 % Load in the data
-filename = 'flame_data/n11d2r40t20b6.bin_plot.txt';
+filename = 'flame_data/n7d1r10t15b.bin_plot.txt';
 [header,data] = hdrload(filename);
 
 % Initialize data to be read from header
