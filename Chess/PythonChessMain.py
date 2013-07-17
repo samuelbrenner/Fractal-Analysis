@@ -64,8 +64,7 @@
 
 from ChessBoard import ChessBoard
 from ChessPlayer import ChessPlayer
-from ChessGUI_text import ChessGUI_text
-from ChessGUI_pygame import ChessGUI_pygame
+from attemptAtGrid import ChessGUI_pygame
 from ChessGameParams import TkinterGameSetupParams
 
 from optparse import OptionParser
@@ -80,33 +79,21 @@ class PythonChessMain:
 			self.Board = ChessBoard(0)#0 for normal board setup; see ChessBoard class for other options (for testing purposes)
 			self.debugMode = False
 
-		self.Rules = ChessRules()
 		
 	def SetUp(self,options):
 		#gameSetupParams: Player 1 and 2 Name, Color, Human/AI level
-		if self.debugMode:
-			
+	
+		self.guitype = 'pygame'
+		if options.old:
+			self.Gui = ChessGUI_pygame(0)
 		else:
-			GameParams = TkinterGameSetupParams()
-			(player1Name, player1Color, player1Type, player2Name, player2Color, player2Type) = GameParams.GetGameSetupParams()
-
-		
-		#create the gui object - didn't do earlier because pygame conflicts with any gui manager (Tkinter, WxPython...)
-		if options.text:
-			self.guitype = 'text'
-			self.Gui = ChessGUI_text()
-		else:
-			self.guitype = 'pygame'
-			if options.old:
-				self.Gui = ChessGUI_pygame(0)
-			else:
-				self.Gui = ChessGUI_pygame(1)
+			self.Gui = ChessGUI_pygame(1)
 			
 	def MainLoop(self):
 		for x in range (10):
-			board = self.Board.GetState()
-			self.Gui.Draw(board)
 			self.Board.generate()
+			self.Board.GetState()
+			self.Gui.Draw(board)	
 			time.sleep(2)
 		self.Gui.EndGame(board)
 		

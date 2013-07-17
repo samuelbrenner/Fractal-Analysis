@@ -16,33 +16,25 @@ def isFull(a):
 		return True
 	else:
 		return False
-
+def isValid(indexIn, dimension):
+		if indexIn >= 0 and indexIn < dimension:
+			return True
+		else:
+			return False
 class ChessBoard:
 	def __init__(self,setupType=0):
-		self.squares = [['e','e','e','e','e','e','e','e'],\
-						['e','e','e','e','e','e','e','e'],\
-						['e','e','e','e','e','e','e','e'],\
-						['e','e','e','f','f','f','e','e'],\
-						['e','e','e','e','e','e','e','e'],\
-						['e','e','e','e','e','e','e','e'],\
-						['e','e','e','e','e','e','e','e'],\
+		self.squares = [['e','e','e','e','e','e','e','e'],
+						['e','e','e','e','e','e','e','e'],
+						['e','e','e','e','e','e','e','e'],
+						['e','e','e','f','f','f','e','e'],
+						['e','e','e','e','e','e','e','e'],
+						['e','e','e','e','e','e','e','e'],
+						['e','e','e','e','e','e','e','e'],
 						['e','e','e','e','e','e','e','e']]
 						
 			
 	def GetState(self):
 		return self.squares
-
-	def isValid(self, indexIn, dimension):
-		if dimension == 'x':
-			if indexIn >= 0 and indexIn <= len(self.squares):
-				return True
-			else
-				return False
-		elif dimension == 'y':
-			if indexIn >= 0 and indexIn <= len(self.squares[0]):
-				return True
-			else
-				return False
 
 	def generate(self):
 		new_board = self.squares
@@ -51,7 +43,7 @@ class ChessBoard:
 				neighborCount = 0
 				for dx in range(-1, 2):
 					for dy in range(-1, 2):
-						if isValid(x + dx, 'x') and isValid(y + dy, 'y') and dx != 0 and dy != 0 and isFull(self.squares[x + dx][y + dy]):
+						if isValid(x + dx, len(self.squares)) and isValid(y + dy, len(self.squares[0])) and dx != 0 and dy != 0 and isFull(self.squares[x + dx][y + dy]):
 							neighborCount += 1
 				if isFull(self.squares[x][y]):
 					if neighborCount < 2 or neigborCount > 3:
@@ -61,7 +53,7 @@ class ChessBoard:
 				else:
 					if neighborCount == 3:
 						new_board[x][y] = 'f'
-		return new_board
+		self.squares = new_board
 
 
 		
