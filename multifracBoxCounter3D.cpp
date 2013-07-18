@@ -48,8 +48,8 @@ void printArray(double** arrayIn, int arrayHeight, int WIDTH){
 
 void printToFile(double** arrayIn, int level, int HEIGHT, char* fileOutDirectory){
 	FILE * pFile;
-	char* fileOutName = new char[20];
-	sprintf(fileOutName, "%s%s%d%s", fileOutDirectory, "/falpha/falpha_level_", level, ".txt");
+	char* fileOutName = new char[100];
+	sprintf(fileOutName, "%s%s%d%s", fileOutDirectory, "_falpha_level_", level, ".txt");
 	pFile = fopen(fileOutName, "w");
 	for(int i = 0; i < HEIGHT; i++){
 		fprintf(pFile, "%.8f %.8f", arrayIn[i][0], arrayIn[i][1]);
@@ -154,14 +154,14 @@ double** boxCounting(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int le
 
 int main (int argc, char* argv[]) {
 	char* fileInName = argv[1];
-	char* fileOutDirectory = argv[2];
+	char* fileOutDirectory = fileInName;
     int HEIGHT, WIDTH, DEPTH;
     double*** elements;
     bool haveZeros = false;
     double arraySum;
    
-    elements = dataReaderASCII<double>(fileInName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); 
-    //elements = dataReaderBinary<double>(fileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
+    //elements = dataReaderASCII<double>(fileInName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); 
+    elements = dataReaderBinary<double>(fileInName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
 
     /**	
     	Corrects the data by removing zeros (does so by adding one to every value in the array)

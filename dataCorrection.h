@@ -25,14 +25,15 @@ template <class T>
 
 void dataCorrection (T***& elements, int HEIGHT, int WIDTH, int DEPTH, bool haveZeros, T arraySum){
 	//creates new int to deal with normalizing array when there are zeros.
-	int arraySumWithCorrection = arraySum;
-
+	double arraySumWithCorrection = arraySum;
+	//cout << arraySum << endl;
+	//cout << haveZeros;
 	if(haveZeros){
 		arraySumWithCorrection += HEIGHT * WIDTH * DEPTH;
 	}
 
 	//check to see if array is normalized
-	if(((arraySum - 1)/10.0 != 0) || haveZeros){
+	//if(((arraySum - 1)/10.0 != 0) || haveZeros){
 		for(int i = 0; i < HEIGHT; i++){
 			for(int j = 0; j < WIDTH; j++){
 				for(int k = 0; k < DEPTH; k++){
@@ -41,9 +42,10 @@ void dataCorrection (T***& elements, int HEIGHT, int WIDTH, int DEPTH, bool have
 						elements[i][j][k]++;
 					}
 					elements[i][j][k] /= double(arraySumWithCorrection);
+					//cout << elements[i][j][k] << endl;
 				}
 			}
 		}
-	}
+	//}
 }
 #endif

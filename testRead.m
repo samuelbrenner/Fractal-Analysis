@@ -1,7 +1,7 @@
 clear all; close all; clc;
 
 % Load in the data
-filename = 'flame_data/n7d1r10t15b.bin_plot.txt';
+filename = 'flame_data/n7d1r10t15b/n7d1r10t15b.bin_plot.txt';
 [header,data] = hdrload(filename);
 
 % Initialize data to be read from header
@@ -53,7 +53,10 @@ plot(x,y,'k--')
 % Create labels
 xlabel('$$\mathrm{log_{2}\left(1/\epsilon\right)}$$','interpreter','latex')
 ylabel('$$\mathrm{log_{2}\left(N\right)}$$','interpreter','latex')
-modifyaxis_paper
+
+text(1.5, 14, sprintf('Dimension: %1.4f\n',slope), 'fontsize', 34, 'fontname', 'Times');
+
+
 
 
 
