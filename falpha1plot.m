@@ -17,5 +17,5 @@ end
 % f = falpha1(:,2);
 % figure;
 % hold on;
-% %plot([0, 2],[0, 2]);
+plot([0, 3],[0, 3]);
 % scatter(alpha, f);

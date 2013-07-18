@@ -24,7 +24,7 @@ using namespace std;
 
 double qMin = -10;	//minimum and maximum values of the moment used in 
 double qMax = 10;
-double qIncrement = 1.0; //the step used between each value of q tested.
+double qIncrement = 0.25; //the step used between each value of q tested.
 
 void printArray(int** arrayIn, int HEIGHT, int WIDTH){
 	cout << endl;
