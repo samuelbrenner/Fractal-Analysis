@@ -1,0 +1,57 @@
+.TH "interpolation.h" 3 "Sun Jul 21 2013" "Fractal-Analysis" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+interpolation.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int *** \fBinterpolate\fP (double ***arrayIn, int \fBHEIGHT\fP, int \fBWIDTH\fP, int \fBDEPTH\fP, double valueToFind)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int*** interpolate (double ***arrayIn, intHEIGHT, intWIDTH, intDEPTH, doublevalueToFind)"
+Module to interpolate the isocontour at some pre-specified value inside a 2- or 3-D array\&.
+.PP
+Implemented in \fBboxCounter3D\&.cpp\fP: Fractal analysis module utilizing boxcounting to determine the fractal dimension of a shape in the input text/binary file\&.
+.PP
+Prints to terminal:
+.IP "\(bu" 2
+the results at each level of analysis
+.IP "\(bu" 2
+the overall dimension as determined by least-squares regression
+.IP "\(bu" 2
+an R^2 value
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Samuel Brenner 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+July 11, 2013
+.RE
+.PP
+\fBAuthor:\fP
+.RS 4
+Samuel Brenner 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+July 11, 2013 
+.RE
+.PP
+
+.PP
+Definition at line 24 of file interpolation\&.h\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Fractal-Analysis from the source code\&.

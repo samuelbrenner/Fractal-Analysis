@@ -1,0 +1,94 @@
+.TH "falpha1plot.m" 3 "Sun Jul 21 2013" "Fractal-Analysis" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+falpha1plot.m \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBplot\fP ([0, 2],[0, 2])"
+.br
+.ti -1c
+.RI "\fBscatter\fP (\fBalpha\fP, \fBf\fP)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBfilenum\fP = [0, 100, 200, 300]"
+.br
+.ti -1c
+.RI "\fBfigure\fP"
+.br
+.ti -1c
+.RI "hold \fBon\fP"
+.br
+.ti -1c
+.RI "for \fBi\fP"
+.br
+.ti -1c
+.RI "\fBfilename\fP = \fBsprintf\fP('~/big/dens_bbb03_hdf5_chk_%0\&.4d\&.bin_falpha_level_0\&.txt', n)"
+.br
+.ti -1c
+.RI "\fBfalpha1\fP = importdata(\fBfilename\fP)"
+.br
+.ti -1c
+.RI "\fBalpha\fP = \fBfalpha1\fP(:,1)"
+.br
+.ti -1c
+.RI "\fBf\fP = \fBfalpha1\fP(:,2)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "plot ()"
+
+.SS "scatter (\fBalpha\fP, \fBf\fP)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "alpha = \fBfalpha1\fP(:,1)"
+
+.PP
+Definition at line 8 of file falpha1plot\&.m\&.
+.SS "f = \fBfalpha1\fP(:,2)"
+
+.PP
+Definition at line 9 of file falpha1plot\&.m\&.
+.SS "end falpha1 = importdata(\fBfilename\fP)"
+
+.PP
+Definition at line 7 of file falpha1plot\&.m\&.
+.SS "figure"
+
+.PP
+Definition at line 2 of file falpha1plot\&.m\&.
+.SS "filename = \fBsprintf\fP('~/big/dens_bbb03_hdf5_chk_%0\&.4d\&.bin_falpha_level_0\&.txt', n)"
+
+.PP
+Definition at line 6 of file falpha1plot\&.m\&.
+.SS "filenum = [0, 100, 200, 300]"
+
+.PP
+Definition at line 1 of file falpha1plot\&.m\&.
+.SS "for i"
+\fBInitial value:\fP
+.PP
+.nf
+= 1:numel(filenum)
+    n = filenum(i)
+.fi
+.PP
+Definition at line 4 of file falpha1plot\&.m\&.
+.SS "hold on"
+
+.PP
+Definition at line 3 of file falpha1plot\&.m\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Fractal-Analysis from the source code\&.

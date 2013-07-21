@@ -1,0 +1,307 @@
+\hypertarget{test_read_8m}{\section{test\-Read.\-m File Reference}
+\label{test_read_8m}\index{test\-Read.\-m@{test\-Read.\-m}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{test_read_8m_a43311af544b5eb0cd7720db6073a98ac}{switch} (lower(\hyperlink{test_read_8m_a1746b2931c52f5792f7a513633a767aa}{split\-Line}\{1\})) \hyperlink{test_read_8m_a22d8959c7115aad52c26f1f19c25c86b}{case}('\hyperlink{regression_module_8h_ac7214329b96bf6879bfea929b6d0ca03}{slope}') \hyperlink{regression_module_8h_ac7214329b96bf6879bfea929b6d0ca03}{slope}
+\item 
+\hyperlink{test_read_8m_a22d8959c7115aad52c26f1f19c25c86b}{case} ('\hyperlink{test_read_8m_a5d5e4a24872150443d138d0f753ef52e}{intercept}') \hyperlink{test_read_8m_a5d5e4a24872150443d138d0f753ef52e}{intercept}
+\item 
+otherwise \hyperlink{test_read_8m_aa4390a0b98a9889bd411fd06dec831f7}{fprintf} ('No use for key=\%s\textbackslash{}n', \hyperlink{test_read_8m_a1746b2931c52f5792f7a513633a767aa}{split\-Line}\{1\})
+\item 
+end end \hyperlink{test_read_8m_a8297dfeaa94f8c8e5d39263aed89e7ba}{fprintf} ('Filename\-:\%s\textbackslash{}n', \hyperlink{test_read_8m_aaa614d4679594368fd47961843b8a340}{filename})
+\item 
+\hyperlink{test_read_8m_a069a0f9bb8828941e4b0009dccaf093e}{fprintf} ('Slope\-:\%f\textbackslash{}n', \hyperlink{regression_module_8h_ac7214329b96bf6879bfea929b6d0ca03}{slope})
+\item 
+\hyperlink{test_read_8m_afc673206e427125ccfa60d9883711ed5}{fprintf} ('Intercept\-:\%f\textbackslash{}n', \hyperlink{test_read_8m_a5d5e4a24872150443d138d0f753ef52e}{intercept})
+\item 
+Plot the raw data points \hyperlink{test_read_8m_aeba2762fda5e50ca843c95437faccad0}{plot} (data(\-:, 1), data(\-:, 2),'ko','linewidth', 3)\%Plot the regression line\%This involves either hardcoding the domain(the X's) of the line
+\item 
+\hyperlink{test_read_8m_a7e8b32fe1d5de85924e49138c73c9c2d}{plot} (\hyperlink{test_read_8m_a9336ebf25087d91c818ee6e9ec29f8c1}{x}, \hyperlink{test_read_8m_a2fb1c5cf58867b5bbc9a1b145a86f3a0}{y},'k-\/-\/')\%Create labels xlabel('\$\$\textbackslash{}mathrm
+\item 
+latex \hyperlink{test_read_8m_a4c5fcb1e68fb64a114059ee5700db66e}{ylabel} ('\$\$\textbackslash{}mathrm\{log\-\_\-\{2\}\textbackslash{}left(N\textbackslash{}right)\}\$\$','\hyperlink{test_read_8m_a6d10479607daff38b7221efdedf24130}{interpreter}','latex') text(1.\-5
+\item 
+latex \hyperlink{test_read_8m_a0e2c52a39bbfaa6c953c43dfe719bf52}{sprintf} ('Dimension\-:\%1.\-4f\textbackslash{}n', slope)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+clear \hyperlink{test_read_8m_a00a349297fa58bc80ff5329e25dcfe28}{all}
+\item 
+\hyperlink{test_read_8m_a3f3d3b13a15c726d6aa03db3dd0d6377}{clc}
+\item 
+Load in the data \hyperlink{test_read_8m_aaa614d4679594368fd47961843b8a340}{filename} = 'flame\-\_\-data/n7d1r10t15b/n7d1r10t15b.\-bin\-\_\-plot.\-txt'
+\item 
+Initialize data to be read \\*
+from header \hyperlink{test_read_8m_abc3e394ee6bb77a47b985e1a9a8e56d2}{slope} = 0
+\item 
+\hyperlink{test_read_8m_a5d5e4a24872150443d138d0f753ef52e}{intercept} = 0
+\item 
+Parse the header information \hyperlink{test_read_8m_a10ddf2da81005dc7b1be91e92a31476a}{n\-Header\-Lines} = size(header,1)
+\item 
+for \hyperlink{test_read_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}
+\item 
+\hyperlink{test_read_8m_a1746b2931c52f5792f7a513633a767aa}{split\-Line} = regexp(line,'\-:','split')
+\item 
+Create \hyperlink{test_read_8m_a7e8b32fe1d5de85924e49138c73c9c2d}{plot} Create \hyperlink{falpha1plot_8m_a391e34f2de441d79152a7b3d6e4c9c86}{figure} \\*
+window \hyperlink{falpha1plot_8m_a391e34f2de441d79152a7b3d6e4c9c86}{figure} hold \hyperlink{test_read_8m_a7abc68787edd7243fba21171c7a587fc}{on}
+\item 
+Plot the raw data points or \\*
+determining a domain from the \\*
+last couple data points I ll \\*
+show the second \hyperlink{test_read_8m_abfd8235e6526eda2ede1beca754d6437}{method}
+\item 
+Plot the raw data points or \\*
+determining a domain from the \\*
+last couple data points I ll \\*
+show the second because it s \\*
+more complicated \hyperlink{test_read_8m_a60f2ae8c055cbdcee526d039423ae29a}{n\-Back} = 5
+\item 
+\hyperlink{test_read_8m_a14458fd88d7e32efa9171dc573b16ee0}{x\-Min} = data(end-\/\hyperlink{test_read_8m_a60f2ae8c055cbdcee526d039423ae29a}{n\-Back}, 1)
+\item 
+\hyperlink{test_read_8m_acc3139dfa8a349ddea139df2fa843434}{x\-Max} = data(end, 1)
+\item 
+\hyperlink{test_read_8m_a9336ebf25087d91c818ee6e9ec29f8c1}{x} = linspace(\hyperlink{test_read_8m_a14458fd88d7e32efa9171dc573b16ee0}{x\-Min},\hyperlink{test_read_8m_acc3139dfa8a349ddea139df2fa843434}{x\-Max},2)
+\item 
+\hyperlink{test_read_8m_a2fb1c5cf58867b5bbc9a1b145a86f3a0}{y} = \hyperlink{regression_module_8h_ac7214329b96bf6879bfea929b6d0ca03}{slope}$\ast$\hyperlink{test_read_8m_a9336ebf25087d91c818ee6e9ec29f8c1}{x} + \hyperlink{test_read_8m_a5d5e4a24872150443d138d0f753ef52e}{intercept}
+\item 
+\hyperlink{test_read_8m_a6d10479607daff38b7221efdedf24130}{interpreter}
+\item 
+latex \hyperlink{test_read_8m_adeb244a194a0c128a157ba9ac6cc2018}{fontsize}
+\item 
+latex \hyperlink{test_read_8m_ae9ce89115c496d5492fcfda083a129cc}{fontname}
+\item 
+latex \hyperlink{test_read_8m_ab17cd2f82ae024d9e539a6520403637b}{Times}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{test_read_8m_a22d8959c7115aad52c26f1f19c25c86b}{\index{test\-Read.\-m@{test\-Read.\-m}!case@{case}}
+\index{case@{case}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{case}]{\setlength{\rightskip}{0pt plus 5cm}case (
+\begin{DoxyParamCaption}
+\item[{'{\bf intercept}'}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_a22d8959c7115aad52c26f1f19c25c86b}
+\hypertarget{test_read_8m_aa4390a0b98a9889bd411fd06dec831f7}{\index{test\-Read.\-m@{test\-Read.\-m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{fprintf}]{\setlength{\rightskip}{0pt plus 5cm}otherwise fprintf (
+\begin{DoxyParamCaption}
+\item[{'No use for}]{key = {\ttfamily \%s\textbackslash{}n'}, }
+\item[{{\bf split\-Line}\{1\}}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_aa4390a0b98a9889bd411fd06dec831f7}
+\hypertarget{test_read_8m_a8297dfeaa94f8c8e5d39263aed89e7ba}{\index{test\-Read.\-m@{test\-Read.\-m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{fprintf}]{\setlength{\rightskip}{0pt plus 5cm}end end fprintf (
+\begin{DoxyParamCaption}
+\item[{'Filename\-:\%s\textbackslash{}n'}]{, }
+\item[{{\bf filename}}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_a8297dfeaa94f8c8e5d39263aed89e7ba}
+\hypertarget{test_read_8m_a069a0f9bb8828941e4b0009dccaf093e}{\index{test\-Read.\-m@{test\-Read.\-m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{fprintf}]{\setlength{\rightskip}{0pt plus 5cm}fprintf (
+\begin{DoxyParamCaption}
+\item[{'Slope\-:\%f\textbackslash{}n'}]{, }
+\item[{{\bf slope}}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_a069a0f9bb8828941e4b0009dccaf093e}
+\hypertarget{test_read_8m_afc673206e427125ccfa60d9883711ed5}{\index{test\-Read.\-m@{test\-Read.\-m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{fprintf}]{\setlength{\rightskip}{0pt plus 5cm}fprintf (
+\begin{DoxyParamCaption}
+\item[{'Intercept\-:\%f\textbackslash{}n'}]{, }
+\item[{{\bf intercept}}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_afc673206e427125ccfa60d9883711ed5}
+\hypertarget{test_read_8m_aeba2762fda5e50ca843c95437faccad0}{\index{test\-Read.\-m@{test\-Read.\-m}!plot@{plot}}
+\index{plot@{plot}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{plot}]{\setlength{\rightskip}{0pt plus 5cm}Plot the raw data points plot (
+\begin{DoxyParamCaption}
+\item[{data(\-:, 1)}]{, }
+\item[{data(\-:, 2)}]{, }
+\item[{'ko'}]{, }
+\item[{'linewidth'}]{, }
+\item[{3}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_aeba2762fda5e50ca843c95437faccad0}
+\hypertarget{test_read_8m_a7e8b32fe1d5de85924e49138c73c9c2d}{\index{test\-Read.\-m@{test\-Read.\-m}!plot@{plot}}
+\index{plot@{plot}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{plot}]{\setlength{\rightskip}{0pt plus 5cm}plot (
+\begin{DoxyParamCaption}
+\item[{{\bf x}}]{, }
+\item[{{\bf y}}]{, }
+\item[{'k-\/-\/'}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_a7e8b32fe1d5de85924e49138c73c9c2d}
+
+
+Definition at line 51 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a0e2c52a39bbfaa6c953c43dfe719bf52}{\index{test\-Read.\-m@{test\-Read.\-m}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{sprintf}]{\setlength{\rightskip}{0pt plus 5cm}latex sprintf (
+\begin{DoxyParamCaption}
+\item[{'Dimension\-:\%1.\-4f\textbackslash{}n'}]{, }
+\item[{{\bf slope}}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_a0e2c52a39bbfaa6c953c43dfe719bf52}
+\hypertarget{test_read_8m_a43311af544b5eb0cd7720db6073a98ac}{\index{test\-Read.\-m@{test\-Read.\-m}!switch@{switch}}
+\index{switch@{switch}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{switch}]{\setlength{\rightskip}{0pt plus 5cm}switch (
+\begin{DoxyParamCaption}
+\item[{lower({\bf split\-Line}\{1\})}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_a43311af544b5eb0cd7720db6073a98ac}
+\hypertarget{test_read_8m_a4c5fcb1e68fb64a114059ee5700db66e}{\index{test\-Read.\-m@{test\-Read.\-m}!ylabel@{ylabel}}
+\index{ylabel@{ylabel}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{ylabel}]{\setlength{\rightskip}{0pt plus 5cm}latex ylabel (
+\begin{DoxyParamCaption}
+\item[{'\$\$\textbackslash{}mathrm\{log\-\_\-\{2\}\textbackslash{}left(N\textbackslash{}right)\}\$\$'}]{, }
+\item[{'{\bf interpreter}'}]{, }
+\item[{'latex'}]{}
+\end{DoxyParamCaption}
+)}}\label{test_read_8m_a4c5fcb1e68fb64a114059ee5700db66e}
+
+
+\subsection{Variable Documentation}
+\hypertarget{test_read_8m_a00a349297fa58bc80ff5329e25dcfe28}{\index{test\-Read.\-m@{test\-Read.\-m}!all@{all}}
+\index{all@{all}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{all}]{\setlength{\rightskip}{0pt plus 5cm}close all}}\label{test_read_8m_a00a349297fa58bc80ff5329e25dcfe28}
+
+
+Definition at line 1 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a3f3d3b13a15c726d6aa03db3dd0d6377}{\index{test\-Read.\-m@{test\-Read.\-m}!clc@{clc}}
+\index{clc@{clc}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{clc}]{\setlength{\rightskip}{0pt plus 5cm}clc}}\label{test_read_8m_a3f3d3b13a15c726d6aa03db3dd0d6377}
+
+
+Definition at line 1 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_aaa614d4679594368fd47961843b8a340}{\index{test\-Read.\-m@{test\-Read.\-m}!filename@{filename}}
+\index{filename@{filename}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{filename}]{\setlength{\rightskip}{0pt plus 5cm}Load in the data filename = 'flame\-\_\-data/n7d1r10t15b/n7d1r10t15b.\-bin\-\_\-plot.\-txt'}}\label{test_read_8m_aaa614d4679594368fd47961843b8a340}
+
+
+Definition at line 4 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_ae9ce89115c496d5492fcfda083a129cc}{\index{test\-Read.\-m@{test\-Read.\-m}!fontname@{fontname}}
+\index{fontname@{fontname}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{fontname}]{\setlength{\rightskip}{0pt plus 5cm}latex fontname}}\label{test_read_8m_ae9ce89115c496d5492fcfda083a129cc}
+
+
+Definition at line 57 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_adeb244a194a0c128a157ba9ac6cc2018}{\index{test\-Read.\-m@{test\-Read.\-m}!fontsize@{fontsize}}
+\index{fontsize@{fontsize}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{fontsize}]{\setlength{\rightskip}{0pt plus 5cm}latex fontsize}}\label{test_read_8m_adeb244a194a0c128a157ba9ac6cc2018}
+
+
+Definition at line 57 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a6f6ccfcf58b31cb6412107d9d5281426}{\index{test\-Read.\-m@{test\-Read.\-m}!i@{i}}
+\index{i@{i}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{i}]{\setlength{\rightskip}{0pt plus 5cm}for i}}\label{test_read_8m_a6f6ccfcf58b31cb6412107d9d5281426}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+=1:\hyperlink{test_read_8m_a10ddf2da81005dc7b1be91e92a31476a}{nHeaderLines}
+    line = header(\hyperlink{falpha1plot_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i},:)
+\end{DoxyCode}
+
+
+Definition at line 13 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a5d5e4a24872150443d138d0f753ef52e}{\index{test\-Read.\-m@{test\-Read.\-m}!intercept@{intercept}}
+\index{intercept@{intercept}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{intercept}]{\setlength{\rightskip}{0pt plus 5cm}intercept = 0}}\label{test_read_8m_a5d5e4a24872150443d138d0f753ef52e}
+
+
+Definition at line 9 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a6d10479607daff38b7221efdedf24130}{\index{test\-Read.\-m@{test\-Read.\-m}!interpreter@{interpreter}}
+\index{interpreter@{interpreter}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{interpreter}]{\setlength{\rightskip}{0pt plus 5cm}interpreter}}\label{test_read_8m_a6d10479607daff38b7221efdedf24130}
+
+
+Definition at line 54 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_abfd8235e6526eda2ede1beca754d6437}{\index{test\-Read.\-m@{test\-Read.\-m}!method@{method}}
+\index{method@{method}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{method}]{\setlength{\rightskip}{0pt plus 5cm}Plot the raw data points or determining a domain from the last couple data points I ll show the second method}}\label{test_read_8m_abfd8235e6526eda2ede1beca754d6437}
+
+
+Definition at line 44 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a60f2ae8c055cbdcee526d039423ae29a}{\index{test\-Read.\-m@{test\-Read.\-m}!n\-Back@{n\-Back}}
+\index{n\-Back@{n\-Back}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{n\-Back}]{\setlength{\rightskip}{0pt plus 5cm}Plot the raw data points or determining a domain from the last couple data points I ll show the second because it s more complicated n\-Back = 5}}\label{test_read_8m_a60f2ae8c055cbdcee526d039423ae29a}
+
+
+Definition at line 45 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a10ddf2da81005dc7b1be91e92a31476a}{\index{test\-Read.\-m@{test\-Read.\-m}!n\-Header\-Lines@{n\-Header\-Lines}}
+\index{n\-Header\-Lines@{n\-Header\-Lines}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{n\-Header\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}Parse the header information n\-Header\-Lines = size(header,1)}}\label{test_read_8m_a10ddf2da81005dc7b1be91e92a31476a}
+
+
+Definition at line 12 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a7abc68787edd7243fba21171c7a587fc}{\index{test\-Read.\-m@{test\-Read.\-m}!on@{on}}
+\index{on@{on}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{on}]{\setlength{\rightskip}{0pt plus 5cm}Create {\bf plot} Create {\bf figure} window {\bf figure} hold on}}\label{test_read_8m_a7abc68787edd7243fba21171c7a587fc}
+
+
+Definition at line 36 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_abc3e394ee6bb77a47b985e1a9a8e56d2}{\index{test\-Read.\-m@{test\-Read.\-m}!slope@{slope}}
+\index{slope@{slope}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{slope}]{\setlength{\rightskip}{0pt plus 5cm}Initialize data to be read from header slope = 0}}\label{test_read_8m_abc3e394ee6bb77a47b985e1a9a8e56d2}
+
+
+Definition at line 8 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a1746b2931c52f5792f7a513633a767aa}{\index{test\-Read.\-m@{test\-Read.\-m}!split\-Line@{split\-Line}}
+\index{split\-Line@{split\-Line}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{split\-Line}]{\setlength{\rightskip}{0pt plus 5cm}split\-Line = regexp(line,'\-:','split')}}\label{test_read_8m_a1746b2931c52f5792f7a513633a767aa}
+
+
+Definition at line 15 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_ab17cd2f82ae024d9e539a6520403637b}{\index{test\-Read.\-m@{test\-Read.\-m}!Times@{Times}}
+\index{Times@{Times}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{Times}]{\setlength{\rightskip}{0pt plus 5cm}latex Times}}\label{test_read_8m_ab17cd2f82ae024d9e539a6520403637b}
+
+
+Definition at line 57 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a9336ebf25087d91c818ee6e9ec29f8c1}{\index{test\-Read.\-m@{test\-Read.\-m}!x@{x}}
+\index{x@{x}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{x}]{\setlength{\rightskip}{0pt plus 5cm}x = linspace({\bf x\-Min},{\bf x\-Max},2)}}\label{test_read_8m_a9336ebf25087d91c818ee6e9ec29f8c1}
+
+
+Definition at line 48 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_acc3139dfa8a349ddea139df2fa843434}{\index{test\-Read.\-m@{test\-Read.\-m}!x\-Max@{x\-Max}}
+\index{x\-Max@{x\-Max}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{x\-Max}]{\setlength{\rightskip}{0pt plus 5cm}x\-Max = data(end, 1)}}\label{test_read_8m_acc3139dfa8a349ddea139df2fa843434}
+
+
+Definition at line 47 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a14458fd88d7e32efa9171dc573b16ee0}{\index{test\-Read.\-m@{test\-Read.\-m}!x\-Min@{x\-Min}}
+\index{x\-Min@{x\-Min}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{x\-Min}]{\setlength{\rightskip}{0pt plus 5cm}x\-Min = data(end-\/{\bf n\-Back}, 1)}}\label{test_read_8m_a14458fd88d7e32efa9171dc573b16ee0}
+
+
+Definition at line 46 of file test\-Read.\-m.
+
+\hypertarget{test_read_8m_a2fb1c5cf58867b5bbc9a1b145a86f3a0}{\index{test\-Read.\-m@{test\-Read.\-m}!y@{y}}
+\index{y@{y}!testRead.m@{test\-Read.\-m}}
+\subsubsection[{y}]{\setlength{\rightskip}{0pt plus 5cm}y = {\bf slope}$\ast${\bf x} + {\bf intercept}}}\label{test_read_8m_a2fb1c5cf58867b5bbc9a1b145a86f3a0}
+
+
+Definition at line 49 of file test\-Read.\-m.
+

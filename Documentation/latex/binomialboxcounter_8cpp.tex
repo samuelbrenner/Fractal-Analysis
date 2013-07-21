@@ -1,0 +1,153 @@
+\hypertarget{binomialboxcounter_8cpp}{\section{binomialboxcounter.\-cpp File Reference}
+\label{binomialboxcounter_8cpp}\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}}
+}
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{binomialboxcounter_8cpp_a27c8e505dc24c568074b650c79c21cb4}{convert\-To\-Int} (string string\-In)
+\item 
+void \hyperlink{binomialboxcounter_8cpp_a0b31361d5869bd9d8c3c8c5a79c37af6}{print\-Array} (int $\ast$array\-In, int \hyperlink{multifractalgenerator_binary_i_o_8cpp_a4e81322eb1085aca9cd7c5527f5e4c6b}{H\-E\-I\-G\-H\-T}, int \hyperlink{multifractalgenerator_binary_i_o_8cpp_a59c3bba4b17cd5e19f149ea175fa6989}{W\-I\-D\-T\-H})
+\item 
+void \hyperlink{binomialboxcounter_8cpp_ae74ebc5bb91a4eb15ba61d9063a9802e}{print\-Array} (double $\ast$$\ast$array\-In, int array\-Height, int \hyperlink{multifractalgenerator_binary_i_o_8cpp_a59c3bba4b17cd5e19f149ea175fa6989}{W\-I\-D\-T\-H})
+\item 
+void \hyperlink{binomialboxcounter_8cpp_ac8b015544920b402167226aef3bcaa84}{print\-To\-File} (double $\ast$$\ast$array\-In, int level, int \hyperlink{multifractalgenerator_binary_i_o_8cpp_a4e81322eb1085aca9cd7c5527f5e4c6b}{H\-E\-I\-G\-H\-T})
+\item 
+double $\ast$$\ast$ \hyperlink{binomialboxcounter_8cpp_a394d860747ca6ee639d9d61d9d6ab5ea}{box\-Counting} (double $\ast$array\-In, int \hyperlink{multifractalgenerator_binary_i_o_8cpp_a4e81322eb1085aca9cd7c5527f5e4c6b}{H\-E\-I\-G\-H\-T}, int \hyperlink{multifractalgenerator_binary_i_o_8cpp_a59c3bba4b17cd5e19f149ea175fa6989}{W\-I\-D\-T\-H}, int \hyperlink{multifractalgenerator_binary_i_o_8cpp_a866914c347eb15d0913ada73b9e8c99b}{D\-E\-P\-T\-H}, int level)
+\item 
+int \hyperlink{binomialboxcounter_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{binomialboxcounter_8cpp_aef3988ba2a1dd1951a5acc6450f0403b}{q\-Min} = -\/20
+\item 
+int \hyperlink{binomialboxcounter_8cpp_a146ffd863e9270ff275e080d92908b08}{q\-Max} = 20
+\item 
+const char $\ast$ \hyperlink{binomialboxcounter_8cpp_a1862cb72b37ffe98140c1fcf06a28969}{file\-Name} = \char`\"{}binomial.\-txt\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{binomialboxcounter_8cpp_a394d860747ca6ee639d9d61d9d6ab5ea}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!box\-Counting@{box\-Counting}}
+\index{box\-Counting@{box\-Counting}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{box\-Counting}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$$\ast$ box\-Counting (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{array\-In, }
+\item[{int}]{H\-E\-I\-G\-H\-T, }
+\item[{int}]{W\-I\-D\-T\-H, }
+\item[{int}]{D\-E\-P\-T\-H, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)}}\label{binomialboxcounter_8cpp_a394d860747ca6ee639d9d61d9d6ab5ea}
+Returns the log base 2 of the number of cells filled in a given level of fractal analysis. 
+\begin{DoxyParams}{Parameters}
+{\em array\-In} & is the 2-\/3-\/\-D array of integers that contains the data \\
+\hline
+{\em H\-E\-I\-G\-H\-T} & \\
+\hline
+{\em W\-I\-D\-T\-H} & \\
+\hline
+{\em D\-P\-E\-T\-H} & \\
+\hline
+{\em level} & is the level of analysis to be performed. Level 0, for example, examines only the individual data points, whereas at level 1 they are merged into boxes of side length 2$^\wedge$1, and for level l size 2$^\wedge$l. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+log base 2 of the number of cells filled in a given level. 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file binomialboxcounter.\-cpp.
+
+\hypertarget{binomialboxcounter_8cpp_a27c8e505dc24c568074b650c79c21cb4}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!convert\-To\-Int@{convert\-To\-Int}}
+\index{convert\-To\-Int@{convert\-To\-Int}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{convert\-To\-Int}]{\setlength{\rightskip}{0pt plus 5cm}int convert\-To\-Int (
+\begin{DoxyParamCaption}
+\item[{string}]{string\-In}
+\end{DoxyParamCaption}
+)}}\label{binomialboxcounter_8cpp_a27c8e505dc24c568074b650c79c21cb4}
+
+
+Definition at line 20 of file binomialboxcounter.\-cpp.
+
+\hypertarget{binomialboxcounter_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!main@{main}}
+\index{main@{main}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{binomialboxcounter_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Definition at line 158 of file binomialboxcounter.\-cpp.
+
+\hypertarget{binomialboxcounter_8cpp_a0b31361d5869bd9d8c3c8c5a79c37af6}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!print\-Array@{print\-Array}}
+\index{print\-Array@{print\-Array}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{print\-Array}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Array (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{array\-In, }
+\item[{int}]{H\-E\-I\-G\-H\-T, }
+\item[{int}]{W\-I\-D\-T\-H}
+\end{DoxyParamCaption}
+)}}\label{binomialboxcounter_8cpp_a0b31361d5869bd9d8c3c8c5a79c37af6}
+
+
+Definition at line 27 of file binomialboxcounter.\-cpp.
+
+\hypertarget{binomialboxcounter_8cpp_ae74ebc5bb91a4eb15ba61d9063a9802e}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!print\-Array@{print\-Array}}
+\index{print\-Array@{print\-Array}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{print\-Array}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Array (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{array\-In, }
+\item[{int}]{array\-Height, }
+\item[{int}]{W\-I\-D\-T\-H}
+\end{DoxyParamCaption}
+)}}\label{binomialboxcounter_8cpp_ae74ebc5bb91a4eb15ba61d9063a9802e}
+
+
+Definition at line 37 of file binomialboxcounter.\-cpp.
+
+\hypertarget{binomialboxcounter_8cpp_ac8b015544920b402167226aef3bcaa84}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!print\-To\-File@{print\-To\-File}}
+\index{print\-To\-File@{print\-To\-File}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{print\-To\-File}]{\setlength{\rightskip}{0pt plus 5cm}void print\-To\-File (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{array\-In, }
+\item[{int}]{level, }
+\item[{int}]{H\-E\-I\-G\-H\-T}
+\end{DoxyParamCaption}
+)}}\label{binomialboxcounter_8cpp_ac8b015544920b402167226aef3bcaa84}
+
+
+Definition at line 47 of file binomialboxcounter.\-cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{binomialboxcounter_8cpp_a1862cb72b37ffe98140c1fcf06a28969}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!file\-Name@{file\-Name}}
+\index{file\-Name@{file\-Name}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{file\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ file\-Name = \char`\"{}binomial.\-txt\char`\"{}}}\label{binomialboxcounter_8cpp_a1862cb72b37ffe98140c1fcf06a28969}
+
+
+Definition at line 18 of file binomialboxcounter.\-cpp.
+
+\hypertarget{binomialboxcounter_8cpp_a146ffd863e9270ff275e080d92908b08}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!q\-Max@{q\-Max}}
+\index{q\-Max@{q\-Max}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{q\-Max}]{\setlength{\rightskip}{0pt plus 5cm}int q\-Max = 20}}\label{binomialboxcounter_8cpp_a146ffd863e9270ff275e080d92908b08}
+
+
+Definition at line 17 of file binomialboxcounter.\-cpp.
+
+\hypertarget{binomialboxcounter_8cpp_aef3988ba2a1dd1951a5acc6450f0403b}{\index{binomialboxcounter.\-cpp@{binomialboxcounter.\-cpp}!q\-Min@{q\-Min}}
+\index{q\-Min@{q\-Min}!binomialboxcounter.cpp@{binomialboxcounter.\-cpp}}
+\subsubsection[{q\-Min}]{\setlength{\rightskip}{0pt plus 5cm}int q\-Min = -\/20}}\label{binomialboxcounter_8cpp_aef3988ba2a1dd1951a5acc6450f0403b}
+
+
+Definition at line 16 of file binomialboxcounter.\-cpp.
+

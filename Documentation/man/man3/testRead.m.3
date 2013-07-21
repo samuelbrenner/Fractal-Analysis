@@ -1,0 +1,231 @@
+.TH "testRead.m" 3 "Sun Jul 21 2013" "Fractal-Analysis" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+testRead.m \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBswitch\fP (lower(\fBsplitLine\fP{1})) \fBcase\fP('\fBslope\fP') \fBslope\fP"
+.br
+.ti -1c
+.RI "\fBcase\fP ('\fBintercept\fP') \fBintercept\fP"
+.br
+.ti -1c
+.RI "otherwise \fBfprintf\fP ('No use for key=%s\\n', \fBsplitLine\fP{1})"
+.br
+.ti -1c
+.RI "end end \fBfprintf\fP ('Filename:%s\\n', \fBfilename\fP)"
+.br
+.ti -1c
+.RI "\fBfprintf\fP ('Slope:%f\\n', \fBslope\fP)"
+.br
+.ti -1c
+.RI "\fBfprintf\fP ('Intercept:%f\\n', \fBintercept\fP)"
+.br
+.ti -1c
+.RI "Plot the raw data points \fBplot\fP (data(:, 1), data(:, 2),'ko','linewidth', 3)%Plot the regression line%This involves either hardcoding the domain(the X's) of the line"
+.br
+.ti -1c
+.RI "\fBplot\fP (\fBx\fP, \fBy\fP,'k--')%Create labels xlabel('$$\\mathrm"
+.br
+.ti -1c
+.RI "latex \fBylabel\fP ('$$\\mathrm{log_{2}\\left(N\\right)}$$','\fBinterpreter\fP','latex') text(1\&.5"
+.br
+.ti -1c
+.RI "latex \fBsprintf\fP ('Dimension:%1\&.4f\\n', slope)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "clear \fBall\fP"
+.br
+.ti -1c
+.RI "\fBclc\fP"
+.br
+.ti -1c
+.RI "Load in the data \fBfilename\fP = 'flame_data/n7d1r10t15b/n7d1r10t15b\&.bin_plot\&.txt'"
+.br
+.ti -1c
+.RI "Initialize data to be read 
+.br
+from header \fBslope\fP = 0"
+.br
+.ti -1c
+.RI "\fBintercept\fP = 0"
+.br
+.ti -1c
+.RI "Parse the header information \fBnHeaderLines\fP = size(header,1)"
+.br
+.ti -1c
+.RI "for \fBi\fP"
+.br
+.ti -1c
+.RI "\fBsplitLine\fP = regexp(line,':','split')"
+.br
+.ti -1c
+.RI "Create \fBplot\fP Create \fBfigure\fP 
+.br
+window \fBfigure\fP hold \fBon\fP"
+.br
+.ti -1c
+.RI "Plot the raw data points or 
+.br
+determining a domain from the 
+.br
+last couple data points I ll 
+.br
+show the second \fBmethod\fP"
+.br
+.ti -1c
+.RI "Plot the raw data points or 
+.br
+determining a domain from the 
+.br
+last couple data points I ll 
+.br
+show the second because it s 
+.br
+more complicated \fBnBack\fP = 5"
+.br
+.ti -1c
+.RI "\fBxMin\fP = data(end-\fBnBack\fP, 1)"
+.br
+.ti -1c
+.RI "\fBxMax\fP = data(end, 1)"
+.br
+.ti -1c
+.RI "\fBx\fP = linspace(\fBxMin\fP,\fBxMax\fP,2)"
+.br
+.ti -1c
+.RI "\fBy\fP = \fBslope\fP*\fBx\fP + \fBintercept\fP"
+.br
+.ti -1c
+.RI "\fBinterpreter\fP"
+.br
+.ti -1c
+.RI "latex \fBfontsize\fP"
+.br
+.ti -1c
+.RI "latex \fBfontname\fP"
+.br
+.ti -1c
+.RI "latex \fBTimes\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "case ('\fBintercept\fP')"
+
+.SS "otherwise fprintf ('No use forkey = \fC%s\\n'\fP, \fBsplitLine\fP{1})"
+
+.SS "end end fprintf ('Filename:%s\\n', \fBfilename\fP)"
+
+.SS "fprintf ('Slope:%f\\n', \fBslope\fP)"
+
+.SS "fprintf ('Intercept:%f\\n', \fBintercept\fP)"
+
+.SS "Plot the raw data points plot (data(:, 1), data(:, 2), 'ko', 'linewidth', 3)"
+
+.SS "plot (\fBx\fP, \fBy\fP, 'k--')"
+
+.PP
+Definition at line 51 of file testRead\&.m\&.
+.SS "latex sprintf ('Dimension:%1\&.4f\\n', \fBslope\fP)"
+
+.SS "switch (lower(\fBsplitLine\fP{1}))"
+
+.SS "latex ylabel ('$$\\mathrm{log_{2}\\left(N\\right)}$$', '\fBinterpreter\fP', 'latex')"
+
+.SH "Variable Documentation"
+.PP 
+.SS "close all"
+
+.PP
+Definition at line 1 of file testRead\&.m\&.
+.SS "clc"
+
+.PP
+Definition at line 1 of file testRead\&.m\&.
+.SS "Load in the data filename = 'flame_data/n7d1r10t15b/n7d1r10t15b\&.bin_plot\&.txt'"
+
+.PP
+Definition at line 4 of file testRead\&.m\&.
+.SS "latex fontname"
+
+.PP
+Definition at line 57 of file testRead\&.m\&.
+.SS "latex fontsize"
+
+.PP
+Definition at line 57 of file testRead\&.m\&.
+.SS "for i"
+\fBInitial value:\fP
+.PP
+.nf
+=1:nHeaderLines
+    line = header(i,:)
+.fi
+.PP
+Definition at line 13 of file testRead\&.m\&.
+.SS "intercept = 0"
+
+.PP
+Definition at line 9 of file testRead\&.m\&.
+.SS "interpreter"
+
+.PP
+Definition at line 54 of file testRead\&.m\&.
+.SS "Plot the raw data points or determining a domain from the last couple data points I ll show the second method"
+
+.PP
+Definition at line 44 of file testRead\&.m\&.
+.SS "Plot the raw data points or determining a domain from the last couple data points I ll show the second because it s more complicated nBack = 5"
+
+.PP
+Definition at line 45 of file testRead\&.m\&.
+.SS "Parse the header information nHeaderLines = size(header,1)"
+
+.PP
+Definition at line 12 of file testRead\&.m\&.
+.SS "Create \fBplot\fP Create \fBfigure\fP window \fBfigure\fP hold on"
+
+.PP
+Definition at line 36 of file testRead\&.m\&.
+.SS "Initialize data to be read from header slope = 0"
+
+.PP
+Definition at line 8 of file testRead\&.m\&.
+.SS "splitLine = regexp(line,':','split')"
+
+.PP
+Definition at line 15 of file testRead\&.m\&.
+.SS "latex Times"
+
+.PP
+Definition at line 57 of file testRead\&.m\&.
+.SS "x = linspace(\fBxMin\fP,\fBxMax\fP,2)"
+
+.PP
+Definition at line 48 of file testRead\&.m\&.
+.SS "xMax = data(end, 1)"
+
+.PP
+Definition at line 47 of file testRead\&.m\&.
+.SS "xMin = data(end-\fBnBack\fP, 1)"
+
+.PP
+Definition at line 46 of file testRead\&.m\&.
+.SS "y = \fBslope\fP*\fBx\fP + \fBintercept\fP"
+
+.PP
+Definition at line 49 of file testRead\&.m\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Fractal-Analysis from the source code\&.

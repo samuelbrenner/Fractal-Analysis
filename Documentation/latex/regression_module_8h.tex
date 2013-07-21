@@ -4,16 +4,46 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-double \hyperlink{regression_module_8h_af180d733c32303d922fae861799c459d}{slope} (double $\ast$$\ast$array\-In, int array\-Length)
+void \hyperlink{regression_module_8h_ac7214329b96bf6879bfea929b6d0ca03}{slope} (double $\ast$$\ast$array\-In, int array\-Length, double $\ast$regression\-Array)
 \end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\hypertarget{regression_module_8h_af180d733c32303d922fae861799c459d}{\index{regression\-Module.\-h@{regression\-Module.\-h}!slope@{slope}}
+\hypertarget{regression_module_8h_ac7214329b96bf6879bfea929b6d0ca03}{\index{regression\-Module.\-h@{regression\-Module.\-h}!slope@{slope}}
 \index{slope@{slope}!regressionModule.h@{regression\-Module.\-h}}
-\subsubsection[{slope}]{\setlength{\rightskip}{0pt plus 5cm}double slope (
+\subsubsection[{slope}]{\setlength{\rightskip}{0pt plus 5cm}void slope (
 \begin{DoxyParamCaption}
 \item[{double $\ast$$\ast$}]{array\-In, }
-\item[{int}]{array\-Length}
+\item[{int}]{array\-Length, }
+\item[{double $\ast$}]{regression\-Array}
 \end{DoxyParamCaption}
-)}}\label{regression_module_8h_af180d733c32303d922fae861799c459d}
+)}}\label{regression_module_8h_ac7214329b96bf6879bfea929b6d0ca03}
+Module to run regression for boxcounting.
+
+Changes a double\mbox{[}3\mbox{]} such that regression\-Array\mbox{[}0\mbox{]} = slope, regression\-Array\mbox{[}1\mbox{]} = R$^\wedge$2, and regression\-Array\mbox{[}2\mbox{]} = y-\/int.
+
+Implemented in \hyperlink{box_counter3_d_8cpp}{box\-Counter3\-D.\-cpp}\-: Fractal analysis module utilizing boxcounting to determine the fractal dimension of a shape in the input text/binary file.
+
+Prints to terminal\-:
+\begin{DoxyItemize}
+\item the results at each level of analysis
+\item the overall dimension as determined by least-\/squares regression
+\item an R$^\wedge$2 value
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Samuel Brenner 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+July 11, 2013
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Samuel Brenner 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+July 11, 2013 
+\end{DoxyVersion}
+
+
+Definition at line 36 of file regression\-Module.\-cpp.
+

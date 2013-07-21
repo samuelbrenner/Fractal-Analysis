@@ -1,0 +1,96 @@
+.TH "boxCounter3D.cpp" 3 "Sun Jul 21 2013" "Fractal-Analysis" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+boxCounter3D.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <fstream>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include 'regressionModule\&.h'\fP
+.br
+\fC#include 'dataReader\&.h'\fP
+.br
+\fC#include 'interpolation\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBprintArray\fP (int **arrayIn, int \fBHEIGHT\fP, int \fBWIDTH\fP)"
+.br
+.ti -1c
+.RI "void \fBprintArray\fP (double **arrayIn, double \fBHEIGHT\fP, double \fBWIDTH\fP)"
+.br
+.ti -1c
+.RI "void \fBprintToFile\fP (double **arrayIn, int \fBHEIGHT\fP, int \fBWIDTH\fP, double \fBslope\fP, double yint, char *outFileName)"
+.br
+.ti -1c
+.RI "void \fBprintToFile\fP (int ***arrayIn, int \fBHEIGHT\fP, int \fBWIDTH\fP, char *outFileName)"
+.br
+.ti -1c
+.RI "double \fBboxCounting\fP (int ***arrayIn, int \fBHEIGHT\fP, int \fBWIDTH\fP, int \fBDEPTH\fP, int level)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "double boxCounting (int ***arrayIn, intHEIGHT, intWIDTH, intDEPTH, intlevel)"
+Returns the log base 2 of the number of cells filled in a given level of fractal analysis\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIarrayIn\fP is the 2-3-D array of integers that contains the data 
+.br
+\fIHEIGHT\fP 
+.br
+\fIWIDTH\fP 
+.br
+\fIDPETH\fP 
+.br
+\fIlevel\fP is the level of analysis to be performed\&. Level 0, for example, examines only the individual data points, whereas at level 1 they are merged into boxes of side length 2^1, and for level l size 2^l\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+log base 2 of the number of cells filled in a given level\&. 
+.RE
+.PP
+
+.PP
+Definition at line 86 of file boxCounter3D\&.cpp\&.
+.SS "int main (intargc, char *argv[])"
+
+.PP
+Definition at line 134 of file boxCounter3D\&.cpp\&.
+.SS "void printArray (int **arrayIn, intHEIGHT, intWIDTH)"
+
+.PP
+Definition at line 27 of file boxCounter3D\&.cpp\&.
+.SS "void printArray (double **arrayIn, doubleHEIGHT, doubleWIDTH)"
+
+.PP
+Definition at line 37 of file boxCounter3D\&.cpp\&.
+.SS "void printToFile (double **arrayIn, intHEIGHT, intWIDTH, doubleslope, doubleyint, char *outFileName)"
+
+.PP
+Definition at line 48 of file boxCounter3D\&.cpp\&.
+.SS "void printToFile (int ***arrayIn, intHEIGHT, intWIDTH, char *outFileName)"
+
+.PP
+Definition at line 61 of file boxCounter3D\&.cpp\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Fractal-Analysis from the source code\&.

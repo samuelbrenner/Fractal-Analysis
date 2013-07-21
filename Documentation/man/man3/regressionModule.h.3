@@ -1,0 +1,59 @@
+.TH "regressionModule.h" 3 "Sun Jul 21 2013" "Fractal-Analysis" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+regressionModule.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBslope\fP (double **arrayIn, int arrayLength, double *regressionArray)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void slope (double **arrayIn, intarrayLength, double *regressionArray)"
+Module to run regression for boxcounting\&.
+.PP
+Changes a double[3] such that regressionArray[0] = slope, regressionArray[1] = R^2, and regressionArray[2] = y-int\&.
+.PP
+Implemented in \fBboxCounter3D\&.cpp\fP: Fractal analysis module utilizing boxcounting to determine the fractal dimension of a shape in the input text/binary file\&.
+.PP
+Prints to terminal:
+.IP "\(bu" 2
+the results at each level of analysis
+.IP "\(bu" 2
+the overall dimension as determined by least-squares regression
+.IP "\(bu" 2
+an R^2 value
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Samuel Brenner 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+July 11, 2013
+.RE
+.PP
+\fBAuthor:\fP
+.RS 4
+Samuel Brenner 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+July 11, 2013 
+.RE
+.PP
+
+.PP
+Definition at line 36 of file regressionModule\&.cpp\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Fractal-Analysis from the source code\&.

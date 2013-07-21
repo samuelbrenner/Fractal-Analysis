@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.4"/>
-<title>Fractal Analysis: boxCounter3D.cpp File Reference</title>
+<title>Fractal-Analysis: boxCounter3D.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,11 +28,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Screen Shot 2013-06-20 at 1.11.07 PM.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Screen Shot 2013-07-21 at 2.25.05 PM.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Fractal Analysis
+   <div id="projectname">Fractal-Analysis
    </div>
-   <div id="projectbrief">Module to determine fractal dimension of a curve/surface from an input text file</div>
+   <div id="projectbrief">Tools to analyze fractal and multifractal properties of stellar phenomena</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -91,7 +92,7 @@ $(document).ready(function(){initNavTree('box_counter3_d_8cpp.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,8 +103,7 @@ $(document).ready(function(){initNavTree('box_counter3_d_8cpp.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">boxCounter3D.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -114,24 +114,25 @@ $(document).ready(function(){initNavTree('box_counter3_d_8cpp.html','');});
 <code>#include &lt;math.h&gt;</code><br/>
 <code>#include &lt;iostream&gt;</code><br/>
 <code>#include &quot;<a class="el" href="regression_module_8h_source.html">regressionModule.h</a>&quot;</code><br/>
-</div><table class="memberdecls">
+<code>#include &quot;<a class="el" href="data_reader_8h_source.html">dataReader.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="interpolation_8h_source.html">interpolation.h</a>&quot;</code><br/>
+</div>
+<p><a href="box_counter3_d_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a27c8e505dc24c568074b650c79c21cb4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a27c8e505dc24c568074b650c79c21cb4">convertToInt</a> (string stringIn)</td></tr>
-<tr class="separator:a27c8e505dc24c568074b650c79c21cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a03f15cb633f940d295e0d9a245286f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a6a03f15cb633f940d295e0d9a245286f">printArray</a> (int **arrayIn, int HEIGHT, int WIDTH)</td></tr>
+<tr class="memitem:a6a03f15cb633f940d295e0d9a245286f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a6a03f15cb633f940d295e0d9a245286f">printArray</a> (int **arrayIn, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a4e81322eb1085aca9cd7c5527f5e4c6b">HEIGHT</a>, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a59c3bba4b17cd5e19f149ea175fa6989">WIDTH</a>)</td></tr>
 <tr class="separator:a6a03f15cb633f940d295e0d9a245286f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43c2ca566833c361a32cd3274ab2a6aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a43c2ca566833c361a32cd3274ab2a6aa">printArray</a> (double **arrayIn, double HEIGHT, double WIDTH)</td></tr>
+<tr class="memitem:a43c2ca566833c361a32cd3274ab2a6aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a43c2ca566833c361a32cd3274ab2a6aa">printArray</a> (double **arrayIn, double <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a4e81322eb1085aca9cd7c5527f5e4c6b">HEIGHT</a>, double <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a59c3bba4b17cd5e19f149ea175fa6989">WIDTH</a>)</td></tr>
 <tr class="separator:a43c2ca566833c361a32cd3274ab2a6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7f05742ec384384920c14ffd5c89b12"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#ac7f05742ec384384920c14ffd5c89b12">boxCounting</a> (int ***arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level)</td></tr>
+<tr class="memitem:a3464333e64b94d76a366be34585a0282"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a3464333e64b94d76a366be34585a0282">printToFile</a> (double **arrayIn, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a4e81322eb1085aca9cd7c5527f5e4c6b">HEIGHT</a>, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a59c3bba4b17cd5e19f149ea175fa6989">WIDTH</a>, double <a class="el" href="regression_module_8h.html#ac7214329b96bf6879bfea929b6d0ca03">slope</a>, double yint, char *outFileName)</td></tr>
+<tr class="separator:a3464333e64b94d76a366be34585a0282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed7ccd835daa7612174ad81388d1553b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#aed7ccd835daa7612174ad81388d1553b">printToFile</a> (int ***arrayIn, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a4e81322eb1085aca9cd7c5527f5e4c6b">HEIGHT</a>, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a59c3bba4b17cd5e19f149ea175fa6989">WIDTH</a>, char *outFileName)</td></tr>
+<tr class="separator:aed7ccd835daa7612174ad81388d1553b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7f05742ec384384920c14ffd5c89b12"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#ac7f05742ec384384920c14ffd5c89b12">boxCounting</a> (int ***arrayIn, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a4e81322eb1085aca9cd7c5527f5e4c6b">HEIGHT</a>, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a59c3bba4b17cd5e19f149ea175fa6989">WIDTH</a>, int <a class="el" href="multifractalgenerator_binary_i_o_8cpp.html#a866914c347eb15d0913ada73b9e8c99b">DEPTH</a>, int level)</td></tr>
 <tr class="separator:ac7f05742ec384384920c14ffd5c89b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
-<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a1862cb72b37ffe98140c1fcf06a28969"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a1862cb72b37ffe98140c1fcf06a28969">fileName</a> = &quot;fractal_data/Juliadim2_4096.txt&quot;</td></tr>
-<tr class="separator:a1862cb72b37ffe98140c1fcf06a28969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="box_counter3_d_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ac7f05742ec384384920c14ffd5c89b12"></a>
@@ -188,36 +189,35 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>log base 2 of the number of cells filled in a given level. </dd></dl>
 
-</div>
-</div>
-<a class="anchor" id="a27c8e505dc24c568074b650c79c21cb4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int convertToInt </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>stringIn</em>)</td><td></td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Definition at line <a class="el" href="box_counter3_d_8cpp_source.html#l00086">86</a> of file <a class="el" href="box_counter3_d_8cpp_source.html">boxCounter3D.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int main </td>
           <td>(</td>
-          <td class="paramname">)</td><td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="box_counter3_d_8cpp_source.html#l00134">134</a> of file <a class="el" href="box_counter3_d_8cpp_source.html">boxCounter3D.cpp</a>.</p>
 
 </div>
 </div>
@@ -251,6 +251,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="box_counter3_d_8cpp_source.html#l00027">27</a> of file <a class="el" href="box_counter3_d_8cpp_source.html">boxCounter3D.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a43c2ca566833c361a32cd3274ab2a6aa"></a>
@@ -283,18 +285,99 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="box_counter3_d_8cpp_source.html#l00037">37</a> of file <a class="el" href="box_counter3_d_8cpp_source.html">boxCounter3D.cpp</a>.</p>
+
 </div>
 </div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a1862cb72b37ffe98140c1fcf06a28969"></a>
+<a class="anchor" id="a3464333e64b94d76a366be34585a0282"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* fileName = &quot;fractal_data/Juliadim2_4096.txt&quot;</td>
+          <td class="memname">void printToFile </td>
+          <td>(</td>
+          <td class="paramtype">double **&#160;</td>
+          <td class="paramname"><em>arrayIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>HEIGHT</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>WIDTH</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>slope</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>yint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>outFileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="box_counter3_d_8cpp_source.html#l00048">48</a> of file <a class="el" href="box_counter3_d_8cpp_source.html">boxCounter3D.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed7ccd835daa7612174ad81388d1553b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printToFile </td>
+          <td>(</td>
+          <td class="paramtype">int ***&#160;</td>
+          <td class="paramname"><em>arrayIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>HEIGHT</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>WIDTH</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>outFileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="box_counter3_d_8cpp_source.html#l00061">61</a> of file <a class="el" href="box_counter3_d_8cpp_source.html">boxCounter3D.cpp</a>.</p>
 
 </div>
 </div>
@@ -304,7 +387,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="box_counter3_d_8cpp.html">boxCounter3D.cpp</a></li>
-    <li class="footer">Generated on Thu Jun 20 2013 13:28:37 for Fractal Analysis by
+    <li class="footer">Generated on Sun Jul 21 2013 14:26:07 for Fractal-Analysis by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

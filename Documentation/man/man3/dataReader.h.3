@@ -1,0 +1,49 @@
+.TH "dataReader.h" 3 "Sun Jul 21 2013" "Fractal-Analysis" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+dataReader.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <fstream>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <iostream>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T > T *** \fBdataReaderASCII\fP (const char *\fBfileName\fP, int &\fBHEIGHT\fP, int &\fBWIDTH\fP, int &\fBDEPTH\fP, bool &haveZeros, T &arraySum)"
+.br
+.ti -1c
+.RI "template<class T > T *** \fBdataReaderBinary\fP (const char *\fBfileName\fP, int &\fBHEIGHT\fP, int &\fBWIDTH\fP, int &\fBDEPTH\fP, bool &haveZeros, T &arraySum)"
+.br
+.ti -1c
+.RI "int \fBconvertToInt\fP (string stringIn)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int convertToInt (stringstringIn)"
+
+.PP
+Definition at line 86 of file dataReader\&.h\&.
+.SS "template<class T > T *** dataReaderASCII (const char *fileName, int &HEIGHT, int &WIDTH, int &DEPTH, bool &haveZeros, T &arraySum)"
+
+.PP
+Definition at line 95 of file dataReader\&.h\&.
+.SS "template<class T > T*** dataReaderBinary (const char *fileName, int &HEIGHT, int &WIDTH, int &DEPTH, bool &haveZeros, T &arraySum)"
+
+.PP
+Definition at line 44 of file dataReader\&.h\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Fractal-Analysis from the source code\&.

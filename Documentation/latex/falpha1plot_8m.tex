@@ -1,0 +1,111 @@
+\hypertarget{falpha1plot_8m}{\section{falpha1plot.\-m File Reference}
+\label{falpha1plot_8m}\index{falpha1plot.\-m@{falpha1plot.\-m}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{falpha1plot_8m_a9e36bb8ae5e7fc31396e6d106dbbd33a}{plot} (\mbox{[}0, 2\mbox{]},\mbox{[}0, 2\mbox{]})
+\item 
+\hyperlink{falpha1plot_8m_ab3d4a0365636e18767eb6c495c74ba81}{scatter} (\hyperlink{falpha1plot_8m_a62197192f0fbf4e0675eb37be1c4c175}{alpha}, \hyperlink{falpha1plot_8m_a633de4b0c14ca52ea2432a3c8a5c4c31}{f})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{falpha1plot_8m_a995040f4960f40f4febd1a1066af2734}{filenum} = \mbox{[}0, 100, 200, 300\mbox{]}
+\item 
+\hyperlink{falpha1plot_8m_a391e34f2de441d79152a7b3d6e4c9c86}{figure}
+\item 
+hold \hyperlink{falpha1plot_8m_a58ab1fd68e97078232808206b850161b}{on}
+\item 
+for \hyperlink{falpha1plot_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}
+\item 
+\hyperlink{falpha1plot_8m_a2ff994e16bf9521154de4cf659a3b689}{filename} = \hyperlink{test_read_8m_a0e2c52a39bbfaa6c953c43dfe719bf52}{sprintf}('$\sim$/big/dens\-\_\-bbb03\-\_\-hdf5\-\_\-chk\-\_\-\%0.\-4d.\-bin\-\_\-falpha\-\_\-level\-\_\-0.\-txt', n)
+\item 
+\hyperlink{falpha1plot_8m_aac5f0ec04e25ac1faf1c8a633f0062fa}{falpha1} = importdata(\hyperlink{test_read_8m_aaa614d4679594368fd47961843b8a340}{filename})
+\item 
+\hyperlink{falpha1plot_8m_a62197192f0fbf4e0675eb37be1c4c175}{alpha} = \hyperlink{falpha1plot_8m_aac5f0ec04e25ac1faf1c8a633f0062fa}{falpha1}(\-:,1)
+\item 
+\hyperlink{falpha1plot_8m_a633de4b0c14ca52ea2432a3c8a5c4c31}{f} = \hyperlink{falpha1plot_8m_aac5f0ec04e25ac1faf1c8a633f0062fa}{falpha1}(\-:,2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{falpha1plot_8m_a9e36bb8ae5e7fc31396e6d106dbbd33a}{\index{falpha1plot.\-m@{falpha1plot.\-m}!plot@{plot}}
+\index{plot@{plot}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{plot}]{\setlength{\rightskip}{0pt plus 5cm}plot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{falpha1plot_8m_a9e36bb8ae5e7fc31396e6d106dbbd33a}
+\hypertarget{falpha1plot_8m_ab3d4a0365636e18767eb6c495c74ba81}{\index{falpha1plot.\-m@{falpha1plot.\-m}!scatter@{scatter}}
+\index{scatter@{scatter}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{scatter}]{\setlength{\rightskip}{0pt plus 5cm}scatter (
+\begin{DoxyParamCaption}
+\item[{{\bf alpha}}]{, }
+\item[{{\bf f}}]{}
+\end{DoxyParamCaption}
+)}}\label{falpha1plot_8m_ab3d4a0365636e18767eb6c495c74ba81}
+
+
+\subsection{Variable Documentation}
+\hypertarget{falpha1plot_8m_a62197192f0fbf4e0675eb37be1c4c175}{\index{falpha1plot.\-m@{falpha1plot.\-m}!alpha@{alpha}}
+\index{alpha@{alpha}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{alpha}]{\setlength{\rightskip}{0pt plus 5cm}alpha = {\bf falpha1}(\-:,1)}}\label{falpha1plot_8m_a62197192f0fbf4e0675eb37be1c4c175}
+
+
+Definition at line 8 of file falpha1plot.\-m.
+
+\hypertarget{falpha1plot_8m_a633de4b0c14ca52ea2432a3c8a5c4c31}{\index{falpha1plot.\-m@{falpha1plot.\-m}!f@{f}}
+\index{f@{f}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{f}]{\setlength{\rightskip}{0pt plus 5cm}f = {\bf falpha1}(\-:,2)}}\label{falpha1plot_8m_a633de4b0c14ca52ea2432a3c8a5c4c31}
+
+
+Definition at line 9 of file falpha1plot.\-m.
+
+\hypertarget{falpha1plot_8m_aac5f0ec04e25ac1faf1c8a633f0062fa}{\index{falpha1plot.\-m@{falpha1plot.\-m}!falpha1@{falpha1}}
+\index{falpha1@{falpha1}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{falpha1}]{\setlength{\rightskip}{0pt plus 5cm}end falpha1 = importdata({\bf filename})}}\label{falpha1plot_8m_aac5f0ec04e25ac1faf1c8a633f0062fa}
+
+
+Definition at line 7 of file falpha1plot.\-m.
+
+\hypertarget{falpha1plot_8m_a391e34f2de441d79152a7b3d6e4c9c86}{\index{falpha1plot.\-m@{falpha1plot.\-m}!figure@{figure}}
+\index{figure@{figure}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{figure}]{\setlength{\rightskip}{0pt plus 5cm}figure}}\label{falpha1plot_8m_a391e34f2de441d79152a7b3d6e4c9c86}
+
+
+Definition at line 2 of file falpha1plot.\-m.
+
+\hypertarget{falpha1plot_8m_a2ff994e16bf9521154de4cf659a3b689}{\index{falpha1plot.\-m@{falpha1plot.\-m}!filename@{filename}}
+\index{filename@{filename}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{filename}]{\setlength{\rightskip}{0pt plus 5cm}filename = {\bf sprintf}('$\sim$/big/dens\-\_\-bbb03\-\_\-hdf5\-\_\-chk\-\_\-\%0.\-4d.\-bin\-\_\-falpha\-\_\-level\-\_\-0.\-txt', n)}}\label{falpha1plot_8m_a2ff994e16bf9521154de4cf659a3b689}
+
+
+Definition at line 6 of file falpha1plot.\-m.
+
+\hypertarget{falpha1plot_8m_a995040f4960f40f4febd1a1066af2734}{\index{falpha1plot.\-m@{falpha1plot.\-m}!filenum@{filenum}}
+\index{filenum@{filenum}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{filenum}]{\setlength{\rightskip}{0pt plus 5cm}filenum = \mbox{[}0, 100, 200, 300\mbox{]}}}\label{falpha1plot_8m_a995040f4960f40f4febd1a1066af2734}
+
+
+Definition at line 1 of file falpha1plot.\-m.
+
+\hypertarget{falpha1plot_8m_a6f6ccfcf58b31cb6412107d9d5281426}{\index{falpha1plot.\-m@{falpha1plot.\-m}!i@{i}}
+\index{i@{i}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{i}]{\setlength{\rightskip}{0pt plus 5cm}for i}}\label{falpha1plot_8m_a6f6ccfcf58b31cb6412107d9d5281426}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= 1:numel(\hyperlink{falpha1plot_8m_a995040f4960f40f4febd1a1066af2734}{filenum})
+    n = \hyperlink{falpha1plot_8m_a995040f4960f40f4febd1a1066af2734}{filenum}(\hyperlink{falpha1plot_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i})
+\end{DoxyCode}
+
+
+Definition at line 4 of file falpha1plot.\-m.
+
+\hypertarget{falpha1plot_8m_a58ab1fd68e97078232808206b850161b}{\index{falpha1plot.\-m@{falpha1plot.\-m}!on@{on}}
+\index{on@{on}!falpha1plot.m@{falpha1plot.\-m}}
+\subsubsection[{on}]{\setlength{\rightskip}{0pt plus 5cm}hold on}}\label{falpha1plot_8m_a58ab1fd68e97078232808206b850161b}
+
+
+Definition at line 3 of file falpha1plot.\-m.
+

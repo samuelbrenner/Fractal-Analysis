@@ -1,0 +1,116 @@
+.TH "multifracBoxCounter3D.cpp" 3 "Sun Jul 21 2013" "Fractal-Analysis" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+multifracBoxCounter3D.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <fstream>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <algorithm>\fP
+.br
+\fC#include 'dataReader\&.h'\fP
+.br
+\fC#include 'dataCorrection\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBprintArray\fP (int **arrayIn, int \fBHEIGHT\fP, int \fBWIDTH\fP)"
+.br
+.ti -1c
+.RI "void \fBprintArray\fP (double **arrayIn, int arrayHeight, int \fBWIDTH\fP)"
+.br
+.ti -1c
+.RI "void \fBprintToFile\fP (double **arrayIn, int level, int \fBHEIGHT\fP, char *fileOutDirectory)"
+.br
+.ti -1c
+.RI "double ** \fBboxCounting\fP (double ***arrayIn, int \fBHEIGHT\fP, int \fBWIDTH\fP, int \fBDEPTH\fP, int level)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "double \fBqMin\fP = -10"
+.br
+.ti -1c
+.RI "double \fBqMax\fP = 10"
+.br
+.ti -1c
+.RI "double \fBqIncrement\fP = 0\&.25"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "double** boxCounting (double ***arrayIn, intHEIGHT, intWIDTH, intDEPTH, intlevel)"
+Returns in a double** the data points that make up the plot of f(alpha) vs\&. alpha\&. The analysis is performed using the method of moments described in Chhabra and Jensen, 1989 (Phys\&. Rev\&. Lett\&.)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIarrayIn\fP is the 2-/3-D array of doubles that contains the data 
+.br
+\fIHEIGHT\fP 
+.br
+\fIWIDTH\fP 
+.br
+\fIDPETH\fP 
+.br
+\fIlevel\fP is the level of analysis to be performed\&. Level 0, for example, examines only the individual data points, whereas at level 1 they are merged into boxes of side length 2^1, and for level l size 2^l\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+alpha vs\&. f(alpha) 
+.RE
+.PP
+iterates over all values of q to be tested, where q is the 'microscope for exploring different regions of the measure', an exaggerating exponent that gives us the qth moment of the measure\&. We parametrize the relationship f(alpha) vs\&. alpha in terms of q to find functions f(q) and alpha(q)\&. These values are then added to the falpha out-array\&.
+.PP
+Definition at line 75 of file multifracBoxCounter3D\&.cpp\&.
+.SS "int main (intargc, char *argv[])"
+Corrects the data by removing zeros (does so by adding one to every value in the array) and normalizing the array so that the sum of all the elements is one\&.
+.PP
+Definition at line 155 of file multifracBoxCounter3D\&.cpp\&.
+.SS "void printArray (int **arrayIn, intHEIGHT, intWIDTH)"
+
+.PP
+Definition at line 29 of file multifracBoxCounter3D\&.cpp\&.
+.SS "void printArray (double **arrayIn, intarrayHeight, intWIDTH)"
+
+.PP
+Definition at line 39 of file multifracBoxCounter3D\&.cpp\&.
+.SS "void printToFile (double **arrayIn, intlevel, intHEIGHT, char *fileOutDirectory)"
+
+.PP
+Definition at line 49 of file multifracBoxCounter3D\&.cpp\&.
+.SH "Variable Documentation"
+.PP 
+.SS "double qIncrement = 0\&.25"
+
+.PP
+Definition at line 27 of file multifracBoxCounter3D\&.cpp\&.
+.SS "double qMax = 10"
+
+.PP
+Definition at line 26 of file multifracBoxCounter3D\&.cpp\&.
+.SS "double qMin = -10"
+
+.PP
+Definition at line 25 of file multifracBoxCounter3D\&.cpp\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Fractal-Analysis from the source code\&.

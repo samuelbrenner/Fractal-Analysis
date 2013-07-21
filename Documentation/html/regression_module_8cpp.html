@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.4"/>
-<title>Fractal Analysis: regressionModule.cpp File Reference</title>
+<title>Fractal-Analysis: regressionModule.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,11 +28,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Screen Shot 2013-06-20 at 1.11.07 PM.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Screen Shot 2013-07-21 at 2.25.05 PM.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Fractal Analysis
+   <div id="projectname">Fractal-Analysis
    </div>
-   <div id="projectbrief">Module to determine fractal dimension of a curve/surface from an input text file</div>
+   <div id="projectbrief">Tools to analyze fractal and multifractal properties of stellar phenomena</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -91,7 +92,7 @@ $(document).ready(function(){initNavTree('regression_module_8cpp.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,7 +110,9 @@ $(document).ready(function(){initNavTree('regression_module_8cpp.html','');});
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="regression_module_8h_source.html">regressionModule.h</a>&quot;</code><br/>
 <code>#include &lt;math.h&gt;</code><br/>
-</div><table class="memberdecls">
+</div>
+<p><a href="regression_module_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af6dd4a3321751387c83ccbbe49c3914f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="regression_module_8cpp.html#af6dd4a3321751387c83ccbbe49c3914f">stdev</a> (double *arrayIn, double arrayMean, int arrayLength)</td></tr>
@@ -118,8 +121,8 @@ Functions</h2></td></tr>
 <tr class="separator:aa06640d1fb19f6c1bd0d6fb9d9a26130"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae15ba599f6ab3e57acd7fa46deeffec5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="regression_module_8cpp.html#ae15ba599f6ab3e57acd7fa46deeffec5">mean</a> (double *arrayIn, int arrayLength)</td></tr>
 <tr class="separator:ae15ba599f6ab3e57acd7fa46deeffec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af180d733c32303d922fae861799c459d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="regression_module_8cpp.html#af180d733c32303d922fae861799c459d">slope</a> (double **arrayIn, int arrayLength)</td></tr>
-<tr class="separator:af180d733c32303d922fae861799c459d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7214329b96bf6879bfea929b6d0ca03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="regression_module_8cpp.html#ac7214329b96bf6879bfea929b6d0ca03">slope</a> (double **arrayIn, int arrayLength, double *regressionArray)</td></tr>
+<tr class="separator:ac7214329b96bf6879bfea929b6d0ca03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="aa06640d1fb19f6c1bd0d6fb9d9a26130"></a>
@@ -176,6 +179,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="regression_module_8cpp_source.html#l00080">80</a> of file <a class="el" href="regression_module_8cpp_source.html">regressionModule.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="ae15ba599f6ab3e57acd7fa46deeffec5"></a>
@@ -202,14 +207,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="regression_module_8cpp_source.html#l00092">92</a> of file <a class="el" href="regression_module_8cpp_source.html">regressionModule.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="af180d733c32303d922fae861799c459d"></a>
+<a class="anchor" id="ac7214329b96bf6879bfea929b6d0ca03"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double slope </td>
+          <td class="memname">void slope </td>
           <td>(</td>
           <td class="paramtype">double **&#160;</td>
           <td class="paramname"><em>arrayIn</em>, </td>
@@ -218,7 +225,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>arrayLength</em>&#160;</td>
+          <td class="paramname"><em>arrayLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>regressionArray</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -227,6 +240,21 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Module to run regression for boxcounting.</p>
+<p>Changes a double[3] such that regressionArray[0] = slope, regressionArray[1] = R^2, and regressionArray[2] = y-int.</p>
+<p>Implemented in <a class="el" href="box_counter3_d_8cpp.html">boxCounter3D.cpp</a>: Fractal analysis module utilizing boxcounting to determine the fractal dimension of a shape in the input text/binary file.</p>
+<p>Prints to terminal:</p>
+<ul>
+<li>the results at each level of analysis</li>
+<li>the overall dimension as determined by least-squares regression</li>
+<li>an R^2 value</li>
+</ul>
+<dl class="section author"><dt>Author</dt><dd>Samuel Brenner </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>July 11, 2013</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Samuel Brenner </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>July 11, 2013 </dd></dl>
+
+<p>Definition at line <a class="el" href="regression_module_8cpp_source.html#l00036">36</a> of file <a class="el" href="regression_module_8cpp_source.html">regressionModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,6 +287,21 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Module to run regression for boxcounting.</p>
+<p>Changes a double[3] such that regressionArray[0] = slope, regressionArray[1] = R^2, and regressionArray[2] = y-int.</p>
+<p>Implemented in <a class="el" href="box_counter3_d_8cpp.html">boxCounter3D.cpp</a>: Fractal analysis module utilizing boxcounting to determine the fractal dimension of a shape in the input text/binary file.</p>
+<p>Prints to terminal:</p>
+<ul>
+<li>the results at each level of analysis</li>
+<li>the overall dimension as determined by least-squares regression</li>
+<li>an R^2 value</li>
+</ul>
+<dl class="section author"><dt>Author</dt><dd>Samuel Brenner </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>July 11, 2013</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Samuel Brenner </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>July 11, 2013 </dd></dl>
+
+<p>Definition at line <a class="el" href="regression_module_8cpp_source.html#l00069">69</a> of file <a class="el" href="regression_module_8cpp_source.html">regressionModule.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +311,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="regression_module_8cpp.html">regressionModule.cpp</a></li>
-    <li class="footer">Generated on Thu Jun 20 2013 13:28:37 for Fractal Analysis by
+    <li class="footer">Generated on Sun Jul 21 2013 14:26:07 for Fractal-Analysis by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>
