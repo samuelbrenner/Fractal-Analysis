@@ -1,4 +1,4 @@
-filenum = [0, 100, 200, 300];
+filenum = [50, 200, 375];
 figure;
 hold on;
 for i = 1:numel(filenum)
