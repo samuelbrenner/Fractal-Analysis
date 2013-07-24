@@ -82,15 +82,22 @@ These wrinkles on the surface of a turbulent front can be viewed within the fram
 
 In \textsection \ref{FractalMethods}, a method is implemented to perform fractal analysis of a supernova flame front. The results are discussed in \textsection \ref{FractalResults}, and the implications of the calculated fractal dimension are discussed in \textsection \ref{FractalDiscussion}.
 
-\cite{Blinnikov1996}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin copy-pasting--needs editing			%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Mutlfractal analysis of dense molecular clouds}
-fill...
+Clouds of gas often form in the interstellar medium (ISM), and turbulence like that caused by stellar winds can form structures which under gravitational pressure then coalesce into filaments. The densest parts of these filaments are protostars that begin to undergo fusion and merge to form evolved star systems. The structure of the system at any time can be quantified by the spectrum of multifractal dimensions, which indicates the density of substructures with a given density. Thus we can quantitatively indicate how uniformly filament-, sheet-, or space-like any structure is. Figures 2-4 depict the evolution of one of these molecular clouds.
 
 \section{Methods}\label{Methods}
-
+{\Large{} Write anything here?}
 
 \subsection{Fractal analysis methods}\label{FractalMethods}
+In order to estimate the fractal dimension of flame we implemented a box-counting algorithm. The box-counting dimension dim is given by
+
+where N is the number of boxes containing the figure.  To implement this algorithm, different levels of coarse-graining were applied, and trilinear interpolation was performed to determine the location of the flame front within the coarse mesh. For each level of coarse-graining, log N(ϵ) and log (1/ϵ) were calculated, and a linear regression was performed on the four points at the finest level in order to approximate the limit that gives dimension.
+
+This algorithm’s implementation was verified against computer-generated fractal data with known dimension and recovered the theoretical dimension with 10\% accuracy
 
 \subsection{Multifractal analysis methods}\label{MultifractalMethods}
 
