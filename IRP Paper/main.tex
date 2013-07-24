@@ -93,25 +93,25 @@ Clouds of gas often form in the interstellar medium (ISM), and turbulence like t
 {\Large Write anything here?}
 
 \subsection{Fractal analysis methods}\label{FractalMethods}
-In order to estimate the fractal dimension of flame we implemented a box-counting algorithm. The box-counting dimension dim is given by
+In order to estimate the fractal dimension of flame we implemented a box-counting algorithm. The box-counting dimension $\mathrm{dim}$ is given by
 
-where N is the number of boxes containing the figure.  To implement this algorithm, different levels of coarse-graining were applied, and trilinear interpolation was performed to determine the location of the flame front within the coarse mesh. For each level of coarse-graining, log N(ϵ) and log (1/ϵ) were calculated, and a linear regression was performed on the four points at the finest level in order to approximate the limit that gives dimension.
+where N is the number of boxes containing the figure.  To implement this algorithm, different levels of coarse-graining were applied, and trilinear interpolation was performed to determine the location of the flame front within the coarse mesh. For each level of coarse-graining, $\log{N(\epsilon)}$ and $\log{(1/\epsilon)}$ were calculated, and a linear regression was performed on the four points at the finest level in order to approximate the limit that gives dimension.
 
 This algorithm’s implementation was verified against computer-generated fractal data with known dimension and recovered the theoretical dimension with 10\% accuracy.
 
 \subsection{Multifractal analysis methods}\label{MultifractalMethods}
-The multifractal spectrum of some set is the plot of f(\alpha) vs. α, where f(α) is the fractal dimension of the subset of all points with local density α. The multifractal spectra investigated were determined with the method of moments described in Chhabra & Jensen (1989). We reparametrize both f and α as functions of an exponent q that serves to magnify the features of the density on different scales. For every value of q, we define the normalized measure as
+The multifractal spectrum of some set is the plot of $f(\alpha)$ vs. $\alpha$, where $f(\alpha)$ is the fractal dimension of the subset of all points with local density $\alpha$. The multifractal spectra investigated were determined with the method of moments described in \cite{Chhabra1989}. We reparametrize both $f$ and $\alpha$ as functions of an exponent $q$ that serves to magnify the features of the density on different scales. For every value of $q$, we define the normalized measure as
 
-where M is the mass contained in each box i. Now we can express f(α) and α as
+where $M_i$ is the mass contained in each box $i$. Now we can express $f(\alpha)$ and $\alpha$ as
 
 and
 
-This algorithm’s implementation was verified against a computer-generated multifractal system and produced the expected plot of f(α) vs. α.
+This algorithm’s implementation was verified against a computer-generated multifractal system and produced the expected plot of $f(\alpha)$ vs. $\alpha$.
 
 \section{Results}\label{Results}
 
 \subsection{Fractal analysis}\label{FractalResults}
-The method described above was applied to the contour shown in Figure 1, and the fractal dimension of the contour was found to be 1.05. Timmes (1994) and Blinnikov & Sasorov (1995) estimated the fractal dimension of flame fronts in three dimensions to be between 2.3 and 2.6. Intuitively, then, one would expect the fractal dimension of a flame front in two dimensions to be between 1.3 and 1.6, a discrepancy we examine in Discussion.
+The method described above was applied to the contour shown in Figure 1, and the fractal dimension of the contour was found to be 1.05. \cite{Timmes1994} and \cite{Blinnikov1996} estimated the fractal dimension of flame fronts in three dimensions to be between 2.3 and 2.6. Intuitively, then, one would expect the fractal dimension of a flame front in two dimensions to be between 1.3 and 1.6, a discrepancy we examine in Discussion.
 
 \subsection{Multifractal analysis methods}\label{MultifractalResults}
 The multifractal spectra generated from the molecular cloud pictured in Figure 2 are presented below in Figure 4.
@@ -120,7 +120,7 @@ The multifractal spectra generated from the molecular cloud pictured in Figure 2
 \section{Discussion}\label{Discussion}
 Possible causes for the discrepancy between the dimension of the flame front found here and the values cited include the coarseness of the model used and the large differences in the character of 2D and 3D turbulence. Still, a robust implementation was developed that can investigate this discrepancy further and handle any uniform-meshed data.
  
-The narrowing of the spectra in the molecular cloud studied agrees with our expectations: as the system evolves, it exhibits a narrower range of scaling exponents α during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the points that intersect the blue line in Figure 4 decrease from a dimension of just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
+The narrowing of the spectra in the molecular cloud studied agrees with our expectations: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the points that intersect the blue line in Figure 4 decrease from a dimension of just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
 
 
 Timmes eqn:
@@ -133,9 +133,9 @@ Timmes eqn:
 Captions from poster:
 	Figure 2: Evolution of a star-forming molecular cloud over time. The leftmost panel shows the density contour just after perturbation, with sheet-like structures most prominent. The middle panel shows the collapse of those sheets into filaments in the densest (red) regions. The rightmost panel shows a near-complete transition to filaments, and the densest (red) regions indicate the position of protostars.
 
-	Figure 1: Flame front contour highlighted in simulation of Type Ia supernova. False color indicates density in g/cm^3.
+	Figure 1: Flame front contour highlighted in simulation of Type Ia supernova. False color indicates density in $\mathrm{g/cm^3}$.
 
-	Figure 4: Plot of f(α) vs. α for the molecular cloud pictured in Figure 2. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the middle timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line f(α) = α intersects the curves at the points where f(α) gives the dimension of the entire volume.
+	Figure 4: Plot of $f(\alpha)$ vs. $\alpha$ for the molecular cloud pictured in Figure 2. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the middle timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire volume.
 
 	Figure 3: Regression to find the fractal dimension of the flame contour shown in Figure 2. The slope of the regression line indicates the fractal dimension—about 1.05.
 
