@@ -133,7 +133,7 @@ double boxCounting(int*** arrayIn, int HEIGHT, int WIDTH, int DEPTH, int level){
 
 int main (int argc, char* argv[]) {
 	char* inFileName = argv[1];
-	char* outFileName = new char[50];
+	char* outFileName = new char[100];
 	sprintf(outFileName, "%s_plot.txt", inFileName);
 	int HEIGHT, WIDTH, DEPTH;
 	double*** elements;
@@ -141,8 +141,8 @@ int main (int argc, char* argv[]) {
 	double arraySum;
 	int*** elementsInterpolated;
 
-	//elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
-	elements = dataReaderBinary<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
+	elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
+	//elements = dataReaderBinary<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
 	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
 	//printToFile(elementsInterpolated, HEIGHT, WIDTH);
 

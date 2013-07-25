@@ -1,6 +1,6 @@
 % APJ Reference: http://aas.org/journals/authors/common_instruct#_Toc2
 
-\documentclass[iop]{emulateapj}
+\documentclass{emulateapj}
 % \documentclass[12pt,preprint]{aastex}
 
 
@@ -10,8 +10,6 @@
 % \usepackage{amssymb}
 %\usepackage{xfrac}
 % \usepackage{amsmath}
-\usepackage{natbib}
-\usepackage{footnote}
 % \usepackage{multirow}
 % \usepackage{array}
 % \usepackage[lofdepth,lotdepth]{subfig}
@@ -114,6 +112,7 @@ In \textsection \ref{Methods}, we discuss the implemention of a method to determ
 
 
 
+
 \section{Methods}\label{Methods}
 
 \subsection{Fractal analysis methods}\label{FractalMethods}
@@ -124,7 +123,7 @@ A box-counting algorithm (see, for example, \cite{Falconer2003}) was implemented
 where $N$ is the number of boxes containing the structure of interest.  To implement the estimation in Equation \ref{dimensioneqn}, one must introduce coarse-graining of the data under study. In the flame front analysis performed here, trilinear interpolation is performed in order to determine the location of the flame front within the coarse mesh. For each level of coarse-graining, $\log{N(\epsilon)}$ and $\log{(1/\epsilon)}$ is calculated, and a linear regression is performed on the four points with finest resolution in order to estimate the dimension as given in Equation \ref{dimensioneqn}.
 
 \subsection{Multifractal analysis methods}\label{MultifractalMethods}
-The multifractal spectrum of some set is the plot of $f(\alpha)$ vs. $\alpha$, where $f(\alpha)$ is the fractal dimension of the subset of all points with local density $\alpha$ (see \cite{Falconer2006}). To obtain the multifracta spectra we use the method of \cite{Chhabra1989}. We reparametrize both $f$ and $\alpha$ as functions of a moment exponent $q$ that serves to weight the features of the density on various scales. For every value of $q$, we define the normalized measure $\mu_i(q, \epsilon)$ of box $i$ with side length $\epsilon$ as
+The multifractal spectrum of some set is the plot of $f(\alpha)$ vs. $\alpha$, where $f(\alpha)$ is the fractal dimension of the subset of all points with local density $\alpha$ (see \cite{Falconer2003}). To obtain the multifracta spectra we use the method of \cite{Chhabra1989}. We reparametrize both $f$ and $\alpha$ as functions of a moment exponent $q$ that serves to weight the features of the density on various scales. For every value of $q$, we define the normalized measure $\mu_i(q, \epsilon)$ of box $i$ with side length $\epsilon$ as
 \begin{equation} 
 	\mu_i(q, \epsilon) = \frac{[M_i(\epsilon)]^q}{\sum_j[M_j(\epsilon)]^q},
 \end{equation}
@@ -140,16 +139,47 @@ and $\alpha$ as
 
 \subsection{Verification}\label{Verification}
 
-Our implementation of the box-counting algorithm was verified against computer-generated data with known fractal characteristics. The implementation was able to recover the theoretical dimension with 10\% accuracy. \footnote{insert table of results here?}
+Our implementation of the box-counting algorithm was verified against computer-generated data with known fractal characteristics. The implementation was able to recover the theoretical dimension with 12\% accuracy on average, as can be seen in Table~\ref{t:table}. Our implementation of the multifractal algorithm was verified against a computer-generated multifractal system and produced the expected plot of $f(\alpha)$ vs. $\alpha$ as can be seen in Figure \ref{f:cantorset}. 
 
-This algorithm’s implementation was verified against a computer-generated multifractal system and produced the expected plot of $f(\alpha)$ vs. $\alpha$. \footnote{include graphic of IFS and binomial multifractal used for verification}
+\begin{figure*}[ht]
+	\begin{center}
+	\includegraphics[height=5cm,clip=true]{Graphics/binomialcantor1024.png}%
+	\includegraphics[height=5cm,clip=true]{Graphics/firstf(a)plot!.png}%
+	\end{center}
+	\caption{The one-dimensional binomial Cantor set (left) and the multifractal spectrum produced by our implementation during verification. The plot indicates a successful implementation because of its maximum value of $f(\alpha) = 1$ (which indicates that the set as a whole has a dimension of one, something we know is true), its parabolic shape (characteristic of plots of this set \citep{Chhabra1989}), and its intersection with the line plotted in blue, $f(\alpha) = \alpha$ (a characteristic of all multifractal spectra \citep{mandelbrotmultifractal})}
+	\label{f:cantorset}
+	\end{figure*}
+
+\begin{table*}
+\begin{center}
+\caption{Theoretical vs. Calculated Dimensions for Fractal Analysis}\label{t:table}
+\begin{tabular}{lcccc}
+Fractal 					&	Theoretical Dimension 	&	Calculated Dimension 	&	Error		&	Magnitude of percent error \\
+\tableline\\
+Dragon boundary				&	1.5236					&	1.487	                &	-0.0366		&	2.4022	\\
+Vicsek Fractal (Box)		& 	1.4649					&	1.3264					&	-0.1385		&	9.4546	\\
+Fibonacci Word				&	1.6379					&	1.45964					&	-0.1783		&	10.8834	\\
+Gosper Curve				&	2						&	1.72811					&	-0.2719		&	13.5945				\\
+Boundary of Gosper Island	&	1.12915					&	1.2056					&	0.0765		&	6.7706	\\
+Julia Set					&	2						&	1.49408					&	-0.5059		&	25.296	\\
+Julia $z^2+1/4$				&	1.0812					&	1.19677					&	0.1156		&	10.6890	\\
+Levy C boundary				&	1.934					&	1.5656					&	-0.3684		&	19.0486	\\
+Pythagoras Tree				&	2						&	1.74588					&	-0.2541		&	12.706	\\
+							&							&							& \textbf{Average: } & 12.3161
+							\\ \\
+
+
+\end{tabular}
+\end{center}
+\end{table*}
+
 
 \section{Results}\label{Results}
 
 \subsection{Fractal analysis}\label{FractalResults}
-The method described above was applied to the contour shown in Figure \ref{f:flamefrontwithcontour}, and the fractal dimension of the contour was found to be 1.05. \cite{Timmes1994} and \cite{Blinnikov1996} estimated the fractal dimension of flame fronts in three dimensions to be between 2.3 and 2.6. Intuitively, then, one would expect the fractal dimension of a flame front in two dimensions to be between 1.3 and 1.6, a discrepancy we examine in \textsection \ref{Discussion}.
+The box-counting method described in \textsection \ref{Methods} was applied to the contour shown in Figure \ref{f:flamefrontwithcontour}. We found the fractal dimension of the contour to be 1.05, as can be seen in the plot of $\log N(\epsilon)$ vs. $\log (1 / \epsilon)$ in \ref{f:logNvsE}. \cite{Timmes1994} and \cite{Blinnikov1996} estimated the fractal dimension of flame fronts in three dimensions to be between 2.3 and 2.6. Intuitively, then, one would expect the fractal dimension of a flame front in two dimensions to be between 1.3 and 1.6, a discrepancy we examine in \textsection \ref{Discussion}.
 
-\begin{figure}
+\begin{figure}[ht]
 	\begin{center}
 	\includegraphics[width=0.45\textwidth,clip=true]{Graphics/logNvsE.png}
 	\caption{Regression to find the fractal dimension of the flame contour shown in Figure \ref{f:flamefrontwithcontour}. The slope of the regression line indicates the fractal dimension—about 1.05.
@@ -160,20 +190,20 @@ The method described above was applied to the contour shown in Figure \ref{f:fla
 
 \subsection{Multifractal analysis}\label{MultifractalResults}
 
-\begin{figure}
+\begin{figure}[ht]
 	\begin{center}
 	\includegraphics[width=0.45\textwidth,clip=true]{Graphics/falphaclouds.png}
-	\caption{Plot of $f(\alpha)$ vs. $\alpha$ for the molecular cloud pictured in Figure \ref{f:cloudevolution}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the middle timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire structure.
+	\caption{Plot of $f(\alpha)$ vs. $\alpha$ for the molecular cloud pictured in Figure \ref{f:cloudevolution}. The blue curve shows the spectrum of the earliest timestep (corresponding to the leftmost panel of Figure \ref{f:cloudevolution}); the green plot shows the spectrum of the middle timestep (middle panel of Figure \ref{f:cloudevolution}); and the red plot shows the spectrum of the last timestep (rightmost panel of Figure \ref{f:cloudevolution}). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire structure.
 	\label{f:falphamultifractal}}
 	\end{center}
 	\end{figure} 
 
-The multifractal spectra generated from the molecular cloud pictured in Figure \ref{f:cloudevolution} are presented in Figure \ref{f:falphamultifractal}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the intermediate timestep (middle pannel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire structure \citep{mandelbrotmultifractal}. Each curve has a maximum at $f(\alpha) \approx 3$, occurring when the moment exponent $q = 0$. This maximum, then, can be interpreted as the dimension of the space in which the cloud lies \citep{Schroeder}, so a dimension of 3 is to be expected. 
+The multifractal spectra generated from the molecular cloud pictured in Figure \ref{f:cloudevolution} are presented in Figure \ref{f:falphamultifractal}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the intermediate timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line, $f(\alpha) = \alpha $, intersects the curves at the points where $f(\alpha)$ gives the fractal dimension of the entire structure \citep{mandelbrotmultifractal}. Each curve has a maximum at $f(\alpha) \approx 3$, occurring when the moment exponent $q = 0$. This maximum, then, can be interpreted as the fractal dimension of the space in which the cloud lies \citep{Schroeder}. In the case of a molecular cloud in space, a dimension of 3 is to be expected. 
 
 \section{Discussion}\label{Discussion}
-Possible causes for the discrepancy between the dimension of the flame front found here and the values cited include the coarseness of the model used and the large differences in the character of 2D and 3D turbulence. Still, a robust implementation was developed that can investigate this discrepancy further and handle any uniform-meshed data.
+In \textsection \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values observed in the literature. Possible causes for the discrepancy between the fractal dimension of the flame front found here and the values cited include the coarseness of the model used and the large differences in the character of turbulence 2 and 3 dimensions. Regardless, a robust implementation was developed that can investigate this discrepancy further. In addition, this implementation has the ability to process any AMR data, uniform-meshed or not.
  
-The narrowing of the spectra in the molecular cloud studied agrees with our expectations: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the points that intersect the blue line in Figure \ref{f:falphamultifractal} decrease from a dimension of just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
+We found that the multifractal spectra of the molecular cloud become narrower over the course of the cloud's evolution. This can be explained physically as well: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the fractal dimension of the entire structure decreases from just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
 
 %--------------------
 %	Begin ackownledgements
