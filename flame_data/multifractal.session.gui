@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<Object name="VisIt">
+    <Field name="Version" type="string">2.6.1</Field>
+    <Object name="GUI">
+        <Object name="FileServerList">
+            <Field name="path" type="string">/home/sambrenner/big</Field>
+            <Field name="filter" type="string">*</Field>
+            <Field name="useCurrentDir" type="bool">true</Field>
+            <Field name="automaticFileGrouping" type="bool">true</Field>
+            <Field name="smartFileGrouping" type="bool">true</Field>
+            <Field name="showDotFiles" type="bool">false</Field>
+            <Object name="recentpaths">
+                <Field name="localhost" type="stringVector">"/home/sambrenner" "/home/sambrenner/big" </Field>
+            </Object>
+        </Object>
+        <Object name="AppearanceAttributes">
+            <Field name="useSystemDefault" type="bool">true</Field>
+            <Field name="background" type="string">#c0c0c0</Field>
+            <Field name="foreground" type="string">#000000</Field>
+            <Field name="fontName" type="string">Helvetica,12,-1,5,50,0,0,0,0,0</Field>
+            <Field name="style" type="string">motif</Field>
+            <Field name="orientation" type="int">0</Field>
+            <Field name="defaultForeground" type="string">#000000</Field>
+            <Field name="defaultBackground" type="string">#edeceb</Field>
+            <Field name="defaultFontName" type="string">Sans,10,-1,5,50,0,0,0,0,0</Field>
+            <Field name="defaultStyle" type="string">windows</Field>
+            <Field name="defaultOrientation" type="int">0</Field>
+        </Object>
+        <Object name="Annotation">
+            <Field name="x" type="int">2</Field>
+            <Field name="y" type="int">23</Field>
+            <Field name="width" type="int">521</Field>
+            <Field name="height" type="int">720</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+            <Field name="activeTab" type="int">5</Field>
+        </Object>
+        <Field name="postWhenShown" type="bool">false</Field>
+        <Object name="Information">
+            <Field name="x" type="int">2</Field>
+            <Field name="y" type="int">23</Field>
+            <Field name="width" type="int">470</Field>
+            <Field name="height" type="int">298</Field>
+            <Field name="visible" type="bool">false</Field>
+        </Object>
+        <Object name="Lighting">
+            <Field name="x" type="int">2</Field>
+            <Field name="y" type="int">48</Field>
+            <Field name="width" type="int">460</Field>
+            <Field name="height" type="int">390</Field>
+            <Field name="visible" type="bool">true</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Object name="Output">
+            <Field name="x" type="int">4</Field>
+            <Field name="y" type="int">46</Field>
+            <Field name="width" type="int">279</Field>
+            <Field name="height" type="int">255</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Object name="MainWin">
+            <Field name="x" type="int">0</Field>
+            <Field name="y" type="int">25</Field>
+            <Field name="width" type="int">388</Field>
+            <Field name="height" type="int">1027</Field>
+            <Field name="SPLITTER_VALUES_V2" type="floatVector">0 0.541111 0.452222 </Field>
+        </Object>
+        <Object name="Contour plot attributes">
+            <Field name="x" type="int">0</Field>
+            <Field name="y" type="int">0</Field>
+            <Field name="width" type="int">507</Field>
+            <Field name="height" type="int">689</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Object name="Pseudocolor plot attributes">
+            <Field name="x" type="int">4</Field>
+            <Field name="y" type="int">46</Field>
+            <Field name="width" type="int">507</Field>
+            <Field name="height" type="int">665</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Object name="Volume plot attributes">
+            <Field name="x" type="int">4</Field>
+            <Field name="y" type="int">46</Field>
+            <Field name="width" type="int">765</Field>
+            <Field name="height" type="int">675</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Object name="Reflect operator attributes">
+            <Field name="x" type="int">2</Field>
+            <Field name="y" type="int">23</Field>
+            <Field name="width" type="int">385</Field>
+            <Field name="height" type="int">531</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Object name="Replicate operator attributes">
+            <Field name="x" type="int">2</Field>
+            <Field name="y" type="int">23</Field>
+            <Field name="width" type="int">385</Field>
+            <Field name="height" type="int">413</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Object name="ThreeSlice operator attributes">
+            <Field name="x" type="int">2</Field>
+            <Field name="y" type="int">23</Field>
+            <Field name="width" type="int">385</Field>
+            <Field name="height" type="int">205</Field>
+            <Field name="visible" type="bool">false</Field>
+            <Field name="posted" type="bool">false</Field>
+        </Object>
+        <Field name="plotDatabases" type="stringVector">"localhost:/home/sambrenner/big/bbb03_hdf5_chk_* database" </Field>
+        <Object name="TimeFormat">
+            <Field name="displayMode" type="string">Cycles</Field>
+            <Field name="precision" type="int">5</Field>
+        </Object>
+        <Field name="showSelectedFiles" type="bool">false</Field>
+        <Field name="allowFileSelectionChange" type="bool">true</Field>
+        <Field name="enableWarningMessagePopups" type="bool">true</Field>
+    </Object>
+</Object>

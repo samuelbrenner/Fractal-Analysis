@@ -15,9 +15,9 @@
 % \usepackage{multirow}
 % \usepackage{array}
 % \usepackage[lofdepth,lotdepth]{subfig}
-\usepackage{todonotes}
+%\usepackage{todonotes}
 
-\newcommand{\TODO}[1]{\todo[inline]{#1}}
+%\newcommand{\TODO}[1]{\todo[inline]{#1}}
 \usepackage{float}
 
 % \newcolumntype{x}[1]{%
@@ -76,7 +76,7 @@ The accepted model for a type Ia supernova is a white dwarf that accumulates mas
 
 The surface of the expanding flame front can be dramatically affected by multiple types of turbulence. \cite{Landau1959} showed that the flame surface is subject to Landau-Darrieus instability in which the front is convoluted due to thermal expansion across the flame front. It is also widely established (see \cite{Kull1991}) that Rayleigh-Taylor instability, in which a denser fluid pushes through a less-dense one under the influence of a gravitational field, can contort the deflagration front in a supernova. 
 
-These wrinkles on the surface of the flame front increase the front's effective surface area, and because the flame speed is proportional to the flame's surface area, the convolution of the surface can influence the rate at which the flame consumes the star. Thus, characterizing the shape of the flame front plays a crucial part in characterizing the supernova explosion process as a whole.\todo[inline]{Add new picture with darkened contour!}
+These wrinkles on the surface of the flame front increase the front's effective surface area, and because the flame speed is proportional to the flame's surface area, the convolution of the surface can influence the rate at which the flame consumes the star. Thus, characterizing the shape of the flame front plays a crucial part in characterizing the supernova explosion process as a whole.\footnote{Add new picture with darkened contour and cropping}
 
 \begin{figure}[t]
 \begin{center}
@@ -112,7 +112,9 @@ Clouds of gas often form in the interstellar medium (ISM), and turbulence like t
 
 \subsection{Fractal analysis methods}\label{FractalMethods}
 In order to estimate the fractal dimension of flame we implemented a box-counting algorithm. The box-counting dimension $\mathrm{dim}$ is given by
-
+\begin{equation}
+	\mathrm{dim} = 
+\end{equation}
 where N is the number of boxes containing the figure.  To implement this algorithm, different levels of coarse-graining were applied, and trilinear interpolation was performed to determine the location of the flame front within the coarse mesh. For each level of coarse-graining, $\log{N(\epsilon)}$ and $\log{(1/\epsilon)}$ were calculated, and a linear regression was performed on the four points at the finest level in order to approximate the limit that gives dimension.
 
 This algorithm’s implementation was verified against computer-generated fractal data with known dimension and recovered the theoretical dimension with 10\% accuracy.
@@ -140,14 +142,14 @@ Possible causes for the discrepancy between the dimension of the flame front fou
 The narrowing of the spectra in the molecular cloud studied agrees with our expectations: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the points that intersect the blue line in Figure 4 decrease from a dimension of just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
 
 
-Timmes eqn:\todo[inline]{integrate this into the paper}
+Timmes eqn:\footnote{integrate this into the paper}
 	The final effective speed $v_{eff}$ of the flame front on a macroscopic scale is given by
 	\begin{equation} 
 	v_{eff} = v_{lam} \left(\frac{l_{min}}{l_{max}}\right)^{2 - D}
 	\end{equation}
 	where $v_{lam}$ is the laminar speed of the front through the material (that is, the speed of the flame in the absence of turbulence), $l_{min}$ is the minimum length scale at which the turbulence takes place, $l_{max}$ is the maximum length scale at which the turbulence takes place, and $ D $ is the fractal dimension of the flame front.
 
-Captions from poster:\TODO{integrate this into the paper}
+Captions from poster:\footnote{integrate this into the paper}
 
 	Figure 4: Plot of $f(\alpha)$ vs. $\alpha$ for the molecular cloud pictured in Figure 2. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the middle timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire volume.
 
@@ -169,6 +171,4 @@ The author would like to thank Dr. Tomasz Plewa and Tim Handy for their guidance
 %
 %
 
-\section{TODO:}
-\listoftodos
 \end{document}
