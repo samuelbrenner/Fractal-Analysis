@@ -34,8 +34,7 @@
 %--------------------
 \begin{document}
 %
-\title{Fractal and Multifractal Analysis as Tools to Characterize Supernovae and Molecular Clouds: \\
-subtitle}
+\title{Fractal and Multifractal Analysis as Tools to Characterize Supernovae and Molecular Clouds}
 %
 \author{Samuel Brenner\altaffilmark{1}}
 \email{samuel.e.brenner@gmail.com}
@@ -76,28 +75,32 @@ The accepted model for a type Ia supernova is a white dwarf that accumulates mas
 
 The surface of the expanding flame front can be dramatically affected by multiple types of turbulence. \cite{Landau1959} showed that the flame surface is subject to Landau-Darrieus instability in which the front is convoluted due to thermal expansion across the flame front. It is also widely established (see \cite{Kull1991}) that Rayleigh-Taylor instability, in which a denser fluid pushes through a less-dense one under the influence of a gravitational field, can contort the deflagration front in a supernova. 
 
-These wrinkles on the surface of the flame front increase the front's effective surface area, and because the flame speed is proportional to the flame's surface area, the convolution of the surface can influence the rate at which the flame consumes the star. Thus, characterizing the shape of the flame front plays a crucial part in characterizing the supernova explosion process as a whole.\footnote{Add new picture with darkened contour and cropping}
+These wrinkles on the surface of the flame front increase the front's effective surface area, and because the flame speed is proportional to the flame's surface area, the convolution of the surface can influence the rate at which the flame consumes the star. Thus, characterizing the shape of the flame front plays a crucial part in characterizing the supernova explosion process as a whole.
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
-\includegraphics[width=0.45\textwidth,clip=true]{Graphics/n7d1r10t15b0002.png}
+\includegraphics[width=0.45\textwidth,clip=true]{Graphics/n7d1r10t15b0011_cropped.png}
 \caption{Flame front contour highlighted in simulation of Type Ia supernova. False color indicates density in $\mathrm{g/cm^3}$.
 \label{f:flamefrontwithcontour}}
 \end{center}
 \end{figure} 
 
-These wrinkles on the surface of a turbulent front can be viewed within the framework of fractal geometry, as was proposed by \cite{Mandelbrot1975} and further developed by \cite{Timmes1994}. Furthermore, \cite{Timmes1994} showed that the final effective speed of the flame front is a function of its density.
+These wrinkles on the surface of a turbulent front can be viewed within the framework of fractal geometry, as was proposed by \cite{Mandelbrot1975} and further developed by \cite{Timmes1994}. Furthermore, \cite{Timmes1994} showed that the final effective speed $v_{eff}$ of the flame front is a function of its fractal dimension:
+\begin{equation} 
+	v_{eff} = v_{lam} \left(\frac{l_{min}}{l_{max}}\right)^{2 - D}
+\end{equation}
+where $v_{lam}$ is the laminar speed of the front through the material (that is, the speed of the flame in the absence of turbulence), $l_{min}$ is the minimum length scale at which the turbulence takes place, $l_{max}$ is the maximum length scale at which the turbulence takes place, and $ D $ is the fractal dimension of the flame front.
 
-In \textsection \ref{FractalMethods}, a method is implemented to perform fractal analysis of a supernova flame front. The results are discussed in \textsection \ref{FractalResults}, and the implications of the calculated fractal dimension are discussed in \textsection \ref{FractalDiscussion}.
+In \textsection \ref{FractalMethods}, a method is implemented to perform fractal analysis of a supernova flame front. The results are discussed in \textsection \ref{FractalResults}, and the implications of the calculated fractal dimension are discussed in \textsection \ref{Discussion}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Begin copy-pasting--needs editing			%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Mutlfractal analysis of dense molecular clouds}
-Clouds of gas often form in the interstellar medium (ISM), and turbulence like that caused by stellar winds can form structures which under gravitational pressure then coalesce into filaments. The densest parts of these filaments are protostars that begin to undergo fusion and merge to form evolved star systems. The structure of the system at any time can be quantified by the spectrum of multifractal dimensions, which indicates the density of substructures with a given density. Thus we can quantitatively indicate how uniformly filament-, sheet-, or space-like any structure is. Figures 2-4 depict the evolution of one of these molecular clouds.
+Clouds of gas often form in the interstellar medium (ISM), and turbulence like that caused by stellar winds can form structures which under gravitational pressure then coalesce into filaments. The densest parts of these filaments are protostars that begin to undergo fusion and merge to form evolved star systems. The structure of the system at any time can be quantified by the spectrum of multifractal dimensions, which indicates the density of substructures with a given density. Thus we can quantitatively indicate how uniformly filament-, sheet-, or space-like any structure is. Figure \ref{f:cloudevolution} depicts the evolution of one of these molecular clouds.
 
-\begin{figure*}[ht]
+\begin{figure*}[h]
 \begin{center}
 \includegraphics[height=5.5cm,clip=true]{Graphics/bbb_0375_dens_contour_00500000.png}%
 \includegraphics[height=5.5cm,clip=true]{Graphics/bbb_0375_dens_contour_0200_0002.png}%
@@ -108,52 +111,62 @@ Clouds of gas often form in the interstellar medium (ISM), and turbulence like t
 \end{figure*}
 
 \section{Methods}\label{Methods}
-{\Large Write anything here?}
 
 \subsection{Fractal analysis methods}\label{FractalMethods}
-In order to estimate the fractal dimension of flame we implemented a box-counting algorithm. The box-counting dimension $\mathrm{dim}$ is given by
+A box-counting algorithm was implemented in order to determine the fractal dimension of the flame front. The box-counting dimension $\mathrm{dim}_B$ is given by
 \begin{equation}
-	\mathrm{dim} = 
+	\mathrm{dim}_B = \lim_{\epsilon \to 0} \frac{\log N(\epsilon)}{\log (1 / \epsilon)}
 \end{equation}
-where N is the number of boxes containing the figure.  To implement this algorithm, different levels of coarse-graining were applied, and trilinear interpolation was performed to determine the location of the flame front within the coarse mesh. For each level of coarse-graining, $\log{N(\epsilon)}$ and $\log{(1/\epsilon)}$ were calculated, and a linear regression was performed on the four points at the finest level in order to approximate the limit that gives dimension.
+where $N$ is the number of boxes containing the figure.  To implement this algorithm, different levels of coarse-graining were applied, and trilinear interpolation was performed to determine the location of the flame front within the coarse mesh. For each level of coarse-graining, $\log{N(\epsilon)}$ and $\log{(1/\epsilon)}$ were calculated, and a linear regression was performed on the four points at the finest level in order to approximate the limit that gives dimension.
 
-This algorithm’s implementation was verified against computer-generated fractal data with known dimension and recovered the theoretical dimension with 10\% accuracy.
+This algorithm’s implementation was verified against computer-generated fractal data with known dimension and recovered the theoretical dimension with 10\% accuracy. \footnote{insert table of results here?}
 
 \subsection{Multifractal analysis methods}\label{MultifractalMethods}
-The multifractal spectrum of some set is the plot of $f(\alpha)$ vs. $\alpha$, where $f(\alpha)$ is the fractal dimension of the subset of all points with local density $\alpha$. The multifractal spectra investigated were determined with the method of moments described in \cite{Chhabra1989}. We reparametrize both $f$ and $\alpha$ as functions of an exponent $q$ that serves to magnify the features of the density on different scales. For every value of $q$, we define the normalized measure as
+The multifractal spectrum of some set is the plot of $f(\alpha)$ vs. $\alpha$, where $f(\alpha)$ is the fractal dimension of the subset of all points with local density $\alpha$. The multifractal spectra investigated were determined with the method of moments described in \cite{Chhabra1989}. We reparametrize both $f$ and $\alpha$ as functions of an exponent $q$ that serves to magnify the features of the density on different scales. For every value of $q$, we define the normalized measure $\mu_i(q, \epsilon)$ of each box $i$ with side length $\epsilon$ as
+\begin{equation} 
+	\mu_i(q, \epsilon) = \frac{[M_i(\epsilon)]^q}{\sum_j[M_j(\epsilon)]^q}
+\end{equation}
+where $M_i$ is the mass contained in each box $i$. Now we can express $f(\alpha)$ as
+\begin{equation}
+	f(q) = \lim_{\epsilon \to 0} \frac{\sum_i \mu_i(q, \epsilon) \log[\mu_i(q, \epsilon)]}{log \epsilon}
+\end{equation}
+and $\alpha$ as
+\begin{equation}
+	\alpha (q) = \lim_{\epsilon \to 0} \frac{\sum_i \mu_i(q, \epsilon) \log[M_i(\epsilon)]}{log \epsilon}
+\end{equation}
 
-where $M_i$ is the mass contained in each box $i$. Now we can express $f(\alpha)$ and $\alpha$ as
-
-and
-
-This algorithm’s implementation was verified against a computer-generated multifractal system and produced the expected plot of $f(\alpha)$ vs. $\alpha$.
+This algorithm’s implementation was verified against a computer-generated multifractal system and produced the expected plot of $f(\alpha)$ vs. $\alpha$. \footnote{include graphic of IFS and binomial multifractal used for verification}
 
 \section{Results}\label{Results}
 
 \subsection{Fractal analysis}\label{FractalResults}
-The method described above was applied to the contour shown in Figure 1, and the fractal dimension of the contour was found to be 1.05. \cite{Timmes1994} and \cite{Blinnikov1996} estimated the fractal dimension of flame fronts in three dimensions to be between 2.3 and 2.6. Intuitively, then, one would expect the fractal dimension of a flame front in two dimensions to be between 1.3 and 1.6, a discrepancy we examine in Discussion.
+The method described above was applied to the contour shown in Figure \ref{f:flamefrontwithcontour}, and the fractal dimension of the contour was found to be 1.05. \cite{Timmes1994} and \cite{Blinnikov1996} estimated the fractal dimension of flame fronts in three dimensions to be between 2.3 and 2.6. Intuitively, then, one would expect the fractal dimension of a flame front in two dimensions to be between 1.3 and 1.6, a discrepancy we examine in \textsection \ref{Discussion}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.45\textwidth,clip=true]{Graphics/logNvsE.png}
+\caption{Regression to find the fractal dimension of the flame contour shown in Figure \ref{f:flamefrontwithcontour}. The slope of the regression line indicates the fractal dimension—about 1.05.
+\label{f:logNvsE}}
+\end{center}
+\end{figure} 
+
 
 \subsection{Multifractal analysis methods}\label{MultifractalResults}
-The multifractal spectra generated from the molecular cloud pictured in Figure 2 are presented below in Figure 4.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.45\textwidth,clip=true]{Graphics/falphaclouds.png}
+\caption{Plot of $f(\alpha)$ vs. $\alpha$ for the molecular cloud pictured in Figure \ref{f:cloudevolution}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the middle timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire volume.
+\label{f:falphamultifractal}}
+\end{center}
+\end{figure} 
+
+The multifractal spectra generated from the molecular cloud pictured in Figure \ref{f:cloudevolution} are presented in Figure \ref{f:falphamultifractal}.
 
 \section{Discussion}\label{Discussion}
 Possible causes for the discrepancy between the dimension of the flame front found here and the values cited include the coarseness of the model used and the large differences in the character of 2D and 3D turbulence. Still, a robust implementation was developed that can investigate this discrepancy further and handle any uniform-meshed data.
  
-The narrowing of the spectra in the molecular cloud studied agrees with our expectations: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the points that intersect the blue line in Figure 4 decrease from a dimension of just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
-
-
-Timmes eqn:\footnote{integrate this into the paper}
-	The final effective speed $v_{eff}$ of the flame front on a macroscopic scale is given by
-	\begin{equation} 
-	v_{eff} = v_{lam} \left(\frac{l_{min}}{l_{max}}\right)^{2 - D}
-	\end{equation}
-	where $v_{lam}$ is the laminar speed of the front through the material (that is, the speed of the flame in the absence of turbulence), $l_{min}$ is the minimum length scale at which the turbulence takes place, $l_{max}$ is the maximum length scale at which the turbulence takes place, and $ D $ is the fractal dimension of the flame front.
-
-Captions from poster:\footnote{integrate this into the paper}
-
-	Figure 4: Plot of $f(\alpha)$ vs. $\alpha$ for the molecular cloud pictured in Figure 2. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the middle timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire volume.
-
-	Figure 3: Regression to find the fractal dimension of the flame contour shown in Figure 2. The slope of the regression line indicates the fractal dimension—about 1.05.
+The narrowing of the spectra in the molecular cloud studied agrees with our expectations: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the points that intersect the blue line in Figure \ref{f:falphamultifractal} decrease from a dimension of just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
 
 %--------------------
 %	Begin ackownledgements
