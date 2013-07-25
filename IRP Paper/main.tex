@@ -7,7 +7,6 @@
 % Define the sun symbol for use with solar mass
 % \newcommand{\Sun}{\odot}
 \newcommand{\vect}[1]{\boldsymbol{#1}}
-
 % \usepackage{amssymb}
 %\usepackage{xfrac}
 % \usepackage{amsmath}
@@ -16,9 +15,10 @@
 % \usepackage{multirow}
 % \usepackage{array}
 % \usepackage[lofdepth,lotdepth]{subfig}
-% \usepackage{todonotes}
-% \usepackage{float}
+\usepackage{todonotes}
 
+\newcommand{\TODO}[1]{\todo[inline]{#1}}
+\usepackage{float}
 
 % \newcolumntype{x}[1]{%
 % >{\centering\hspace{0pt}}p{#1}}%
@@ -76,7 +76,15 @@ The accepted model for a type Ia supernova is a white dwarf that accumulates mas
 
 The surface of the expanding flame front can be dramatically affected by multiple types of turbulence. \cite{Landau1959} showed that the flame surface is subject to Landau-Darrieus instability in which the front is convoluted due to thermal expansion across the flame front. It is also widely established (see \cite{Kull1991}) that Rayleigh-Taylor instability, in which a denser fluid pushes through a less-dense one under the influence of a gravitational field, can contort the deflagration front in a supernova. 
 
-These wrinkles on the surface of the flame front increase the front's effective surface area, and because the flame speed is proportional to the flame's surface area, the convolution of the surface can influence the rate at which the flame consumes the star. Thus, characterizing the shape of the flame front plays a crucial part in characterizing the supernova explosion process as a whole. 
+These wrinkles on the surface of the flame front increase the front's effective surface area, and because the flame speed is proportional to the flame's surface area, the convolution of the surface can influence the rate at which the flame consumes the star. Thus, characterizing the shape of the flame front plays a crucial part in characterizing the supernova explosion process as a whole.\todo[inline]{Add new picture with darkened contour!}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.45\textwidth,clip=true]{Graphics/n7d1r10t15b0002.png}
+\caption{Flame front contour highlighted in simulation of Type Ia supernova. False color indicates density in $\mathrm{g/cm^3}$.
+\label{f:flamefrontwithcontour}}
+\end{center}
+\end{figure} 
 
 These wrinkles on the surface of a turbulent front can be viewed within the framework of fractal geometry, as was proposed by \cite{Mandelbrot1975} and further developed by \cite{Timmes1994}. Furthermore, \cite{Timmes1994} showed that the final effective speed of the flame front is a function of its density.
 
@@ -88,6 +96,16 @@ In \textsection \ref{FractalMethods}, a method is implemented to perform fractal
 
 \subsection{Mutlfractal analysis of dense molecular clouds}
 Clouds of gas often form in the interstellar medium (ISM), and turbulence like that caused by stellar winds can form structures which under gravitational pressure then coalesce into filaments. The densest parts of these filaments are protostars that begin to undergo fusion and merge to form evolved star systems. The structure of the system at any time can be quantified by the spectrum of multifractal dimensions, which indicates the density of substructures with a given density. Thus we can quantitatively indicate how uniformly filament-, sheet-, or space-like any structure is. Figures 2-4 depict the evolution of one of these molecular clouds.
+
+\begin{figure*}[ht]
+\begin{center}
+\includegraphics[height=5.5cm,clip=true]{Graphics/bbb_0375_dens_contour_00500000.png}%
+\includegraphics[height=5.5cm,clip=true]{Graphics/bbb_0375_dens_contour_0200_0002.png}%
+\includegraphics[height=5.5cm,clip=true]{Graphics/bbb_0375_dens_contour0000.png}
+\end{center}
+\caption{Evolution of a star-forming molecular cloud over time. The leftmost panel shows the density contour just after perturbation, with sheet-like structures most prominent. The middle panel shows the collapse of those sheets into filaments in the densest (red) regions. The rightmost panel shows a near-complete transition to filaments, and the densest (red) regions indicate the position of protostars.}
+\label{f:cloudevolution}
+\end{figure*}
 
 \section{Methods}\label{Methods}
 {\Large Write anything here?}
@@ -116,24 +134,20 @@ The method described above was applied to the contour shown in Figure 1, and the
 \subsection{Multifractal analysis methods}\label{MultifractalResults}
 The multifractal spectra generated from the molecular cloud pictured in Figure 2 are presented below in Figure 4.
 
-
 \section{Discussion}\label{Discussion}
 Possible causes for the discrepancy between the dimension of the flame front found here and the values cited include the coarseness of the model used and the large differences in the character of 2D and 3D turbulence. Still, a robust implementation was developed that can investigate this discrepancy further and handle any uniform-meshed data.
  
 The narrowing of the spectra in the molecular cloud studied agrees with our expectations: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the points that intersect the blue line in Figure 4 decrease from a dimension of just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
 
 
-Timmes eqn:
+Timmes eqn:\todo[inline]{integrate this into the paper}
 	The final effective speed $v_{eff}$ of the flame front on a macroscopic scale is given by
 	\begin{equation} 
 	v_{eff} = v_{lam} \left(\frac{l_{min}}{l_{max}}\right)^{2 - D}
 	\end{equation}
 	where $v_{lam}$ is the laminar speed of the front through the material (that is, the speed of the flame in the absence of turbulence), $l_{min}$ is the minimum length scale at which the turbulence takes place, $l_{max}$ is the maximum length scale at which the turbulence takes place, and $ D $ is the fractal dimension of the flame front.
 
-Captions from poster:
-	Figure 2: Evolution of a star-forming molecular cloud over time. The leftmost panel shows the density contour just after perturbation, with sheet-like structures most prominent. The middle panel shows the collapse of those sheets into filaments in the densest (red) regions. The rightmost panel shows a near-complete transition to filaments, and the densest (red) regions indicate the position of protostars.
-
-	Figure 1: Flame front contour highlighted in simulation of Type Ia supernova. False color indicates density in $\mathrm{g/cm^3}$.
+Captions from poster:\TODO{integrate this into the paper}
 
 	Figure 4: Plot of $f(\alpha)$ vs. $\alpha$ for the molecular cloud pictured in Figure 2. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the middle timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line $f(\alpha) = \alpha $ intersects the curves at the points where $f(\alpha)$ gives the dimension of the entire volume.
 
@@ -154,4 +168,7 @@ The author would like to thank Dr. Tomasz Plewa and Tim Handy for their guidance
 %
 %
 %
+
+\section{TODO:}
+\listoftodos
 \end{document}
