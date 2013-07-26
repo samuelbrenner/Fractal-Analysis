@@ -207,7 +207,7 @@ The box-counting method described in Sect. \ref{Methods} was applied to the cont
 The multifractal spectra generated from the molecular cloud pictured in Fig. \ref{f:cloudevolution} are presented in Fig. \ref{f:falphamultifractal}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the intermediate timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line, $f(\alpha) = \alpha $, intersects the curves at the points where $f(\alpha)$ gives the fractal dimension of the entire structure \citep{mandelbrotmultifractal}. Each curve has a maximum at $f(\alpha) \approx 3$, occurring when the moment exponent $q = 0$. This maximum, then, can be interpreted as the fractal dimension of the space in which the cloud lies \citep{Schroeder}. In the case of a molecular cloud in space, a dimension of 3 is to be expected. 
 
 \section{Discussion}\label{Discussion}
-New opening...
+In this work we constructed a tool allowing for fractal and multifractal analysis of simulation data on structured uniform and non-uniform meshes. We verified implementation for a number of fractal objects with known fractal properties, and applied our tool to select astrophysical problems. In particular, we examined the 
 
 In Sect. \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values given in the literature. One possible cause for the discrepancy between the fractal dimension of the flame front found here and the values provided is the relative coarseness of the model used. More importantly, the model used has been calculated in two dimensions, so it cannot fully account for the characteristics of three-dimensional turbulence. Regardless of these shortcomings, we developed a robust implementation of fractal analysis that can investigate this discrepancy further. In addition, this implementation has the ability to process simulation results obtained with or without uniform meshes.
  
@@ -215,7 +215,7 @@ We found that the multifractal spectra of the molecular cloud become wider over 
 
 Many of the shortcomings mentioned above can be resolved in further investigation. We look forward to extending this investigation to include analysis of 3D flame front simulations, which will allow us to make improved comparisons to literature values for flame front fractal dimension, helping us to further verify the algorithm implemented. Adaptations that accommodate three-dimensional data have already been made to the software.
 
-We also anticipate that our multifractal treatment of dense molecular clouds can be performed in a way comparable to the 
+We also anticipate extending our multifractal analysis of star-forming molecular clouds to be comparable to observational evidence. Examining only the column density of any molecular cloud---performing a two-dimensional multifractal analysis---has the potential to provide results of the same type as an observer on Earth would see. Hence, we are optimistic about the prospect of more rigorous verification and validation once we have an implementation whose results can be compared directly to those cited in the literature. 
 
 %--------------------
 %	Begin ackownledgements
