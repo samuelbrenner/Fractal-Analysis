@@ -1,6 +1,6 @@
 % APJ Reference: http://aas.org/journals/authors/common_instruct#_Toc2
 
-\documentclass{emulateapj}
+\documentclass[iop]{emulateapj}
 % \documentclass[12pt,preprint]{aastex}
 
 
@@ -51,6 +51,13 @@
 %	Begin Abstract
 %--------------------
 \begin{abstract}
+\textit{copy-pasted from discussion for now} New opening...
+
+In Sect. \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values given in the literature. One possible cause for the discrepancy between the fractal dimension of the flame front found here and the values provided is the relative coarseness of the model used. More importantly, the model used has been calculated in two dimensions, so it cannot fully account for the characteristics of three-dimensional turbulence. Regardless of these shortcomings, we developed a robust implementation of fractal analysis that can investigate this discrepancy further. In addition, this implementation has the ability to process simulation results obtained with or without uniform meshes.
+ 
+We found that the multifractal spectra of the molecular cloud become wider over the course of the cloud's evolution. This can be explained as follows: as the system evolves, it transitions from a homogeneous cloud-like morphology to a more varied structure that eventually contains both overdense regions and regions of much lower densities than were originally present. In addition, the fractal dimension of the entire structure decreases from a little less than 3 (where the structure is primarily sheet-like) to $\approx 2.7$ (in the intermediate state) to $\approx 1.7$ (when the collapsed filaments have formed).
+
+Future investigations will focus on the 
 \end{abstract}
 %
 %
@@ -76,7 +83,7 @@ The morphology of the expanding flame front can be dramatically affected by mult
 
 \begin{figure}[ht]
 	\begin{center}
-	\includegraphics[width=0.45\textwidth,clip=true]{Graphics/n7d1r10t15b0011_cropped.png}
+	\includegraphics[width=0.35\textwidth,clip=true]{Graphics/n7d1r10t15b0011_cropped.png}
 	\caption{Model of a Type Ia supernova in cylindrical coordinates where $z$ is the axis of symmetry. False color shows density in $\mathrm{g/cm^3}$. The contour of the flame front is shown with the black line. Thin grey lines show outline of mesh structure used in model.
 	\label{f:flamefrontwithcontour}}
 	\end{center}
@@ -93,7 +100,7 @@ In Sect. \ref{Methods}, we discuss the implemention of a method to perform fract
 \subsection{Multifractal analysis of star-forming molecular clouds}
 Clouds often form in the interstellar medium (ISM), and turbulence like that caused by stellar winds can create structures which under their own gravity collapse. \citep{Bergin2007}. The densest parts of these collapsed regions are protostars that eventually begin to undergo fusion and become evolved star systems. 
 
-Star-forming clouds that are perturbed have been observed to follow a general progression of morphology over time\footnote{Is this all correct?} \citep[see][for example]{Shu1987}. A somewhat uniform cloud of gas first coalesce into sheet-like structures under the influence of some external perturbation, which then collapse under their own gravity to form filament-like structures. Further self-gravitation causes blobs \footnote{Is there a more specific way to say this? I mean to say something like ``spheres'', but I know they're not spherical. ``Points'' is misleading, too.} of high relative density to form within these filaments, which we recognize as protostars.
+Star-forming molecular clouds have been observed to follow a general progression of morphology over time \citep[see][for example]{Shu1987}. A somewhat uniform cloud of gas first coalesce into sheet-like structures under the influence of some external perturbation, which then collapse under their own gravity to form filament-like structures. Further self-gravitation causes blobs \footnote{Is there a more specific way to say this? I mean to say something like ``spheres'', but I know they're not spherical. ``Points'' is misleading, too.} of high relative density to form within these filaments, which we recognize as protostars.
 
 The structure of the star-forming cloud at any time can be quantified by the spectrum of multifractal dimensions, which indicates the abundance of substructures with a given density. Thus we can quantitatively indicate how uniformly filament-, sheet-, or space-like any structure is. Figure \ref{f:cloudevolution} depicts the evolution of one of these molecular clouds.
 
@@ -144,8 +151,8 @@ Our implementation of the box-counting algorithm was verified against computer-g
 
 \begin{figure*}[ht]
 	\begin{center}
-	\includegraphics[height=5cm,clip=true]{Graphics/binomialcantor1024.png}%
-	\includegraphics[height=5cm,clip=true]{Graphics/firstf(a)plot!.png}%
+	\includegraphics[height=4cm,clip=true]{Graphics/binomialcantor1024.png}%
+	\includegraphics[height=4cm,clip=true]{Graphics/firstf(a)plot!.png}%
 	\end{center}
 	\caption{The one-dimensional binomial Cantor set (left) and the multifractal spectrum produced by our implementation in the process of verification. The obtained results match predictions: the maximum value of $f(\alpha)$ is $1$ (which indicates that the set as a whole has a dimension of one), the shape is parabolic (characteristic of plots of this set \citep{Chhabra1989}), and each plot intersects the blue line $f(\alpha) = \alpha$ (a characteristic of all multifractal spectra \citep{mandelbrotmultifractal})}
 	\label{f:cantorset}
@@ -180,7 +187,7 @@ The box-counting method described in Sect. \ref{Methods} was applied to the cont
 
 \begin{figure}[ht]
 	\begin{center}
-	\includegraphics[width=0.45\textwidth,clip=true]{Graphics/logNvsE.png}
+	\includegraphics[width=0.37\textwidth,clip=true]{Graphics/logNvsE.png}
 	\caption{Regression to find the fractal dimension of the flame contour shown in Fig. \ref{f:flamefrontwithcontour}. The slope of the regression line indicates the fractal dimension—about 1.05.
 	\label{f:logNvsE}}
 	\end{center}
@@ -200,9 +207,15 @@ The box-counting method described in Sect. \ref{Methods} was applied to the cont
 The multifractal spectra generated from the molecular cloud pictured in Fig. \ref{f:cloudevolution} are presented in Fig. \ref{f:falphamultifractal}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the intermediate timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line, $f(\alpha) = \alpha $, intersects the curves at the points where $f(\alpha)$ gives the fractal dimension of the entire structure \citep{mandelbrotmultifractal}. Each curve has a maximum at $f(\alpha) \approx 3$, occurring when the moment exponent $q = 0$. This maximum, then, can be interpreted as the fractal dimension of the space in which the cloud lies \citep{Schroeder}. In the case of a molecular cloud in space, a dimension of 3 is to be expected. 
 
 \section{Discussion}\label{Discussion}
+New opening...
+
 In Sect. \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values given in the literature. One possible cause for the discrepancy between the fractal dimension of the flame front found here and the values provided is the relative coarseness of the model used. More importantly, the model used has been calculated in two dimensions, so it cannot fully account for the characteristics of three-dimensional turbulence. Regardless of these shortcomings, we developed a robust implementation of fractal analysis that can investigate this discrepancy further. In addition, this implementation has the ability to process simulation results obtained with or without uniform meshes.
  
-We found that the multifractal spectra of the molecular cloud become narrower over the course of the cloud's evolution. This can be explained as follows: as the system evolves, it transitions from a homogeneous, amorphous, cloud **** $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the fractal dimension of the entire structure decreases from just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
+We found that the multifractal spectra of the molecular cloud become wider over the course of the cloud's evolution. This can be explained as follows: as the system evolves, it transitions from a homogeneous cloud-like morphology to a more varied structure that eventually contains both overdense regions and regions of much lower densities than were originally present. In addition, the fractal dimension of the entire structure decreases from a little less than 3 (where the structure is primarily sheet-like) to $\approx 2.7$ (in the intermediate state) to $\approx 1.7$ (when the collapsed filaments have formed).
+
+Many of the shortcomings mentioned above can be resolved in further investigation. We look forward to extending this investigation to include analysis of 3D flame front simulations, which will allow us to make improved comparisons to literature values for flame front fractal dimension, helping us to further verify the algorithm implemented. Adaptations that accommodate three-dimensional data have already been made to the software.
+
+We also anticipate that our multifractal treatment of dense molecular clouds can be performed in a way comparable to the 
 
 %--------------------
 %	Begin ackownledgements
