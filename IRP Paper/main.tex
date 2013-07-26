@@ -36,14 +36,14 @@
 \title{Fractal and Multifractal Analysis as Tools to Characterize Supernovae and Molecular Clouds}
 %
 \author{Samuel Brenner\altaffilmark{1}}
-\email{samuel.e.brenner@gmail.com}
+
 %\author{Tomasz Plewa\altaffilmark{1}}
 %\email{tplewa@fsu.edu}
 %
 %\author{Andrzej Odrzwolek\altaffilmark{2}}
 %\email{andrzej's email}
 %
-\altaffiltext{1}{Young Scholars Program, Florida State University}
+\altaffiltext{1}{Young Scholars Program, Florida State University \email{samuel.e.brenner@gmail.com}}
 %
 %
 %
@@ -51,13 +51,9 @@
 %	Begin Abstract
 %--------------------
 \begin{abstract}
-\textit{copy-pasted from discussion for now} New opening...
+We describe the construction of a tool allowing for fractal and multifractal analysis of simulation data on structured uniform and non-uniform meshes. We verified implementation for a number of fractal objects with known fractal properties, and applied our tool to select astrophysical problems. In particular, we calculated the fractal dimension of flame fronts in Type Ia supernovae and investigated the multifractal spectra of star-forming molecular clouds over the course of their evolution. The box-counting tool that determines fractal dimension can interpret data from uniform or non-uniform meshes, and the tool was verified against data of known fractal dimension to be accurate within 12\%. A method of moments, as described in \cite{Chhabra1989}, was used to determine the multifractal spectra of star-forming molecular clouds over time. Our fractal analysis of supernova flame fronts found reasonable qualitative agreement with observed phenomena, and our multifractal analysis of star-forming molecular clouds appeared consistent with the accepted model of their evolution. Though we arrived at slightly lower than expected values for the fractal dimension of the flame front in Type Ia supernovae, we propose that further verification of the algorithm's implementation with turbulent flame fronts in three spatial dimensions may reconcile our findings with those found in observation. Regardless of these shortcomings, we developed a robust implementation of fractal analysis that we anticipate will help us investigate this discrepancy further.
 
-In Sect. \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values given in the literature. One possible cause for the discrepancy between the fractal dimension of the flame front found here and the values provided is the relative coarseness of the model used. More importantly, the model used has been calculated in two dimensions, so it cannot fully account for the characteristics of three-dimensional turbulence. Regardless of these shortcomings, we developed a robust implementation of fractal analysis that can investigate this discrepancy further. In addition, this implementation has the ability to process simulation results obtained with or without uniform meshes.
- 
-We found that the multifractal spectra of the molecular cloud become wider over the course of the cloud's evolution. This can be explained as follows: as the system evolves, it transitions from a homogeneous cloud-like morphology to a more varied structure that eventually contains both overdense regions and regions of much lower densities than were originally present. In addition, the fractal dimension of the entire structure decreases from a little less than 3 (where the structure is primarily sheet-like) to $\approx 2.7$ (in the intermediate state) to $\approx 1.7$ (when the collapsed filaments have formed).
 
-Future investigations will focus on the 
 \end{abstract}
 %
 %
@@ -65,7 +61,7 @@ Future investigations will focus on the
 %--------------------
 %	Begin keywords
 %--------------------
-\keywords{supernovae, fractals, multifractals}
+\keywords{supernovae, molecular clouds, fractals, multifractals}
 %
 %
 %
@@ -95,16 +91,16 @@ The convolutions of the surface of a turbulent front can be viewed within the fr
 \end{equation}
 where $v_{lam}$ is the laminar flame speed (that is, the speed of the flame in the absence of perturbations), $l_{min}$ is the minimum length scale at which the turbulence takes place, $l_{max}$ is the maximum length scale at which the turbulence takes place, and $ D $ is the fractal dimension of the flame front.
 
-In Sect. \ref{Methods}, we discuss the implemention of a method to perform fractal analysis of a supernova flame front. The results are discussed in Sect. \ref{Results}, and the implications of our findings are discussed in Sect. \ref{Discussion}.
+In Sect. \ref{Methods}, we discuss the implementation of a method to perform fractal analysis of a supernova flame front. The results are discussed in Sect. \ref{Results}, and the implications of our findings are discussed in Sect. \ref{Discussion}.
 
 \subsection{Multifractal analysis of star-forming molecular clouds}
 Clouds often form in the interstellar medium (ISM), and turbulence like that caused by stellar winds can create structures which under their own gravity collapse. \citep{Bergin2007}. The densest parts of these collapsed regions are protostars that eventually begin to undergo fusion and become evolved star systems. 
 
-Star-forming molecular clouds have been observed to follow a general progression of morphology over time \citep[see][for example]{Shu1987}. A somewhat uniform cloud of gas first coalesce into sheet-like structures under the influence of some external perturbation, which then collapse under their own gravity to form filament-like structures. Further self-gravitation causes blobs \footnote{Is there a more specific way to say this? I mean to say something like ``spheres'', but I know they're not spherical. ``Points'' is misleading, too.} of high relative density to form within these filaments, which we recognize as protostars.
+Observations of star-forming molecular clouds indicate that a cloud's morphology depends on its evolutionary age \citep[see][for example]{Shu1987}. A somewhat uniform cloud of gas first coalesces into sheet-like structures under the influence of some external perturbation and self-gravitation. Later on, they collapse under their own gravity to form filament-like structures. Further self-gravitation causes sufficiently overdense regions that satisfy the Jeans criteria to form within these filaments, which we recognize as protostars.
 
 The structure of the star-forming cloud at any time can be quantified by the spectrum of multifractal dimensions, which indicates the abundance of substructures with a given density. Thus we can quantitatively indicate how uniformly filament-, sheet-, or space-like any structure is. Figure \ref{f:cloudevolution} depicts the evolution of one of these molecular clouds.
 
-In Sect. \ref{Methods}, we discuss the implemention of a method to determine the multifractal spectrum of these star-forming clouds. The results are discussed in Sect. \ref{Results}, and the implications of our findings are discussed in Sect. \ref{Discussion}.
+In Sect. \ref{Methods}, we discuss the implementation of a method to determine the multifractal spectrum of these star-forming clouds. The results are discussed in Sect. \ref{Results}, and the implications of our findings are discussed in Sect. \ref{Discussion}.
 
 \begin{figure*}[ht]
 	\begin{center}
@@ -147,7 +143,7 @@ and $\alpha$ as
 
 \subsection{Verification}\label{Verification}
 
-Our implementation of the box-counting algorithm was verified against computer-generated data with known fractal characteristics. The implementation was able to recover the theoretical dimension with 12\% accuracy on average, as can be seen in Table~\ref{t:table}. Our implementation of the multifractal algorithm was verified against a computer-generated multifractal system and produced the expected plot of $f(\alpha)$ vs. $\alpha$ as can be seen in Fig. \ref{f:cantorset}. 
+Our implementation of the box-counting algorithm was verified against computer-generated data with known fractal characteristics. The implementation was able to recover the theoretical dimension with 12\% error on average, as can be seen in Table~\ref{t:table}. Our implementation of the multifractal algorithm was verified against a computer-generated multifractal system and produced the expected plot of $f(\alpha)$ vs. $\alpha$ as can be seen in Fig. \ref{f:cantorset}. 
 
 \begin{figure*}[ht]
 	\begin{center}
@@ -207,7 +203,7 @@ The box-counting method described in Sect. \ref{Methods} was applied to the cont
 The multifractal spectra generated from the molecular cloud pictured in Fig. \ref{f:cloudevolution} are presented in Fig. \ref{f:falphamultifractal}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the intermediate timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line, $f(\alpha) = \alpha $, intersects the curves at the points where $f(\alpha)$ gives the fractal dimension of the entire structure \citep{mandelbrotmultifractal}. Each curve has a maximum at $f(\alpha) \approx 3$, occurring when the moment exponent $q = 0$. This maximum, then, can be interpreted as the fractal dimension of the space in which the cloud lies \citep{Schroeder}. In the case of a molecular cloud in space, a dimension of 3 is to be expected. 
 
 \section{Discussion}\label{Discussion}
-In this work we constructed a tool allowing for fractal and multifractal analysis of simulation data on structured uniform and non-uniform meshes. We verified implementation for a number of fractal objects with known fractal properties, and applied our tool to select astrophysical problems. In particular, we examined the 
+In this work we constructed a tool allowing for fractal and multifractal analysis of simulation data on structured uniform and non-uniform meshes. We verified implementation for a number of fractal objects with known fractal properties, and applied our tool to select astrophysical problems. In particular, we calculated the fractal dimension of flame fronts in Type Ia supernovae and investigated the multifractal spectra of star-forming molecular clouds over the course of their evolution.
 
 In Sect. \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values given in the literature. One possible cause for the discrepancy between the fractal dimension of the flame front found here and the values provided is the relative coarseness of the model used. More importantly, the model used has been calculated in two dimensions, so it cannot fully account for the characteristics of three-dimensional turbulence. Regardless of these shortcomings, we developed a robust implementation of fractal analysis that can investigate this discrepancy further. In addition, this implementation has the ability to process simulation results obtained with or without uniform meshes.
  
