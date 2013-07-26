@@ -153,21 +153,21 @@ Our implementation of the box-counting algorithm was verified against computer-g
 
 \begin{table*}
 \begin{center}
-\caption{Theoretical vs. Calculated Dimensions for Fractal Analysis}\label{t:table}
+\caption{Theoretical vs. Calculated Fractal Dimensions Found in Fractal Analysis Validation}\label{t:table}
 \begin{tabular}{lcccc}
-Fractal 					&	Theoretical Dimension 	&	Calculated Dimension 	&	Error		&	Magnitude of percent error \\
+Fractal Object 				&	Theoretical Dimension 	&	Calculated Dimension 	&	Error		&	Magnitude of percent error \\
 \tableline\\
-Dragon boundary				&	1.5236					&	1.487	                &	-0.0366		&	2.4022	\\
-Vicsek Fractal (Box)		& 	1.4649					&	1.3264					&	-0.1385		&	9.4546	\\
-Fibonacci Word				&	1.6379					&	1.45964					&	-0.1783		&	10.8834	\\
-Gosper Curve				&	2						&	1.72811					&	-0.2719		&	13.5945				\\
-Boundary of Gosper Island	&	1.12915					&	1.2056					&	0.0765		&	6.7706	\\
-Julia Set					&	2						&	1.49408					&	-0.5059		&	25.296	\\
-Julia $z^2+1/4$				&	1.0812					&	1.19677					&	0.1156		&	10.6890	\\
-Levy C boundary				&	1.934					&	1.5656					&	-0.3684		&	19.0486	\\
-Pythagoras Tree				&	2						&	1.74588					&	-0.2541		&	12.706	\\
+Dragon boundary				&	1.5236					&	1.487	                &	-0.037		&	2.4	\\
+Vicsek Fractal (Box)		& 	1.4649					&	1.3264					&	-0.14		&	9.5	\\
+Fibonacci Word				&	1.6379					&	1.45964					&	-0.18 		&	11	\\
+Gosper Curve				&	2						&	1.72811					&	-0.27		&	14				\\
+Boundary of Gosper Island	&	1.1292					&	1.2056					&	0.077		&	6.8	\\
+Julia Set					&	2						&	1.49408					&	-0.51		&	25	\\
+Julia $z^2+1/4$				&	1.0812					&	1.19677					&	0.12		&	11	\\
+Levy C boundary				&	1.934					&	1.5656					&	-0.37		&	19	\\
+Pythagoras Tree				&	2						&	1.74588					&	-0.25		&	13	\\
 \tableline
-\rule{0pt}{4ex}				&							&							& \textbf{Average: } & 12.3161\\
+\rule{0pt}{4ex}				&							&							& \textbf{Average: } & 12\\
 \end{tabular}
 \end{center}
 \end{table*}
@@ -200,9 +200,9 @@ The box-counting method described in Sect. \ref{Methods} was applied to the cont
 The multifractal spectra generated from the molecular cloud pictured in Fig. \ref{f:cloudevolution} are presented in Fig. \ref{f:falphamultifractal}. The blue plot shows the spectrum of the earliest timestep (leftmost panel); the green plot shows the spectrum of the intermediate timestep (middle panel); and the red plot shows the spectrum of the last timestep (rightmost panel). The blue line, $f(\alpha) = \alpha $, intersects the curves at the points where $f(\alpha)$ gives the fractal dimension of the entire structure \citep{mandelbrotmultifractal}. Each curve has a maximum at $f(\alpha) \approx 3$, occurring when the moment exponent $q = 0$. This maximum, then, can be interpreted as the fractal dimension of the space in which the cloud lies \citep{Schroeder}. In the case of a molecular cloud in space, a dimension of 3 is to be expected. 
 
 \section{Discussion}\label{Discussion}
-In Sect. \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values observed in the literature. Possible causes for the discrepancy between the fractal dimension of the flame front found here and the values cited include the coarseness of the model used and the large differences in the character of turbulence 2 and 3 dimensions. Regardless, a robust implementation was developed that can investigate this discrepancy further. In addition, this implementation has the ability to process any AMR data, uniform-meshed or not.
+In Sect. \ref{Results}, we found the fractal dimension of the flame front in a Type Ia supernova to be 1.05, which is at least 0.25 lower than the values given in the literature. One possible cause for the discrepancy between the fractal dimension of the flame front found here and the values provided is the relative coarseness of the model used. More importantly, the model used has been calculated in two dimensions, so it cannot fully account for the characteristics of three-dimensional turbulence. Regardless of these shortcomings, we developed a robust implementation of fractal analysis that can investigate this discrepancy further. In addition, this implementation has the ability to process simulation results obtained with or without uniform meshes.
  
-We found that the multifractal spectra of the molecular cloud become narrower over the course of the cloud's evolution. This can be explained physically as well: as the system evolves, it exhibits a narrower range of scaling exponents $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the fractal dimension of the entire structure decreases from just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
+We found that the multifractal spectra of the molecular cloud become narrower over the course of the cloud's evolution. This can be explained as follows: as the system evolves, it transitions from a homogeneous, amorphous, cloud **** $ \alpha $ during its transition from a structure that is partly sheet-like to one that clearly resembles filaments. In addition, the fractal dimension of the entire structure decreases from just below 3 (where the structure is primarily sheet-like) to about 2.7 (in the intermediate state) to about 1.7 (when the collapsed filaments have formed).
 
 %--------------------
 %	Begin ackownledgements
