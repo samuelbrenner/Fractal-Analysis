@@ -1,6 +1,6 @@
 % Chapter 1
 
-\chapter{Introduction: A basis in fractal geometry} % Main chapter title
+\chapter{Introduction: What is a fractal?} % Main chapter title
 
 \label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
 
@@ -8,7 +8,7 @@
 
 %----------------------------------------------------------------------------------------
 
-Before we discuss multifractals, we begin with a discussion of normal, or mono-fractals. We note the intuitive properties present in a simple example and how they differ from non-fractal geometry, and then 
+Before we discuss multifractals, we begin with a discussion of normal, or mono-, fractals. We note the intuitive properties present in a simple example and how they differ from non-fractal geometry, and then \todo{This is probably going to be removed when the paper is changed to focus only on fractals and ignores multifractals.}
 
 %----------------------------------------------------------------------------------------
 \section{An example of a fractal: the Koch snowflake (See Figure \ref{fig:kochcurve})}\label{fractalexample}
@@ -18,21 +18,30 @@ Before we discuss multifractals, we begin with a discussion of normal, or mono-f
 \caption[Koch Curve]{Iterations of the Koch snowflake, a simple fractal exhibiting many characteristics typical of fractals. The straight line segment at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
 \end{figure}
 
-We note the most obvious properties of this fractal that separate it from a non-fractal shape:
-\begin{enumerate}
-\item \textit{Its shape is defined recursively.} Each successive iteration replaces the middle third of each straight section with the two other sides of the equilateral triangle formed from that original third. This results in \textit{self-similarity} at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve.
-\item \textit{Its length is not finite.} Because of the recursive rule defining the Koch curve, the curve's length is increased by a factor of $ \dfrac{4}{3} $ with each iteration. The total length can then be expressed as a geometric sequence with a common ratio of $ \dfrac{4}{3} $, which, because it is greater than one, will cause the sequence not to converge to a finite value. Other non-fractal approaches to the curve's characterization yield equally confusing results: the additional length added with each iteration expands the fractal's size in two dimensions, so one would expect to be able to classify the area in the plane that the curve fills. However, the curve's ``roughness'' is difficult to quantify with non-fractal geometry. This, as we will discuss below, leads to the creation of different \textit{fractal dimensions} to classify the space-filling properties of these fractals.
-\item \textit{It has a fine structure.} The fractal has detail at all size scales, no matter how small\citep{fractaltextbook}.
-\end{enumerate}
+We note the most obvious properties of this fractal that separate it from a non-fractal shape. 
+\textit{Its shape is defined recursively.} The Koch curve is a line segment on which an infinite number of iterations is performed as follows: for every line segment $ S $ of length $ l_S $ that makes up the figure, an equilateral triangle with side length $l-S/3$ is constructed, using the middle third of $ S $. The middle third of $S$ is then removed, leaving only the other two sides of the triangle. This results in self-similarity at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve. 
+
+\begin{myproposition} The length of the Koch curve is infinite. \end{myproposition}
+\begin{myproof}
+Because of the recursive rule defining the Koch curve, the curve's length is increased by a factor of $ 4/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 4/3 $:
+\begin{equation}
+	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{4}{3}\right)^n L_0
+\end{equation}
+
+
+\end{myproof}
+
+Other non-fractal approaches to the curve's characterization yield equally confusing results \todo{show these results and why they're confusing. do the math that gets us there.}: the additional length added with each iteration expands the fractal's size in two dimensions, so one would expect to be able to classify the area in the plane that the curve fills. However, the curve's ``roughness'' is difficult to quantify with non-fractal geometry. This, as we will discuss below, leads to the creation of different \textit{fractal dimensions} to classify the space-filling properties of these fractals. 
+\textit{It has a fine structure.} \todo{Figure out what this means and say so, or remove it entirely. Right now it's worthless and confusing.} The fractal has detail at all size scales, no matter how small\citep{fractaltextbook}. 
 
 
 \section{Characterizing fractals}
 
-As seen above, whereas non-fractal sets\footnote{We use the word ``set" to more precisely refer to what might be simply called a shape. After all, every shape is just a set, possibly infinite, of points.}  have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
+As seen above, whereas non-fractal sets\footnote{We use the word ``set" to more precisely refer to what might be simply called a shape. After all, every shape is just a set, possibly infinite, of points.} \todo{Move this footnote into the body.}  have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
 
 \subsection{Spaces, sets, and measures}
 
-Before we venture further into classifying fractals by their dimension, we need to clarify a few definitions.
+Before we venture further into classifying fractals by their dimension, we need the following definitions.
 
 \begin{mydef}
 We define an n-dimensional space $ \mathbb{R}^{n} $ to be the set of all points that can be identified by an ordered n-ple of real numbers. Hence, for example, any point $ \alpha $ in $ \mathbb{R}^{5} $ can be identified by the ordered 5-ple $ \alpha = (\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}, \alpha_{5})$ where $ \alpha_{1} ... \alpha_{5} \in \mathbb{R} $.\end{mydef}
@@ -67,12 +76,12 @@ We call the space on which the measure resides the \textit{support} of the measu
 \end{mydef}
 
 \subsection{The dimension of a fractal}
-Recall that in the example of the Koch curve above, we struggled to classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as a kind of analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
+Recall that in the example of the Koch curve above, we failed to classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as a kind of analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
 
 \subsubsection{What we mean by ``dimension''}\label{intuitivedimension}
 Consider a line segment of length $ L_0 $. Note that when the segment is scaled by $\epsilon$, a number greater than one, into smaller pieces of equal size, each segment produced has length $L_0/\epsilon$. Now we repeat our exploration with a square of side length $ L_0 $. Here, when the square is scaled by a factor $\epsilon$, the smaller squares produced have an area $1/\epsilon^2$ the original. Again, when we repeat this procedure with a cube of side length $ L_0 $ we find that the cubes produced all have volumes $1/\epsilon^3$ the original. Hence, we generalize that the number of pieces $n$ produced from scaling by a factor of $\epsilon$ is given by 
 \begin{equation}n = 1/\epsilon^D\end{equation}
-where $D$ is the dimension of the shape, and we can now manipulate this equation to yield
+where $D$ is the dimension of the shape, and we can now solve for dimension:
 \begin{equation}\label{dimensionEqn} D = \frac{\log{n}}{\log{(1/\epsilon)}}\end{equation}
 
 We now return to the Koch curve. We recognize the first iteration $E_1$ as the fundamental unit of all other iterations of the curve. That is, we can replace each of the four line segments that make up $E_1$ with a scaled-down copy of the original $E_1$ in order to reach the next iteration, and by repeating this process ad infinitum we can reach the final curve $F$. We can, however, view this process in the framework established in the example above, so that each iteration replaces one line segment with a length $L_0$ with four others, each of which has a length of $L_0/3$. This is akin to the method described above: our fractal produces $n = 4$ smaller pieces each time it is scaled, and each piece is $1/\epsilon = 1/3$ the size of the original. Hence, we can apply the equation for dimension (Equation \ref{dimensionEqn}) to the Koch curve:
@@ -96,6 +105,10 @@ where $N_\epsilon(F)$ is the number of cubes of side-length $\epsilon$ that cove
 \begin{myexample}Same thing, Sierpinski pyramid, perhaps?\end{myexample}
 
 %	Should I extend this discussion? Include some implications and whatnot? Also, can/should I go back to Hausdorff? I need to get on with multifractals, I think.
+
+\listoftodos
+
+
 
 
 
