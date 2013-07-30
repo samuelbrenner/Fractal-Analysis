@@ -26,9 +26,16 @@ We note the most obvious properties of this fractal that separate it from a non-
 Because of the recursive rule defining the Koch curve, the curve's length is increased by a factor of $ 4/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 4/3 $:
 \begin{equation}
 	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{4}{3}\right)^n L_0
+\end{equation}.
+Limits are linear with respect to multiplication by a constant, so we find
+\begin{equation}
+	\lim_{n \to \infty}L_n = L_\infty = L_0 \lim_{n \to \infty} \left(\frac{4}{3}\right)^n
 \end{equation}
-
-
+which clearly increases without bound.\todo{Do I need to show this any more clearly?}
+\begin{equation}
+	\lim_{n \to \infty}L_n = \infty 
+\end{equation}
+The length of the Koch curve is thus infinite.
 \end{myproof}
 
 Other non-fractal approaches to the curve's characterization yield equally confusing results \todo{show these results and why they're confusing. do the math that gets us there.}: the additional length added with each iteration expands the fractal's size in two dimensions, so one would expect to be able to classify the area in the plane that the curve fills. However, the curve's ``roughness'' is difficult to quantify with non-fractal geometry. This, as we will discuss below, leads to the creation of different \textit{fractal dimensions} to classify the space-filling properties of these fractals. 

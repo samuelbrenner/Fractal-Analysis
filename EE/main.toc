@@ -6,16 +6,16 @@
 \contentsline {chapter}{List of Tables}{v}{dummy.6}
 \contentsline {chapter}{\numberline {1}Introduction: What is a fractal?}{1}{chapter.8}
 \contentsline {section}{\numberline {1.1}An example of a fractal: the Koch snowflake (See Figure \ref {fig:kochcurve})}{1}{section.10}
-\contentsline {section}{\numberline {1.2}Characterizing fractals}{2}{section.16}
-\contentsline {subsection}{\numberline {1.2.1}Spaces, sets, and measures}{2}{subsection.19}
-\contentsline {subsection}{\numberline {1.2.2}The dimension of a fractal}{4}{subsection.30}
-\contentsline {subsubsection}{\numberline {1.2.2.1}What we mean by ``dimension''}{4}{subsubsection.31}
-\contentsline {subsubsection}{\numberline {1.2.2.2}Box-counting dimension}{5}{subsubsection.36}
-\contentsline {chapter}{\numberline {2}From (Mono)fractals to Multifractals}{8}{chapter.45}
-\contentsline {chapter}{\numberline {3}Applications}{9}{chapter.46}
+\contentsline {section}{\numberline {1.2}Characterizing fractals}{3}{section.20}
+\contentsline {subsection}{\numberline {1.2.1}Spaces, sets, and measures}{3}{subsection.23}
+\contentsline {subsection}{\numberline {1.2.2}The dimension of a fractal}{4}{subsection.34}
+\contentsline {subsubsection}{\numberline {1.2.2.1}What we mean by ``dimension''}{4}{subsubsection.35}
+\contentsline {subsubsection}{\numberline {1.2.2.2}Box-counting dimension}{5}{subsubsection.40}
+\contentsline {chapter}{\numberline {2}From (Mono)fractals to Multifractals}{8}{chapter.49}
+\contentsline {chapter}{\numberline {3}Applications}{9}{chapter.50}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Source Code of Box-Counting Module}{10}{appendix.47}
-\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{19}{appendix.451}
-\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{24}{appendix.645}
+\contentsline {chapter}{\numberline {A}Source Code of Box-Counting Module}{10}{appendix.51}
+\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{19}{appendix.455}
+\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{24}{appendix.649}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{27}{dummy.751}
+\contentsline {chapter}{Bibliography}{27}{dummy.755}
