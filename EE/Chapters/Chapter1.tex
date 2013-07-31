@@ -11,15 +11,16 @@
 Before we discuss multifractals, we begin with a discussion of normal, or mono-, fractals. We note the intuitive properties present in a simple example and how they differ from non-fractal geometry, and then \todo{This is probably going to be removed when the paper is changed to focus only on fractals and ignores multifractals.}
 
 %----------------------------------------------------------------------------------------
-\section{An example of a fractal: the Koch snowflake (See Figure \ref{fig:kochcurve})}\label{fractalexample}
-\begin{figure}
+\section{An example of a fractal: the Koch snowflake (see Figure \ref{fig:kochcurve})}\label{fractalexample}\todo{rename this to reflect the inclusion of the Cantor set for comparison.}
+
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.5]{Chapters/Figures/Kochcurve.png} 
-\caption[Koch Curve]{Iterations of the Koch snowflake, a simple fractal exhibiting many characteristics typical of fractals. The straight line segment at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
+\includegraphics[height=0.6\textwidth]{Chapters/Figures/Kochcurve.png} 
+\caption[Koch Curve]{Iterations of the Koch snowflake, a simple fractal exhibiting many characteristics typical of fractals. The initial figure at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
 \end{figure}
 
 We note the most obvious properties of this fractal that separate it from a non-fractal shape. 
-\textit{Its shape is defined recursively.} The Koch curve is a line segment on which an infinite number of iterations is performed as follows: for every line segment $ S $ of length $ l_S $ that makes up the figure, an equilateral triangle with side length $l-S/3$ is constructed, using the middle third of $ S $. The middle third of $S$ is then removed, leaving only the other two sides of the triangle. This results in self-similarity at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve. 
+\textit{Its shape is defined recursively.} The Koch curve is a line segment on which an infinite number of iterations is performed as follows: each line segment in the $n$th iteration of the curve, having length $L_n$, is replaced by a scaled-down version of $E_1$ with length $4L_n/3$. This results in self-similarity at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve. 
 
 \begin{myproposition} The length of the Koch curve is infinite. \end{myproposition}
 \begin{myproof}
@@ -27,7 +28,7 @@ Because of the recursive rule defining the Koch curve, the curve's length is inc
 \begin{equation}
 	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{4}{3}\right)^n L_0
 \end{equation}.
-Limits are linear with respect to multiplication by a constant, so we find
+Limits are linear with respect to multiplication by a constant, so we find:
 \begin{equation}
 	\lim_{n \to \infty}L_n = L_\infty = L_0 \lim_{n \to \infty} \left(\frac{4}{3}\right)^n
 \end{equation}
@@ -38,13 +39,15 @@ which clearly increases without bound.\todo{Do I need to show this any more clea
 The length of the Koch curve is thus infinite.
 \end{myproof}
 
-Other non-fractal approaches to the curve's characterization yield equally confusing results \todo{show these results and why they're confusing. do the math that gets us there.}: the additional length added with each iteration expands the fractal's size in two dimensions, so one would expect to be able to classify the area in the plane that the curve fills. However, the curve's ``roughness'' is difficult to quantify with non-fractal geometry. This, as we will discuss below, leads to the creation of different \textit{fractal dimensions} to classify the space-filling properties of these fractals. 
-\textit{It has a fine structure.} \todo{Figure out what this means and say so, or remove it entirely. Right now it's worthless and confusing.} The fractal has detail at all size scales, no matter how small\citep{fractaltextbook}. 
+Area, another property of shapes in non-fractal geometry, is likewise not useful in describing the Koch curve: though we see that the additional length added with each iteration expands the fractal's size in the plane, the added segments have no thickness, and the area filled by the curve is thus zero.
 
+\todo{introduce the Cantor set and show why we need a fractal dimension}
+
+Instead of classifying fractals by their length and area, then, we examine their ``roughness''. This, as we will discuss below, leads to the creation of different \textit{fractal dimensions} to classify the space-filling properties of these fractals.
 
 \section{Characterizing fractals}
 
-As seen above, whereas non-fractal sets\footnote{We use the word ``set" to more precisely refer to what might be simply called a shape. After all, every shape is just a set, possibly infinite, of points.} \todo{Move this footnote into the body.}  have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
+We use the word ``set" to more precisely refer to what might be simply called a shape; after all, every shape is just a set, possibly infinite, of points. As seen above, whereas non-fractal sets have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
 
 \subsection{Spaces, sets, and measures}
 
@@ -53,11 +56,11 @@ Before we venture further into classifying fractals by their dimension, we need 
 \begin{mydef}
 We define an n-dimensional space $ \mathbb{R}^{n} $ to be the set of all points that can be identified by an ordered n-ple of real numbers. Hence, for example, any point $ \alpha $ in $ \mathbb{R}^{5} $ can be identified by the ordered 5-ple $ \alpha = (\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}, \alpha_{5})$ where $ \alpha_{1} ... \alpha_{5} \in \mathbb{R} $.\end{mydef}
 
-We will now work by analogy to discuss the concept of a \textit{measure}\footnote{Analogy adapted from \citep{mandelbrotmultifractal}}. Consider a geographical map of some landmass, with a function $ \mu(\mathcal{S}) $ that denotes the amount of groundwater below any subset $ \mathcal{S} $ of the landmass. We note three intuitive properties of this measure $ \mu $:\begin{enumerate}
-\item The measure of any subset of the space---or the amount of groundwater under any plot of land on the landmass---gives a numerical indication of the plot of land's magnitude. That is, it describes the plot's size when measured by groundwater content.
+We will now work by analogy to discuss the concept of a \textit{measure}\footnote{Analogy adapted from \citep{mandelbrotmultifractal}}. Consider a geographical map of some landmass, with a function $ \mu(\mathcal{S}) $ that denotes the volume of groundwater below any subset $ \mathcal{S} $ of the landmass. We note three intuitive properties of this measure $ \mu $:\begin{enumerate}
+\item The measure of any subset of the space---or the volume of groundwater under any plot of land on the landmass---gives a numerical indication of the plot of land's magnitude. That is, it describes the plot's size when measured by groundwater content.
 \item\label{measureofanullset} There should be no water under a plot of land with no size. 
 \item\label{measureofsubsets} If a plot of land $ A $ contains another plot of land $ B $, there should be less or as much groundwater under $B$ as there is under $A$. 
-\item\label{measureaddition} If we find the amount of groundwater under a plot of land on the landmass, we should get the same value or less than when we split the plot up into many pieces with overlap allowed and add up the amount of groundwater found under each piece. 
+\item\label{measureaddition} If we find the volume of groundwater under a plot of land on the landmass, we should get the same value or less than when we split the plot up into many pieces with overlap allowed and add up the volume of groundwater found under each piece. 
 \end{enumerate}
 We now formalize these properties below.
 
@@ -83,7 +86,7 @@ We call the space on which the measure resides the \textit{support} of the measu
 \end{mydef}
 
 \subsection{The dimension of a fractal}
-Recall that in the example of the Koch curve above, we failed to classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as a kind of analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
+Recall that in the example of the Koch curve above, we failed to usefully classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as a kind of analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
 
 \subsubsection{What we mean by ``dimension''}\label{intuitivedimension}
 Consider a line segment of length $ L_0 $. Note that when the segment is scaled by $\epsilon$, a number greater than one, into smaller pieces of equal size, each segment produced has length $L_0/\epsilon$. Now we repeat our exploration with a square of side length $ L_0 $. Here, when the square is scaled by a factor $\epsilon$, the smaller squares produced have an area $1/\epsilon^2$ the original. Again, when we repeat this procedure with a cube of side length $ L_0 $ we find that the cubes produced all have volumes $1/\epsilon^3$ the original. Hence, we generalize that the number of pieces $n$ produced from scaling by a factor of $\epsilon$ is given by 
@@ -97,7 +100,7 @@ We now return to the Koch curve. We recognize the first iteration $E_1$ as the f
 \begin{myremark}What does this dimension mean? Again, it seems intuitive that the dimension would be between one and two---this generalization of dimension should resemble the more familiar case of non-fractional dimensions, and the Koch curve is certainly greater than one-dimensional while not filling the entire plane as a two-dimensional shape would. \end{myremark}
 
 \subsubsection{Box-counting dimension}
-We now seek to formalize our understanding of dimension\footnote{`There is no one dimension that can only describe a fractal set; many different types of dimension exist, and all provide very different conceptions of a fractal's properties\citep{fractaltextbook}.} We wish  and do so in such a way that allows us to handle fractal objects that are not strictly self-similar\footnote{As mentioned in Section \ref{fractalbasics}, fractals are not as concretely defined as one would hope, and we tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Section \ref{fractalbasics}---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}. In addition, the box-counting dimension is computationally much more simple than other fractal dimensions, such as the Hausdorff dimension \citep{fractaltextbook}.
+We now seek to formalize our understanding of dimension\footnote{``There is no one dimension that can only describe a fractal set; many different types of dimension exist, and all provide very different conceptions of a fractal's properties'' \citep{fractaltextbook}.} Furthermore, we wish to formalize this understanding in a way that allows us to discuss fractal objects that are not strictly self-similar\footnote{As mentioned in Section \ref{fractalbasics}, fractals are not as concretely defined as one would hope, and we tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Section \ref{fractalbasics}---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}. In addition, the box-counting dimension is computationally much more simple than other fractal dimensions, such as the Hausdorff dimension \citep{fractaltextbook}.
 
 The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well.} with side length $\epsilon$. We extend the number of replacements $ n $ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. The box-counting dimension is given by the limit of this extension of Equation \ref{dimensionEqn} as the side $\epsilon$ approaches zero.
 
