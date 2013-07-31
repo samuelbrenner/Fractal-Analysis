@@ -11,12 +11,12 @@
 Before we discuss multifractals, we begin with a discussion of normal, or mono-, fractals. We note the intuitive properties present in a simple example and how they differ from non-fractal geometry, and then \todo{This is probably going to be removed when the paper is changed to focus only on fractals and ignores multifractals.}
 
 %----------------------------------------------------------------------------------------
-\section{An example of a fractal: the Koch snowflake (see Figure \ref{fig:kochcurve})}\label{fractalexample}\todo{rename this to reflect the inclusion of the Cantor set for comparison.}
+\paragraph{An example of a fractal: the Koch snowflake (see Figure \ref{fig:kochcurve})}\label{fractalexample}\todo{rename this to reflect the inclusion of the Cantor set for comparison.}
 
 \begin{figure}[h]
 \centering
 \includegraphics[height=0.6\textwidth]{Chapters/Figures/Kochcurve.png} 
-\caption[Koch Curve]{Iterations of the Koch snowflake, a simple fractal exhibiting many characteristics typical of fractals. The initial figure at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
+\caption[Koch Curve]{Iterations of the Koch CURVE, a simple fractal exhibiting many characteristics typical of fractals. The initial figure at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
 \end{figure}
 
 We note the most obvious properties of this fractal that separate it from a non-fractal shape. 
@@ -41,11 +41,42 @@ The length of the Koch curve is thus infinite.
 
 Area, another property of shapes in non-fractal geometry, is likewise not useful in describing the Koch curve: though we see that the additional length added with each iteration expands the fractal's size in the plane, the added segments have no thickness, and the area filled by the curve is thus zero.
 
+
+
+\paragraph{Another example of a fractal: the middle-third Cantor set (see Figure \ref{fig:cantorset})}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{Chapters/Figures/cantorset.png} 
+\caption[Middle-third Cantor set]{}\label{fig:cantorset}
+\end{figure}\todo{finish caption}
+
+
+
+
 \todo{introduce the Cantor set and show why we need a fractal dimension}
+
+
+
+
+
 
 Instead of classifying fractals by their length and area, then, we examine their ``roughness''. This, as we will discuss below, leads to the creation of different \textit{fractal dimensions} to classify the space-filling properties of these fractals.
 
-\section{Characterizing fractals}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Fractal dimensions}
 
 We use the word ``set" to more precisely refer to what might be simply called a shape; after all, every shape is just a set, possibly infinite, of points. As seen above, whereas non-fractal sets have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
 

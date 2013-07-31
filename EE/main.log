@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  30 JUL 2013 20:55
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  30 JUL 2013 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -929,57 +929,73 @@ Chapter 1.
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 11.
 
+Package hyperref Warning: Difference (4) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 14.
+
+
 LaTeX Warning: Marginpar on page 1 moved.
 
-<Chapters/Figures/Kochcurve.png, id=134, 404.51125pt x 466.74374pt>
+<Chapters/Figures/Kochcurve.png, id=143, 404.51125pt x 466.74374pt>
 File: Chapters/Figures/Kochcurve.png Graphic file (type png)
 
 <use Chapters/Figures/Kochcurve.png>
 Package pdftex.def Info: Chapters/Figures/Kochcurve.png used on input line 18.
 (pdftex.def)             Requested size: 217.08725pt x 250.48637pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[1
+ [1
 
 
 
-]
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 44--44
+ <./Chapters/Figures/Kochcurve.png>]
+<Chapters/Figures/cantorset.png, id=157, 961.5925pt x 308.15125pt>
+File: Chapters/Figures/cantorset.png Graphic file (type png)
+
+<use Chapters/Figures/cantorset.png>
+Package pdftex.def Info: Chapters/Figures/cantorset.png used on input line 50.
+(pdftex.def)             Requested size: 375.7232pt x 120.40419pt.
+
+
+Package hyperref Warning: Difference (3) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 52.
+
+
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
 [][][][]\OT1/cmr/m/n/10.95 introduce 
  []
 
 
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 44--44
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
 [][][][]\OT1/cmr/m/n/10.95 introduce 
  []
 
 
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 44--44
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
 [][][][]\OT1/cmr/m/n/10.95 introduce 
  []
 
 
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 44--44
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
 [][][][]\OT1/cmr/m/n/10.95 introduce 
  []
 
-[2 <./Chapters/Figures/Kochcurve.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 71.
+
+LaTeX Warning: Marginpar on page 2 moved.
+
+[2 <./Chapters/Figures/cantorset.png>] [3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 102.
+
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 71.
- [3] [4]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
+ [4]
 
-LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 103.
+LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 134.
 
 
 
-LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 103.
+LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 134.
 
 
 [5] [6] (./main.tdo)
@@ -1040,7 +1056,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A9E5EE0C2D97C6BEC835B2982DAEFE63;3554.
+(rerunfilecheck)             Checksum: F5F1A8F48766A46616A5C3F7AE389657;3973.
 
 
 LaTeX Warning: There were undefined references.
@@ -1048,10 +1064,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 20572 strings out of 493488
- 342822 string characters out of 3141326
- 963423 words of memory out of 3000000
- 22680 multiletter control sequences out of 15000+200000
+ 20587 strings out of 493488
+ 343186 string characters out of 3141326
+ 966310 words of memory out of 3000000
+ 22691 multiletter control sequences out of 15000+200000
  17451 words of font info for 66 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,12n,74p,1119b,1869s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1075,10 +1091,10 @@ e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2012/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (33 pages, 339267 bytes).
+Output written on main.pdf (33 pages, 343051 bytes).
 PDF statistics:
- 1249 PDF objects out of 1440 (max. 8388607)
- 1180 compressed objects within 12 object streams
- 786 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1263 PDF objects out of 1440 (max. 8388607)
+ 1193 compressed objects within 12 object streams
+ 789 named destinations out of 1000 (max. 500000)
+ 167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
