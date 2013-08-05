@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  30 JUL 2013 23:37
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  5 AUG 2013 14:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -800,25 +800,26 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \c@mydef=\count164
 \c@myproposition=\count165
 \c@myproof=\count166
+\c@myobs=\count167
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
@@ -833,44 +834,44 @@ Package caption Info: End \AtBeginDocument code.
 
 (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count167
+\scratchcounter=\count168
 \scratchdimen=\dimen193
 \scratchbox=\box44
-\nofMPsegments=\count168
-\nofMParguments=\count169
+\nofMPsegments=\count169
+\nofMParguments=\count170
 \everyMPshowfont=\toks41
-\MPscratchCnt=\count170
+\MPscratchCnt=\count171
 \MPscratchDim=\dimen194
-\MPnumerator=\count171
-\makeMPintoPDFobject=\count172
+\MPnumerator=\count172
+\makeMPintoPDFobject=\count173
 \everyMPtoPDFconversion=\toks42
 )
-\c@lstlisting=\count173
+\c@lstlisting=\count174
 \AtBeginShipoutBox=\box45
-Package hyperref Info: Link coloring ON on input line 48.
+Package hyperref Info: Link coloring ON on input line 49.
  (/usr/local/texlive/2012/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count174
+\c@section@level=\count175
 )
-LaTeX Info: Redefining \ref on input line 48.
-LaTeX Info: Redefining \pageref on input line 48.
-LaTeX Info: Redefining \nameref on input line 48.
+LaTeX Info: Redefining \ref on input line 49.
+LaTeX Info: Redefining \pageref on input line 49.
+LaTeX Info: Redefining \nameref on input line 49.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 88.
+LaTeX Font Info:    Try loading font information for U+msa on input line 89.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 88.
+LaTeX Font Info:    Try loading font information for U+msb on input line 89.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -935,7 +936,7 @@ Package hyperref Warning: Difference (4) between bookmark levels is greater
 
 LaTeX Warning: Marginpar on page 1 moved.
 
-<Chapters/Figures/Kochcurve.png, id=143, 404.51125pt x 466.74374pt>
+<Chapters/Figures/Kochcurve.png, id=142, 404.51125pt x 466.74374pt>
 File: Chapters/Figures/Kochcurve.png Graphic file (type png)
 
 <use Chapters/Figures/Kochcurve.png>
@@ -946,7 +947,7 @@ Package pdftex.def Info: Chapters/Figures/Kochcurve.png used on input line 18.
 
 
  <./Chapters/Figures/Kochcurve.png>]
-<Chapters/Figures/cantorset.png, id=157, 961.5925pt x 308.15125pt>
+<Chapters/Figures/cantorset.png, id=155, 961.5925pt x 308.15125pt>
 File: Chapters/Figures/cantorset.png Graphic file (type png)
 
 <use Chapters/Figures/cantorset.png>
@@ -955,47 +956,23 @@ Package pdftex.def Info: Chapters/Figures/cantorset.png used on input line 50.
 
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 52.
-
-
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
-[][][][]\OT1/cmr/m/n/10.95 introduce 
- []
-
-
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
-[][][][]\OT1/cmr/m/n/10.95 introduce 
- []
-
-
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
-[][][][]\OT1/cmr/m/n/10.95 introduce 
- []
-
-
-Overfull \hbox (0.59047pt too wide) in paragraph at lines 57--57
-[][][][]\OT1/cmr/m/n/10.95 introduce 
- []
-
-
-LaTeX Warning: Marginpar on page 2 moved.
+(hyperref)                than one, level fixed on input line 54.
 
 [2 <./Chapters/Figures/cantorset.png>] [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 102.
-
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 98.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
  [4]
 
-LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 134.
+LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 130.
 
 
 
-LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 134.
+LaTeX Warning: Reference `fractalbasics' on page 5 undefined on input line 130.
 
 
 [5] [6] (./main.tdo)
@@ -1046,28 +1023,28 @@ Appendix C.
  Bibliography
 ------------------------------------------------------------------------------
 (./main.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 197.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 198.
  [27
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 198.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 198.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 198.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F5F1A8F48766A46616A5C3F7AE389657;3973.
+(rerunfilecheck)             Checksum: F21E6A02D1FD1C751FA05E9CBDACE994;3979.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 198.
  ) 
 Here is how much of TeX's memory you used:
- 20587 strings out of 493488
- 343186 string characters out of 3141326
- 966310 words of memory out of 3000000
- 22691 multiletter control sequences out of 15000+200000
+ 20582 strings out of 493488
+ 342938 string characters out of 3141326
+ 960534 words of memory out of 3000000
+ 22688 multiletter control sequences out of 15000+200000
  17451 words of font info for 66 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,12n,74p,1119b,1869s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1083,18 +1060,19 @@ local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
 cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
 l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
 texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
-live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
-e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-12/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2012/tex
-mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (33 pages, 343051 bytes).
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2012/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (33 pages, 351104 bytes).
 PDF statistics:
- 1263 PDF objects out of 1440 (max. 8388607)
+ 1264 PDF objects out of 1440 (max. 8388607)
  1193 compressed objects within 12 object streams
- 789 named destinations out of 1000 (max. 500000)
+ 787 named destinations out of 1000 (max. 500000)
  167 words of extra memory for PDF output out of 10000 (max. 10000000)
 

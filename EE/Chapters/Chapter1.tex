@@ -11,23 +11,25 @@
 Before we discuss multifractals, we begin with a discussion of normal, or mono-, fractals. We note the intuitive properties present in a simple example and how they differ from non-fractal geometry, and then \todo{This is probably going to be removed when the paper is changed to focus only on fractals and ignores multifractals.}
 
 %----------------------------------------------------------------------------------------
-\paragraph{An example of a fractal: the Koch snowflake (see Figure \ref{fig:kochcurve})}\label{fractalexample}\todo{rename this to reflect the inclusion of the Cantor set for comparison.}
+\subsection{Example of a fractal: the Koch curve (see Figure \ref{fig:kochcurve})}\label{fractalexample}\todo{rename this to reflect the inclusion of the Cantor set for comparison.}
 
 \begin{figure}[h]
 \centering
 \includegraphics[height=0.6\textwidth]{Chapters/Figures/Kochcurve.png} 
-\caption[Koch Curve]{Iterations of the Koch CURVE, a simple fractal exhibiting many characteristics typical of fractals. The initial figure at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
+\caption[Koch Curve]{Iterations of the Koch curve, a simple fractal exhibiting many characteristics typical of fractals. The initial figure at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
 \end{figure}
 
 We note the most obvious properties of this fractal that separate it from a non-fractal shape. 
-\textit{Its shape is defined recursively.} The Koch curve is a line segment on which an infinite number of iterations is performed as follows: each line segment in the $n$th iteration of the curve, having length $L_n$, is replaced by a scaled-down version of $E_1$ with length $4L_n/3$. This results in self-similarity at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve. 
 
-\begin{myproposition} The length of the Koch curve is infinite. \end{myproposition}
-\begin{myproof}
+\begin{myobs}\textit{Its shape is defined recursively.} The Koch curve is a line segment on which an infinite number of iterations is performed as follows: each line segment in the $n$th iteration of the curve, having length $L_n$, is replaced by a scaled-down version of $E_1$ with length $4L_n/3$. This results in self-similarity at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve.\end{myobs}
+
+\begin{myobs}The length of the Koch curve is infinite.\end{myobs}
+
+\begin{proof}
 Because of the recursive rule defining the Koch curve, the curve's length is increased by a factor of $ 4/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 4/3 $:
 \begin{equation}
-	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{4}{3}\right)^n L_0
-\end{equation}.
+	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{4}{3}\right)^n L_0.
+\end{equation}
 Limits are linear with respect to multiplication by a constant, so we find:
 \begin{equation}
 	\lim_{n \to \infty}L_n = L_\infty = L_0 \lim_{n \to \infty} \left(\frac{4}{3}\right)^n
@@ -37,24 +39,49 @@ which clearly increases without bound.\todo{Do I need to show this any more clea
 	\lim_{n \to \infty}L_n = \infty 
 \end{equation}
 The length of the Koch curve is thus infinite.
-\end{myproof}
+\end{proof}
 
-Area, another property of shapes in non-fractal geometry, is likewise not useful in describing the Koch curve: though we see that the additional length added with each iteration expands the fractal's size in the plane, the added segments have no thickness, and the area filled by the curve is thus zero.
+\begin{myobs}\textit{The Koch curve has no area.} Area, another property of shapes in non-fractal geometry, is likewise not useful in describing the Koch curve: though we see that the additional length added with each iteration expands the fractal's size in the plane, the added segments have no thickness, and the area filled by the curve is thus zero.\end{myobs} \todo[inline]{move the discussion of area's utility to outside the observation. We'll discuss this after we use the Cantor set as a comparison.}
 
+
+%---------------------------------
+% CANTOR SET
+%---------------------------------
 \paragraph{Another example of a fractal: the middle-third Cantor set (see Figure \ref{fig:cantorset})}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\textwidth]{Chapters/Figures/cantorset.png} 
-\caption[Middle-third Cantor set]{}\label{fig:cantorset}
-\end{figure}\todo{finish caption}
+\caption[Middle-third Cantor set]{The middle-third Cantor set. This fractal is generated by replacing each line segment in the $n$th iteration, having length $L_n$, with a scaled-down version of $E_1$ with length $L_n/3$.}\label{fig:cantorset}
+\end{figure}
+
+We again note properties of this fractal that differentiate it from a non-fractal shape.
+
+\begin{myobs}\textit{Its shape is defined recursively.} Just as with the Koch curve, this fractal is defined by a simple, recursive rule. This results in self-similarity at all scales: any portion of the set contains an infinite number of repetitions of the original set.\end{myobs}
+
+\begin{myobs}Its length is zero.\end{myobs}
+\begin{proof}
+We show that the length of the Cantor set is zero in the same way that we showed that the length of the Koch curve is infinite. 
+
+Because of the recursive rule defining the Cantor set, the curve's length is decreased by a factor of $ 2/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 2/3 $:
+\begin{equation}
+	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{2}{3}\right)^n L_0.
+\end{equation}
+Limits are linear with respect to multiplication by a constant, so we find:
+\begin{equation}
+	\lim_{n \to \infty}L_n = L_\infty = L_0 \lim_{n \to \infty} \left(\frac{2}{3}\right)^n
+\end{equation}
+which clearly tends toward zero.
+\begin{equation}
+	\lim_{n \to \infty}L_n = 0. 
+\end{equation}
+The length of the Cantor set is thus zero.
+\end{proof}
+
+\begin{myobs}\textit{Its area is zero.} As with the Koch curve, \todo[color=green]{Show why $L$ is 0.}\end{myobs}
 
 
-
-
-\todo{introduce the Cantor set and show why we need a fractal dimension}
-
-
+We have now introduced two fractals. The first, the Koch curve, has infinite length but no area. The second, the middle-third Cantor set, has no length and no area. These characteristics do not, however, provide us much information about the fractals' shape: we can envisage\todo{sp?} many other fractals that, like the middle-third Cantor set, have neither length nor width but that also have entirely different appearances. In the middle-third Cantor set, we removed the middle $1/3$ of every line segment to generate the next iteration. Suppose instead that we construct a middle-fifteenth Cantor set. We perform an identical procedure to generate this fractal, but add
 
 
 
@@ -115,7 +142,7 @@ We call the space on which the measure resides the \textit{support} of the measu
 \end{mydef}
 
 \subsection{The dimension of a fractal}
-Recall that in the example of the Koch curve above, we failed to usefully classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as a kind of analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
+Recall that in the example of the Koch curve above, we failed to usefully classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as an analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
 
 \subsubsection{What we mean by ``dimension''}\label{intuitivedimension}
 Consider a line segment of length $ L_0 $. Note that when the segment is scaled by $\epsilon$, a number greater than one, into smaller pieces of equal size, each segment produced has length $L_0/\epsilon$. Now we repeat our exploration with a square of side length $ L_0 $. Here, when the square is scaled by a factor $\epsilon$, the smaller squares produced have an area $1/\epsilon^2$ the original. Again, when we repeat this procedure with a cube of side length $ L_0 $ we find that the cubes produced all have volumes $1/\epsilon^3$ the original. Hence, we generalize that the number of pieces $n$ produced from scaling by a factor of $\epsilon$ is given by 
