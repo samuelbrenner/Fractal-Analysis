@@ -5,18 +5,18 @@
 \contentsline {chapter}{List of Figures}{iv}{dummy.4}
 \contentsline {chapter}{List of Tables}{v}{dummy.6}
 \contentsline {chapter}{\numberline {1}Introduction: What is a fractal?}{1}{chapter.8}
-\contentsline {paragraph}{An example of a fractal: the Koch snowflake (see Figure \ref {fig:kochcurve})}{1}{section*.11}
-\contentsline {paragraph}{Another example of a fractal: the middle-third Cantor set (see Figure \ref {fig:cantorset})}{3}{figure.caption.20}
-\contentsline {section}{\numberline {1.1}Fractal dimensions}{3}{section.21}
-\contentsline {subsection}{\numberline {1.1.1}Spaces, sets, and measures}{3}{subsection.22}
-\contentsline {subsection}{\numberline {1.1.2}The dimension of a fractal}{4}{subsection.33}
-\contentsline {subsubsection}{\numberline {1.1.2.1}What we mean by ``dimension''}{5}{subsubsection.34}
-\contentsline {subsubsection}{\numberline {1.1.2.2}Box-counting dimension}{6}{subsubsection.39}
-\contentsline {chapter}{\numberline {2}From (Mono)fractals to Multifractals}{8}{chapter.48}
-\contentsline {chapter}{\numberline {3}Applications}{9}{chapter.49}
+\contentsline {subsection}{\numberline {1.0.1}Example of a fractal: the Koch curve (see Fig. \ref {fig:kochcurve})}{1}{subsection.10}
+\contentsline {paragraph}{Another example of a fractal: the middle-third Cantor set (see Fig. \ref {fig:cantorset})}{2}{section*.23}
+\contentsline {section}{\numberline {1.1}Fractal dimensions}{4}{section.33}
+\contentsline {subsection}{\numberline {1.1.1}Spaces, sets, and measures}{4}{subsection.34}
+\contentsline {subsection}{\numberline {1.1.2}The dimension of a fractal}{6}{subsection.45}
+\contentsline {subsubsection}{\numberline {1.1.2.1}What we mean by ``dimension''}{6}{subsubsection.46}
+\contentsline {subsubsection}{\numberline {1.1.2.2}Box-counting dimension}{7}{subsubsection.51}
+\contentsline {chapter}{\numberline {2}From (Mono)fractals to Multifractals}{10}{chapter.60}
+\contentsline {chapter}{\numberline {3}Applications}{11}{chapter.61}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Source Code of Box-Counting Module}{10}{appendix.50}
-\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{19}{appendix.454}
-\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{24}{appendix.648}
+\contentsline {chapter}{\numberline {A}Source Code of Box-Counting Module}{12}{appendix.62}
+\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{21}{appendix.466}
+\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{26}{appendix.660}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{27}{dummy.754}
+\contentsline {chapter}{Bibliography}{29}{dummy.766}
