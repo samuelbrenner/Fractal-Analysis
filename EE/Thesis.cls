@@ -179,7 +179,7 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Multifractal Analysis and its Applications} % Your thesis title - this is used in the title and abstract
+\thesistitle{The development of the fractal dimension and its applications} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
 \supervisor{Ms. Margaret \textsc{Langfield}} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   

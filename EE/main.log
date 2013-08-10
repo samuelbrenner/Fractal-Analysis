@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  5 AUG 2013 16:15
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  10 AUG 2013 17:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -883,6 +883,8 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ------------------------------------------------------------------------------
  Abstract Page
 ------------------------------------------------------------------------------
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 115.
 [1]
 ------------------------------------------------------------------------------
  Acknowledgements
@@ -925,74 +927,81 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ] (./Chapters/Chapter1.tex
 Chapter 1.
 ------------------------------------------------------------------------------
- 1 Introduction: What is a fractal?
+ 1 Fractals and their dimensions
 ------------------------------------------------------------------------------
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 11.
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 14.
-
-
-LaTeX Warning: Marginpar on page 1 moved.
-
-
-LaTeX Warning: Marginpar on page 1 moved.
-
-<Chapters/Figures/Kochcurve.png, id=145, 404.51125pt x 466.74374pt>
+<Chapters/Figures/Kochcurve.png, id=146, 404.51125pt x 466.74374pt>
 File: Chapters/Figures/Kochcurve.png Graphic file (type png)
 
 <use Chapters/Figures/Kochcurve.png>
-Package pdftex.def Info: Chapters/Figures/Kochcurve.png used on input line 18.
+Package pdftex.def Info: Chapters/Figures/Kochcurve.png used on input line 21.
 (pdftex.def)             Requested size: 217.08725pt x 250.48637pt.
- [1
-
-
-
- <./Chapters/Figures/Kochcurve.png>]
-
-Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 50.
-
-
-LaTeX Warning: Marginpar on page 2 moved.
-
-<Chapters/Figures/cantorset.png, id=161, 961.5925pt x 308.15125pt>
-File: Chapters/Figures/cantorset.png Graphic file (type png)
-
-<use Chapters/Figures/cantorset.png>
-Package pdftex.def Info: Chapters/Figures/cantorset.png used on input line 54.
-(pdftex.def)             Requested size: 375.7232pt x 120.40419pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] [3 <./Chapters/Figures/cantorset.png>]
-<Chapters/Figures/middle15.png, id=194, 950.55125pt x 475.7775pt>
+[1
+
+
+
+] [2 <./Chapters/Figures/Kochcurve.png>]
+<Chapters/Figures/cantorset.png, id=178, 961.5925pt x 308.15125pt>
+File: Chapters/Figures/cantorset.png Graphic file (type png)
+
+<use Chapters/Figures/cantorset.png>
+Package pdftex.def Info: Chapters/Figures/cantorset.png used on input line 57.
+(pdftex.def)             Requested size: 375.7232pt x 120.40419pt.
+ [3 <./Chapters/Figures/cantorset.png>]
+<Chapters/Figures/middle15.png, id=192, 950.55125pt x 475.7775pt>
 File: Chapters/Figures/middle15.png Graphic file (type png)
 
 <use Chapters/Figures/middle15.png>
-Package pdftex.def Info: Chapters/Figures/middle15.png used on input line 90.
+Package pdftex.def Info: Chapters/Figures/middle15.png used on input line 93.
 (pdftex.def)             Requested size: 375.7232pt x 188.05708pt.
  [4 <./Chapters/Figures/middle15.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 134.
+[5] [6]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 154.
 
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 134.
- [5] [6]
-
-LaTeX Warning: Reference `fractalbasics' on page 7 undefined on input line 166.
-
-
-
-LaTeX Warning: Reference `fractalbasics' on page 7 undefined on input line 166.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 154.
+ [7]
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 177--177
+[][][][]\OT1/cmr/m/n/10.95 introduce 
+ []
 
 
-[7] [8] (./main.tdo)
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 177--177
+[][][][]\OT1/cmr/m/n/10.95 introduce 
+ []
+
+
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 177--177
+[][][][]\OT1/cmr/m/n/10.95 introduce 
+ []
+
+
+Overfull \hbox (0.59047pt too wide) in paragraph at lines 177--177
+[][][][]\OT1/cmr/m/n/10.95 introduce 
+ []
+
+
+LaTeX Warning: Reference `fractalbasics' on page 8 undefined on input line 179.
+
+
+
+LaTeX Warning: Reference `fractalbasics' on page 8 undefined on input line 179.
+
+
+
+LaTeX Warning: Marginpar on page 8 moved.
+
+
+LaTeX Warning: Reference `intuitivedimension' on page 8 undefined on input line
+ 189.
+
+[8] (./main.tdo)
 \tf@tdo=\write8
 \openout8 = `main.tdo'.
 
@@ -1001,14 +1010,14 @@ LaTeX Warning: Reference `fractalbasics' on page 7 undefined on input line 166.
 ]
 Chapter 2.
 ------------------------------------------------------------------------------
- 2 From (Mono)fractals to Multifractals
+ 2 Applications
 ------------------------------------------------------------------------------
 ) (./Chapters/Chapter3.tex [10
 
 ]
 Chapter 3.
 ------------------------------------------------------------------------------
- 3 Applications
+ 3 Multifractals: a brief discussion and their applications
 ------------------------------------------------------------------------------
 ) (./Appendices/AppendixA.tex [11
 
@@ -1050,7 +1059,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 198.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 198.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 198.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A882CBF836DF888D87DB435C37E47C16;3952.
+(rerunfilecheck)             Checksum: 05FA62C788A80B6952C651EEFE8D46C6;4112.
 
 
 LaTeX Warning: There were undefined references.
@@ -1058,13 +1067,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 198.
  ) 
 Here is how much of TeX's memory you used:
- 20622 strings out of 493488
- 343801 string characters out of 3141326
- 972424 words of memory out of 3000000
- 22713 multiletter control sequences out of 15000+200000
+ 20636 strings out of 493488
+ 344111 string characters out of 3141326
+ 973142 words of memory out of 3000000
+ 22723 multiletter control sequences out of 15000+200000
  17451 words of font info for 66 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,12n,74p,1119b,1869s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,12n,74p,1054b,1867s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -1072,24 +1081,27 @@ usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></
 usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
 sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></u
 sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
-live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2012/texmf-
-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (35 pages, 363385 bytes).
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2012/texmf-dist/f
+onts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (35 pages, 385810 bytes).
 PDF statistics:
- 1295 PDF objects out of 1440 (max. 8388607)
- 1220 compressed objects within 13 object streams
- 801 named destinations out of 1000 (max. 500000)
+ 1310 PDF objects out of 1440 (max. 8388607)
+ 1232 compressed objects within 13 object streams
+ 805 named destinations out of 1000 (max. 500000)
  172 words of extra memory for PDF output out of 10000 (max. 10000000)
 
