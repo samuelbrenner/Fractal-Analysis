@@ -1,14 +1,27 @@
-\begin{thebibliography}{2}
+\begin{thebibliography}{4}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Koch(1904)]{Kochcurve}
+H.~von. Koch.
+\newblock Sur une courbe continue sans tangente, obtenue par une construction
+  géométrique élémentaire.
+\newblock \emph{Archiv för Matemat., Astron. och Fys.}, 1:\penalty0 681--702,
+  1904.
+
 \bibitem[Falconer(2003)]{fractaltextbook}
 K.~Falconer.
 \newblock \emph{Fractal Geometry: Mathematical Foundations and Applications}.
 \newblock Wiley, 2003.
+
+\bibitem[Smith(1874)]{Cantorset}
+Henry~J.S. Smith.
+\newblock On the integration of discontinuous functions.
+\newblock \emph{Proceedings of the London Mathematical Society, Series 1},
+  6:\penalty0 140--153, 1874.
 
 \bibitem[man(1992)]{mandelbrotmultifractal}
 \emph{Chaos and Fractals}, chapter Appendix B.

@@ -8,13 +8,13 @@
 
 %----------------------------------------------------------------------------------------
 
-\todo{add intro}
-
 %----------------------------------------------------------------------------------------
 \section{Why a fractal dimension is necessary}
-We introduce two fractals and discuss the properties they have that lead us to call them fractal. We then show how characterizations of their geometry without fractal dimensions are not useful in differentiating one from another. 
+We introduce two fractal shapes and observe various properties that lead them to be called fractals. We then show how characterizations of their geometry without fractal dimensions are not useful in differentiating one from another. 
 
-\subsection{Example of a fractal: the Koch curve (see Fig. \ref{fig:kochcurve})}\label{fractalexample}\todo[color=red]{cite a source for the curve}
+\subsection{Example of a fractal: the Koch curve}\label{fractalexample}
+
+We first discuss the Koch curve, one of the earliest fractals to be discovered. Shown in Fig. \ref{fig:kochcurve}, the curve was first constructed from a line segment by a recursive procedure \citep{Kochcurve}. However, it will be more useful to describe its construction in the following manner.
 
 \begin{figure}[h]
 \centering
@@ -22,22 +22,33 @@ We introduce two fractals and discuss the properties they have that lead us to c
 \caption[Koch Curve]{Iterations of the Koch curve, a simple fractal exhibiting many characteristics typical of fractals. The initial figure at the top is made more and more textured with each iteration $E_{n}$, becoming rougher and more fractal-like as it approaches the final Koch curve $F$. Image credit: \citep{fractaltextbook}. }\label{fig:kochcurve}
 \end{figure}
 
+\paragraph{Construction of the Koch curve} A curve $E_1$ is constructed by taking some line segment $E_0$ and dividing it into thirds. An equilateral triangle is constructed on the middle third of the segment $E_0$, such that the middle third of $E_0$ is one of the triangle's sides. The middle third of $E_0$ is then removed. Each successive iteration $E_n$ of the curve's generation is performed as follows: Each line segment in the $n$th iteration of the curve, having length $L_n$, is replaced by a scaled-down version of $E_1$ with length $4L_n/3$. 
+
+The Koch curve $F$ is the result of an infinite number of applications of the iteration described above.
+\begin{equation}\label{limitofE_n}
+	F = \lim_{n \to \infty}E_n
+\end{equation}
+
 We note the most obvious properties of this fractal that separate it from a non-fractal shape. 
 
-\begin{myobs}\textit{Its shape is defined recursively.} The Koch curve is a line segment on which an infinite number of iterations is performed as follows: each line segment in the $n$th iteration of the curve, having length $L_n$, is replaced by a scaled-down version of $E_1$ with length $4L_n/3$. This results in self-similarity at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve.\end{myobs}
+\begin{myobs}\textit{Its shape is defined recursively.} The Koch curve is a line segment on which an infinite number of the iterations described above is performed. This results in self-similarity at all scales: any section of the Koch curve contains an infinite number of repetitions of the original curve.\end{myobs}
 
 \begin{myobs}\textit{The length of the Koch curve is infinite.}\end{myobs}
 
 \begin{proof}
-Because of the recursive rule defining the Koch curve, the curve's length is increased by a factor of $ 4/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 4/3 $:
+Because of the recursive rule defining the Koch curve, the curve's length is increased by a factor of $ 4/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. 
+\begin{equation}
+	L_n = \left(\frac{4}{3}\right)^n L_0.
+\end{equation}
+The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 4/3 $:
 \begin{equation}
 	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{4}{3}\right)^n L_0.
 \end{equation}
 Limits are linear with respect to multiplication by a constant, so we find:
 \begin{equation}
-	\lim_{n \to \infty}L_n = L_\infty = L_0 \lim_{n \to \infty} \left(\frac{4}{3}\right)^n
+	\lim_{n \to \infty}L_n = L_\infty = L_0 \lim_{n \to \infty} \left(\frac{4}{3}\right)^n,
 \end{equation}
-which clearly increases without bound.\todo{Do I need to show this any more clearly?}
+which clearly increases without bound.
 \begin{equation}
 	\lim_{n \to \infty}L_n = \infty 
 \end{equation}
@@ -50,13 +61,18 @@ The length of the Koch curve is thus infinite.
 %---------------------------------
 % CANTOR SET
 %---------------------------------
-\subsection{Another example of a fractal: the middle-third Cantor set (see Fig. \ref{fig:cantorset})}\todo[color=red]{cite a source for the Cantor set}
+\subsection{Another example of a fractal: the middle-third Cantor set}
+
+We introduce a second fractal, the middle-third Cantor set, and show that it has drastically different properties from the Koch curve described above. It is shown in Fig. \ref{fig:cantorset} and was first described in \citep{Cantorset}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{Chapters/Figures/cantorset.png} 
-\caption[Middle-third Cantor set]{The middle-third Cantor set. This fractal is generated by replacing each line segment in the $n$th iteration, having length $L_n$, with a scaled-down version of $E_1$ with length $L_n/3$.}\label{fig:cantorset}
+\caption[Middle-third Cantor set]{Iterations of the middle-third Cantor set, another simple fractal. The initial figure at the top is made more and more sparse with each iteration $E_n$, before finally approaching the middle-third Cantor set, a figure that has no length, as we show below.}\label{fig:cantorset}
 \end{figure}
+
+\paragraph{Construction of the middle-third Cantor set} 
+A curve $E_1$ is constructed by taking some line segment $E_0$ and removing the middle third. Each successive iteration $E_n$ of the set's generation is performed by replacing each line segment in the $n$th iteration, having length $L_n$, with a scaled-down version of $E_1$ of length $L_n/3$. The middle-third Cantor set $F$ is the result of an infinite number of applications of the iteration described here, and is given by Eq. \ref{limitofE_n}.
 
 We again note properties of this fractal that differentiate it from a non-fractal shape.
 
@@ -65,8 +81,11 @@ We again note properties of this fractal that differentiate it from a non-fracta
 \begin{myobs}\textit{Its length is zero.}\end{myobs}
 \begin{proof}
 We show that the length of the Cantor set is zero in the same way that we showed that the length of the Koch curve is infinite. 
-
-Because of the recursive rule defining the Cantor set, the curve's length is decreased by a factor of $ 2/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 2/3 $:
+Because of the recursive rule defining the Cantor set, the curve's length is decreased by a factor of $ 2/3 $ with each of the infinite iterations. We express the length of the curve after the $n$th iteration as $L_n$. 
+\begin{equation}
+	L_n = \left(\frac{2}{3}\right)^n L_0.
+\end{equation}
+The total length $L_\infty$ can be expressed as an infinite geometric sequence with a common ratio of $ 2/3 $:
 \begin{equation}
 	L_\infty = \lim_{n \to \infty}L_n = \lim_{n \to \infty}\left(\frac{2}{3}\right)^n L_0.
 \end{equation}
@@ -96,7 +115,7 @@ These characteristics do not, however, provide us much information about the fra
 
 \begin{myobs}This middle-fifteenth Cantor set, though it has a different structure than the middle-third Cantor set, also has no length.\end{myobs}
 
-\begin{proof}The length of the middle-fifteenth Cantor set can be expressed as an infinite \todo{is ``infinite'' superfluous?} geometric sequence, just as we did with the middle-third Cantor set. Here, though, the length is decreased by a factor of $14/15$ with each iteration, so the length $L_n$ of the set after $n$ iterations is given by
+\begin{proof}The length of the middle-fifteenth Cantor set can be expressed as an infinite geometric sequence, just as we did with the middle-third Cantor set. Here, though, the length is decreased by a factor of $14/15$ with each iteration, so the length $L_n$ of the set after $n$ iterations is given by
 \begin{equation}
 	L_n = \left(\frac{14}{15}\right)^n L_0.
 \end{equation}
@@ -109,10 +128,14 @@ which still tends to zero as n tends toward infinity. Hence the length of the mi
 
 Instead of classifying fractals by their length and area, then, we examine their ``roughness''. This, as we will discuss below, leads to the creation of different \textit{fractal dimensions} to classify the space-filling properties of these fractals.
 
+%---------------------------
+% FRACTAL DIMENSIONS
+%----------------------------
 
 \section{Fractal dimensions}
-\todo{Add introduction before the anecdote begins.}
+\todo{Add an introduction to the section}
 
+\subsection{What ``dimension'' means}
 Consider a line segment of length $ L_0 $. Note that when the segment is scaled by $\epsilon$, a number greater than one, into smaller pieces of equal size, each segment produced has length $L_0/\epsilon$. Now we repeat our exploration with a square of side length $ L_0 $. Here, when the square is scaled by a factor $\epsilon$, the smaller squares produced have an area $1/\epsilon^2$ the original. Again, when we repeat this procedure with a cube of side length $ L_0 $ we find that the cubes produced all have volumes $1/\epsilon^3$ the original. Hence, we generalize that the number of pieces $n$ produced from scaling by a factor of $\epsilon$ is given by 
 \begin{equation}
 n = 1/\epsilon^D
@@ -122,14 +145,16 @@ where $D$ is the dimension of the shape, and we can now solve for dimension:
  D = \frac{\log{n}}{\log{(1/\epsilon)}}
 \end{equation}
 
-We now return to the Koch curve. We recognize the first iteration $E_1$ as the fundamental unit of all other iterations of the curve. That is, we can replace each of the four line segments that make up $E_1$ with a scaled-down copy of the original $E_1$ in order to reach the next iteration, and by repeating this process ad infinitum we can reach the final curve $F$. We can, however, view this process in the framework established in the example above, so that each iteration replaces one line segment with a length $L_0$ with four others, each of which has a length of $L_0/3$. This is akin to the method described above: our fractal produces $n = 4$ smaller pieces each time it is scaled, and each piece is $1/\epsilon = 1/3$ the size of the original. Hence, we can apply the equation for dimension (Equation \ref{dimensionEqn}) to the Koch curve:
+\paragraph{Dimension of the Koch curve} We now return to the Koch curve. We recognize the first iteration $E_1$ as the fundamental unit of all other iterations of the curve. That is, we can replace each of the four line segments that make up $E_1$ with a scaled-down copy of the original $E_1$ in order to reach the next iteration, and by repeating this process ad infinitum we can reach the final curve $F$. We can, however, view this process in the framework established in the example above, so that each iteration replaces one line segment with a length $L_0$ with four others, each of which has a length of $L_0/3$. This is akin to the method described above: our fractal produces $n = 4$ smaller pieces each time it is scaled, and each piece is $1/\epsilon = 1/3$ the size of the original. Hence, we can apply the equation for dimension (Equation \ref{dimensionEqn}) to the Koch curve:
 \begin{equation}
-D = \frac{\log{n}}{\log{(1/\epsilon)}} = \frac{\log{4}}{\log{3}} 
+D = \frac{\log{n}}{\log{(1/\epsilon)}} = \frac{\log{4}}{\log{3}} \approx 1.26
 \end{equation}
 
-\begin{myremark}What does this dimension mean? Again, it seems intuitive that the dimension would be between one and two---this generalization of dimension should resemble the more familiar case of non-fractional dimensions, and the Koch curve is certainly greater than one-dimensional while not filling the entire plane as a two-dimensional shape would. \end{myremark}
+\begin{myremark}What does this dimension mean? Again, it seems intuitive that the dimension would be between one and two\todo{elaborate on this: why it should be between one and two}---this generalization of dimension should resemble the more familiar case of non-fractional dimensions, and the Koch curve is certainly greater than one-dimensional while not filling the entire plane as a two-dimensional shape would. \end{myremark}
 
-
+\begin{quote}
+``There is no one dimension that can only describe a fractal set; many different types of dimension exist, and all provide very different conceptions of a fractal's properties'' \citep{fractaltextbook}.
+\end{quote}\todo{introduce this somehow and incorporate it better into the text.}
 
 \subsection{Spaces, sets, and measures}
 Before we venture further into classifying fractals by their dimension, we need the following definitions.
@@ -172,13 +197,9 @@ We call the space on which the measure resides the \textit{support} of the measu
 \subsection{Box-counting dimension}
 Recall that in the example of the Koch curve above, we failed to usefully classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as an analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
 
-\begin{quote}
-``There is no one dimension that can only describe a fractal set; many different types of dimension exist, and all provide very different conceptions of a fractal's properties'' \citep{fractaltextbook}.
-\end{quote}\todo{introduce this somehow and incorporate it better into the text.}
-
 We now seek to formalize our understanding of dimension. Furthermore, we wish to formalize this understanding in a way that allows us to discuss fractal objects that are not strictly self-similar\footnote{As mentioned in Section \ref{fractalbasics}, fractals are not as concretely defined as one might hope, and we tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Section \ref{fractalbasics}---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}. In addition, the box-counting dimension is computationally much more simple than other fractal dimensions, such as the Hausdorff dimension \citep{fractaltextbook}.
 
-The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well. A cube in $\mathbb{R}^n$ is more generally a figure with $2n$ sides of equal size where each side is orthogonal to the others it touches, if the others exist, and each side is itself a cube in $\mathbb{R}^{n-1}$. Thus a cube in $\mathbb{R}^1$ is a line segment; a cube in $\mathbb{R}^2$ is a square; and a cube in $\mathbb{R}^4$ is a tesseract.}\todo{cite something?, and move into the body text} with side length $\epsilon$. We extend the number of replacements $ n $ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. The box-counting dimension is given by the limit of this extension of Equation \ref{dimensionEqn} as the side $\epsilon$ approaches zero.
+The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well. A cube in $\mathbb{R}^n$ is more generally a figure with $2n$ sides of equal size where each side is orthogonal to the others it touches, if the others exist, and each side is itself a cube in $\mathbb{R}^{n-1}$. Thus a cube in $\mathbb{R}^1$ is a line segment; a cube in $\mathbb{R}^2$ is a square; and a cube in $\mathbb{R}^4$ is a tesseract.} with side length $\epsilon$. We extend the number of replacements $ n $ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. The box-counting dimension is given by the limit of this extension of Equation \ref{dimensionEqn} as the side $\epsilon$ approaches zero.
 
 \begin{mydef} The box-counting dimension of a fractal set $ F $, $\operatorname{dim}_B F $, is given by:
 \begin{equation}\operatorname{dim}_B F = \lim_{\epsilon \to 0} \frac{\log N_\epsilon(F)}{-\log\epsilon}
@@ -186,7 +207,7 @@ The box-counting dimension gives an analogue of the dimension defined by Equatio
 where $N_\epsilon(F)$ is the number of cubes of side-length $\epsilon$ that cover the fractal set $F$.
 \end{mydef}
 
-\begin{myexample}We can apply numerical techniques to verify the agreement of this definition with that established in Section \ref{intuitivedimension}. A computational module to calculate the box-counting dimension is included in \ref{AppendixA} and is here applied to a Koch curve of size ???? pixels end-to-end. ****include graphics of curve and results, compare dimensions and error****  \end{myexample}
+\begin{myexample}\todo{move these to Ch. 2} We can apply numerical techniques to verify the agreement of this definition with that established in Section \ref{intuitivedimension}. A computational module to calculate the box-counting dimension is included in \ref{AppendixA} and is here applied to a Koch curve of size ???? pixels end-to-end. ****include graphics of curve and results, compare dimensions and error****  \end{myexample}
 
 \begin{myexample}Same thing, Sierpinski pyramid, perhaps?\end{myexample}
 
