@@ -1,10 +1,35 @@
 % Chapter Template
 
-\chapter{Applications} % Main chapter title
+\chapter{A computational approach to box-counting dimension} % Main chapter title
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 2. \emph{Applications}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 2. \emph{Computational box-counting}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+\begin{myexample} We can apply numerical techniques to verify the agreement of this definition with that established in Section \ref{intuitivedimension}. A computational module to calculate the box-counting dimension is included in \ref{AppendixA} and is here applied to a Koch curve of size ???? pixels end-to-end. 
+
+****include graphics of curve and results, compare dimensions and error****  \end{myexample}
+
+\begin{myexample}Same thing, Sierpinski pyramid, perhaps?\end{myexample}
 
 
-
+\begin{table*}
+\begin{center}
+\caption{Theoretical vs. Calculated Fractal Dimensions Found in Fractal Analysis Validation}\label{t:table}
+\begin{tabular}{lcccc}
+Fractal Object 				&	Theoretical	&	Calculated 	&	Error		&	\% error\\
+\hline\\
+Dragon boundary				&	1.5236					&	1.487	                &	-0.037		&	2.4	\\
+Vicsek Fractal (Box)		& 	1.4649					&	1.3264					&	-0.14		&	9.5	\\
+Fibonacci Word				&	1.6379					&	1.45964					&	-0.18 		&	11	\\
+Gosper Curve				&	2						&	1.72811					&	-0.27		&	14				\\
+Boundary of Gosper Island	&	1.1292					&	1.2056					&	0.077		&	6.8	\\
+Julia Set					&	2						&	1.49408					&	-0.51		&	25	\\
+Julia $z^2+1/4$				&	1.0812					&	1.19677					&	0.12		&	11	\\
+Levy C boundary				&	1.934					&	1.5656					&	-0.37		&	19	\\
+Pythagoras Tree				&	2						&	1.74588					&	-0.25		&	13	\\
+\hline
+\rule{0pt}{4ex}				&							&							& \textbf{Average: } & 12\\
+\end{tabular}
+\end{center}
+\end{table*}

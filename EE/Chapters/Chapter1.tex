@@ -131,7 +131,7 @@ Instead of classifying fractals by their length and area, then, we examine their
 %---------------------------
 % FRACTAL DIMENSIONS
 %---------------------------
-\section{What ``dimension'' means}
+\section{What ``dimension'' means: an exploration of similarity dimension}
 Consider a line segment of length $ L_0 $ and some number $\epsilon > 1$. Note that when the segment is scaled by $\epsilon$ into smaller pieces of equal size, each segment produced has length $L_0/\epsilon$. Now we repeat our exploration with a square of side length $ L_0 $. Here, when the square is scaled by a factor $\epsilon$, the smaller squares produced have an area $1/\epsilon^2$ the original. Again, when we repeat this procedure with a cube of side length $ L_0 $ we find that the cubes produced all have volumes $1/\epsilon^3$ the original. Hence, we generalize that the number of pieces $n$ produced from scaling by a factor of $\epsilon$ is given by 
 \begin{equation}
 n = 1/\epsilon^D
@@ -158,12 +158,14 @@ In the previous section we introduced the concept of dimension to quantify how t
 ``There is no one dimension that can only describe a fractal set; many different types of dimension exist, and all provide very different conceptions of a fractal's properties'' \citep{fractaltextbook}.
 \end{quote}
 
-That is, dimension is just some quantity that describes the scaling relationship of a shape. We call the quantity described in the previous section the \emph{similarity dimension}. We will use the understanding we develop here to understand box-counting dimension and Hausdorff dimension.
+That is, dimension is just some quantity that describes the scaling relationship of a shape. We call the quantity described in the previous section the \emph{similarity dimension}. We will use the understanding we develop here to understand box-counting dimension and similarity dimension.
 
 \subsection{Spaces, sets, and measures}
 Before we venture further into classifying fractals by their dimension, we need the following definitions.
 
 We use the word ``set'' to more precisely refer to what might be simply called a shape; every shape is just a set, possibly infinite, of points. As seen above, whereas non-fractal sets have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
+
+
 
 \begin{mydef}
 An n-dimensional space $ \mathbb{R}^{n} $ is the set of all points that can be identified by an ordered n-ple of real numbers. Hence, for example, any point $ \alpha $ in $ \mathbb{R}^{5} $ can be identified by the ordered 5-ple $ \alpha = (\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}, \alpha_{5})$ where $ \alpha_{1} ... \alpha_{5} \in \mathbb{R} $.\end{mydef}
@@ -201,30 +203,17 @@ We call the space on which the measure resides the \textit{support} of the measu
 \subsection{Box-counting dimension}
 Recall that in the example of the Koch curve above, we failed to usefully classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as an analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
 
-We now seek to formalize our understanding of dimension. Furthermore, we wish to formalize this understanding in a way that allows us to discuss fractal objects that are not strictly self-similar\footnote{As mentioned in Section \ref{fractalbasics}, fractals are not as concretely defined as one might hope, and we tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Section \ref{fractalbasics}---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}. In addition, the box-counting dimension is computationally much more simple than other fractal dimensions, such as the Hausdorff dimension \citep{fractaltextbook}.
+We now seek to formalize our understanding of dimension. Furthermore, we wish to formalize this understanding in a way that allows us to discuss fractal objects that are not strictly self-similar\footnote{Fractals are not as concretely defined as one might hope. We tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Sec 1.1---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}. In addition, the box-counting dimension is computationally much more simple than other fractal dimensions, such as the Hausdorff dimension \citep{fractaltextbook}.
 
 The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well. A cube in $\mathbb{R}^n$ is more generally a figure with $2n$ sides of equal size where each side is orthogonal to the others it touches, if the others exist, and each side is itself a cube in $\mathbb{R}^{n-1}$. Thus a cube in $\mathbb{R}^1$ is a line segment; a cube in $\mathbb{R}^2$ is a square; and a cube in $\mathbb{R}^4$ is a tesseract.} with side length $\epsilon$. We extend the number of replacements $ n $ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. The box-counting dimension is given by the limit of this extension of Equation \ref{dimensionEqn} as the side $\epsilon$ approaches zero.
 
 \begin{mydef} The box-counting dimension of a fractal set $ F $, $\operatorname{dim}_B F $, is given by:
-\begin{equation}\operatorname{dim}_B F = \lim_{\epsilon \to 0} \frac{\log N_\epsilon(F)}{-\log\epsilon}
+\begin{equation}\label{boxcountingeqn}\operatorname{dim}_B F = \lim_{\epsilon \to 0} \frac{\log N_\epsilon(F)}{-\log\epsilon}
 \end{equation}
 where $N_\epsilon(F)$ is the number of cubes of side-length $\epsilon$ that cover the fractal set $F$.
 \end{mydef}
 
-\begin{myexample}\todo{move these to Ch. 2} We can apply numerical techniques to verify the agreement of this definition with that established in Section \ref{intuitivedimension}. A computational module to calculate the box-counting dimension is included in \ref{AppendixA} and is here applied to a Koch curve of size ???? pixels end-to-end. ****include graphics of curve and results, compare dimensions and error****  \end{myexample}
-
-\begin{myexample}Same thing, Sierpinski pyramid, perhaps?\end{myexample}
-
-
-\listoftodos
-
-
-
-
-
-
-
-
+It is simple, computationally, to discretize the cubes---or, boxes---that cover the fractal set. In addition, it is simple to implement an algorithm that evaluates the limit in Eq. \ref{boxcountingeqn} by assessing which boxes do or do not cover the fractal set. A computational implementation of a box-counting algorithm is described in the following chapter. We use this implementation to examine the relationship between the box-counting and theoretical dimensions of the Koch curve.
 
 
 

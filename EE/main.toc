@@ -1,26 +1,26 @@
 \contentsline {chapter}{Abstract}{i}{dummy.1}
 \vspace {1em}
-\contentsline {chapter}{Acknowledgements}{ii}{dummy.3}
+\contentsline {chapter}{Acknowledgements}{ii}{dummy.2}
 \vspace {1em}
-\contentsline {chapter}{List of Figures}{iv}{dummy.5}
-\contentsline {chapter}{List of Tables}{v}{dummy.7}
-\contentsline {chapter}{\numberline {1}Fractals and their dimensions}{1}{chapter.9}
-\contentsline {section}{\numberline {1.1}Why a fractal dimension is necessary}{1}{section.10}
-\contentsline {subsection}{\numberline {1.1.1}Example of a fractal: the Koch curve}{1}{subsection.11}
-\contentsline {paragraph}{Construction of the Koch curve.}{1}{section*.13}
-\contentsline {subsection}{\numberline {1.1.2}Another example of a fractal: the middle-third Cantor set}{3}{subsection.22}
-\contentsline {paragraph}{Construction of the middle-third Cantor set.}{3}{section*.24}
-\contentsline {subsection}{\numberline {1.1.3}The ambiguity of nonfractal geometry}{4}{subsection.32}
-\contentsline {section}{\numberline {1.2}What ``dimension'' means}{5}{section.37}
-\contentsline {paragraph}{Dimension of the Koch curve.}{6}{section*.40}
-\contentsline {section}{\numberline {1.3}Fractal dimensions}{6}{section.44}
-\contentsline {subsection}{\numberline {1.3.1}Spaces, sets, and measures}{7}{subsection.45}
-\contentsline {subsection}{\numberline {1.3.2}Box-counting dimension}{8}{subsection.56}
-\contentsline {chapter}{\numberline {2}Applications}{11}{chapter.65}
-\contentsline {chapter}{\numberline {3}Multifractals: a brief discussion and their applications}{12}{chapter.66}
+\contentsline {chapter}{List of Figures}{iv}{dummy.4}
+\contentsline {chapter}{List of Tables}{v}{dummy.6}
+\contentsline {chapter}{\numberline {1}Fractals and their dimensions}{1}{chapter.8}
+\contentsline {section}{\numberline {1.1}Why a fractal dimension is necessary}{1}{section.9}
+\contentsline {subsection}{\numberline {1.1.1}Example of a fractal: the Koch curve}{1}{subsection.10}
+\contentsline {paragraph}{Construction of the Koch curve.}{1}{section*.12}
+\contentsline {subsection}{\numberline {1.1.2}Another example of a fractal: the middle-third Cantor set}{3}{subsection.21}
+\contentsline {paragraph}{Construction of the middle-third Cantor set.}{3}{section*.23}
+\contentsline {subsection}{\numberline {1.1.3}The ambiguity of nonfractal geometry}{4}{subsection.31}
+\contentsline {section}{\numberline {1.2}What ``dimension'' means: an exploration of similarity dimension}{5}{section.36}
+\contentsline {paragraph}{Dimension of the Koch curve.}{6}{section*.39}
+\contentsline {section}{\numberline {1.3}Fractal dimensions}{6}{section.42}
+\contentsline {subsection}{\numberline {1.3.1}Spaces, sets, and measures}{7}{subsection.43}
+\contentsline {subsection}{\numberline {1.3.2}Box-counting dimension}{8}{subsection.54}
+\contentsline {chapter}{\numberline {2}A computational approach to box-counting dimension}{10}{chapter.59}
+\contentsline {chapter}{\numberline {3}Multifractals: a brief discussion and a computational implementation}{11}{chapter.63}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Source Code of Box-Counting Module}{13}{appendix.67}
-\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{22}{appendix.471}
-\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{27}{appendix.665}
+\contentsline {chapter}{\numberline {A}Source Code of Box-Counting Module}{12}{appendix.64}
+\contentsline {chapter}{\numberline {B}Source Code of Multifractal Spectrum Module}{21}{appendix.468}
+\contentsline {chapter}{\numberline {C}Source Code of Iterative Function System Generator}{26}{appendix.662}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{30}{dummy.771}
+\contentsline {chapter}{Bibliography}{29}{dummy.768}
