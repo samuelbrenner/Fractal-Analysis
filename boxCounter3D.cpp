@@ -143,7 +143,7 @@ int main (int argc, char* argv[]) {
 
 	elements = dataReaderASCII<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum);
 	//elements = dataReaderBinary<double>(inFileName, HEIGHT, WIDTH, DEPTH, haveZeros, arraySum); //for reading in binary data
-	elementsInterpolated = interpolate(elements, HEIGHT, WIDTH, DEPTH, 0.5);
+	elementsInterpolated = makeInt(elements, HEIGHT, WIDTH, DEPTH); //put pack to previous way
 	//printToFile(elementsInterpolated, HEIGHT, WIDTH);
 
 	int LOWESTLEVEL = 0;

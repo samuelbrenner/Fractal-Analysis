@@ -124,6 +124,30 @@ return arrayOut;
 }
 
 
+int*** makeInt(double*** arrayIn, int HEIGHT, int WIDTH, int DEPTH){
+	//Declare and initialize arrayOut. If any values in the arrayIn happen to be the valueToFind,
+	//we'll initialize the corresponding arrayOut to a 1; otherwise it'll be a 0.
+	int*** arrayOut = new int**[HEIGHT];
+	for(int i = 0; i < HEIGHT; i++){
+		arrayOut[i] = new int*[WIDTH];
+		for(int j = 0; j < WIDTH; j++){
+			arrayOut[i][j] = new int[DEPTH];
+			for(int k = 0; k < DEPTH; k++){
+				//performs a preliminary check so that we don't miss any values that are exactly == valueToFind
+				if(arrayIn[i][j][k] == 0.0){
+					arrayOut[i][j][k] = 0;
+				}
+				else{
+					arrayOut[i][j][k] = 1;
+				}
+			}
+		}
+	}
+
+	//Makes the interpolater able to handle planar data
+	return arrayOut;
+}
+
 
 
 

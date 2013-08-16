@@ -4,21 +4,44 @@
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 2. \emph{Computational box-counting}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 2. \emph{Computational box-counting and its applications}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
-\begin{myexample} We can apply numerical techniques to verify the agreement of this definition with that established in Section \ref{intuitivedimension}. A computational module to calculate the box-counting dimension is included in \ref{AppendixA} and is here applied to a Koch curve of size ???? pixels end-to-end. 
+The box-counting dimension of any object, as we established before, quantifies its scaling behavior---i.e., how its size increases when scaled at increasing magnification. Unlike the more complicated Hausdorff dimension (which requires a computer to undertake difficult optimization problems) or the similarity dimension (which requires the set under examination to be self-similar), the box-counting dimension can be calculated by a computer with relative ease. 
 
-****include graphics of curve and results, compare dimensions and error****  \end{myexample}
+\section{Description of the computational implementation}
+A module was written in the C++ language to find the box-counting dimension of sets in 1, 2, and 3 Euclidean dimensions; the module's source code is included in Appendix A. 
 
-\begin{myexample}Same thing, Sierpinski pyramid, perhaps?\end{myexample}
+\subsection{The data structures used} Suppose for the purposes of explaining the module's implementation of a box-counting algorithm that we want to examine the box-counting dimension of a flame front in a Type Ia supernova, an example to which we will later return. Discretized data is first read in from a binary or text file. We call the grid---the set of lattice points---represented by the data a ``mesh''. Each point on the mesh has some number associated with it; in our example, this will be the local progress of burning $p_{burning}$ of the star within each cell on the mesh, and this number will range from 0 for entirely unburnt cells to 1 for entirely burnt cells. 
 
+\subsection{Finding the location of the quantity of interest by $n$-linear interpolation} A procedure called interpolation is then performed on the data set to determine the location of the contour defining the flame front. We know from the physical properties of the system, which we will discuss later, that the progress of burning is continuous. We specify some value $p_{burning} = p_{contour}$ at which the burning is still in progress at any point in time. We say that any region with local progress of burning $p_{burning} = p_{contour}$ contains part of the flame front---if the progress of burning is between 0 and 1, it must be in the progress of burning; the flames under study do not ``go out''. We neglect all other regions with $p_{burning} \in \ ]1,0[$ because the flame front is sufficiently thin (its thickness is on the order of $1 \mu\mathrm{m}$, while the length of the flame front is on the order of $10^6\mathrm{m}$) \citep{Timmes1994}. Hence, at any practical resolution, any cell with $p_{burning} = p_{contour}$ will also contain all values of $p_{burning} \in [1,0]$. 
 
-\begin{table*}
+\subsubsection{The implementation of $n$-linear interpolation} We first search for any cell with $p_{burning} = p_{contour}$, and mark that they contain part of the flame front. We then iterate through each cell $c_i$ with $p_{burning} < p_{contour}$ and determine whether any neighboring cell\footnote{In $n$ Euclidean dimensions, each cell (except those on the borders of the data set) will have $2n$ neighbors.} to $c_i$ has $p_{burning} > p_{contour}$. If any one of those neighbors $c_{i+1}$ does, we know by continuity that somewhere between those two cells there exists a region with $p_{burning} = p_{contour}$. To which of the two cells should we assign the flame front's location? Suppose the centers of two such cells in one Euclidean dimension lie a distance of 1 arbitrary unit from one another. We approximate the burning progress function on the interval between the two centers as a line. The slope of that line $m$ is given by
+\begin{equation}
+	m = \frac{p(i+1)-p(i)}{i+1 - i} = p(i+1) - p(i)
+\end{equation}
+and the line goes through the point $(i, p(i))$, so it has equation
+\begin{equation}
+	p(r) - p(i) = [p(i+1) - p(i)]r,
+\end{equation}
+where $r$ is some positive distance from $i$. For what value of $r$ does $p(r) = p_{contour}$? We solve for $r$:
+\begin{equation}
+	r = \frac{p_{contour} - p(i)}{p(i + 1) - p(i)}.
+\end{equation}
+If we find that $r > 0.5$ (that is, half the distance between the centers of each cell in our arbitrary units), the flame front must lie in cell $c_{i+1}$; otherwise, the flame front lies in cell $c_i$. In two and three Euclidean dimensions, an identical process is performed for every pair of cells identified. This process is repeated for all neighbors of all cells with $p_{burning} < p_{contour}$.
+
+\subsection{Applying the equation for box-counting dimension}
+Once the cells containing the flame front have been marked, we count them and apply the equation for box-counting dimension, Eq. \ref{boxcountingeqn}, setting the initial side length of each cell to an arbitrary $\epsilon_0 = 1$. In order to numerically approximate this limit as the size of the boxes tends toward zero, we perform a linear regression on the points in the plot of $\log N_\epsilon (F)$ vs. $-\log \epsilon$ that tend toward some constant slope as $\epsilon$ tends to zero. The resulting slope then approximates the limit. To change the scale of the boxes used $\epsilon$ we coarse-grain the data. That is, we combine the cells of the original data set, originally of side-length $\epsilon_0$, into cells of side length $2\epsilon_0$. We average the burning progress over all the included cells, and arrive at a new data set with $1/4$ the number of cells as we had originally. We repeat this process until the entire data set has been coarse-grained into one large cell, at which point we can go no further.
+
+\subsection{Verification of the computational implementation}
+Our implementation of the box-counting algorithm was verified against computer-generated data with known fractal characteristics. The implementation was able to recover the theoretical dimension with 12\% error on average, as can be seen in Table~\ref{t:table}.
+
+\begin{table*}[ht]
 \begin{center}
 \caption{Theoretical vs. Calculated Fractal Dimensions Found in Fractal Analysis Validation}\label{t:table}
 \begin{tabular}{lcccc}
-Fractal Object 				&	Theoretical	&	Calculated 	&	Error		&	\% error\\
-\hline\\
+							&	Theoretical				&	Calculated				&				& \\
+Fractal Object 				&	Dimension				&	Dimension 				&	Error		&	\% error\\
+\hline
 Dragon boundary				&	1.5236					&	1.487	                &	-0.037		&	2.4	\\
 Vicsek Fractal (Box)		& 	1.4649					&	1.3264					&	-0.14		&	9.5	\\
 Fibonacci Word				&	1.6379					&	1.45964					&	-0.18 		&	11	\\
@@ -29,7 +52,50 @@ Julia $z^2+1/4$				&	1.0812					&	1.19677					&	0.12		&	11	\\
 Levy C boundary				&	1.934					&	1.5656					&	-0.37		&	19	\\
 Pythagoras Tree				&	2						&	1.74588					&	-0.25		&	13	\\
 \hline
-\rule{0pt}{4ex}				&							&							& \textbf{Average: } & 12\\
+							&							&							& \textbf{Average: } & 12\\
 \end{tabular}
 \end{center}
 \end{table*}
+
+
+\section{Calculation of the fractal dimension of the Koch curve using the computational implementation}
+
+We can apply the techniques described above to find the box-counting dimension of the Koch curve. The computational method is here applied to a Koch curve of size 1024 pixels end-to-end. Pictured in Fig. \ref{f:dimensionplot} is the plot of $\log N_\epsilon (F)$ vs. $\log(1/\epsilon)$ along with the line resulting from the linear regression performed.
+
+\begin{figure}[ht]\label{fig:dimensionplot}
+\centering
+\includegraphics[width = 0.6\textwidth]{Chapters/Figures/dimensionplot.png} 
+\caption[Dimension plot]{Plot of $\log N_\epsilon (F)$ vs. $\log(1/\epsilon)$ along with the line resulting from the linear regression performed. The slope of the plot clearly changes as $\log(1/\epsilon)$ increases to its last tested value of 9, indicating the importance of performing the regression only on the last points. The dimension, the slope of the line, is printed above the diagram.}
+\end{figure}
+
+We find that the curve has a dimension of 1.588, differing from the similarity dimension of the curve ($\approx 1.28$) by $\approx 25\%$.
+
+\section{Applications}
+The understanding of a 
+
+\subsection{Turbulent flame fronts in supernovae}
+
+\subsection{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

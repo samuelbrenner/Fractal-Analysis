@@ -23,8 +23,9 @@ Henry~J.S. Smith.
 \newblock \emph{Proceedings of the London Mathematical Society, Series 1},
   6:\penalty0 140--153, 1874.
 
-\bibitem[man(1992)]{mandelbrotmultifractal}
-\emph{Chaos and Fractals}, chapter Appendix B.
-\newblock Springer-Verlag, 1992.
+\bibitem[Timmes(1994)]{Timmes1994}
+F.~X. Timmes.
+\newblock {On the acceleration of nuclear flame fronts in white dwarfs}.
+\newblock \emph{Astrophysical Journal}, 423:\penalty0 L131, 1994.
 
 \end{thebibliography}

@@ -146,10 +146,7 @@ where $D$ is the dimension of the shape, and we can now solve for dimension:
 D = \frac{\log{n}}{\log{(1/\epsilon)}} = \frac{\log{4}}{\log{3}} \approx 1.26
 \end{equation}
 
-\begin{myremark}What does this dimension mean? Again, it seems intuitive that the dimension would be between one and two. If the dimension were two or greater, the curve would completely fill the plane in which it lies. Likewise, if the dimension were one or less, the curve would 
-
-
----this generalization of dimension resembles the more familiar case of non-fractional dimensions. \end{myremark}
+\begin{myremark}What does this dimension mean? Again, it seems intuitive that the dimension would be between one and two. If the dimension were two or greater, the curve would completely fill the plane in which it lies. Likewise, if the dimension were one or less, the curve would necessarily be broken into many discontinuous segments. This generalization of dimension resembles the more familiar case of non-fractional, Euclidean dimensions. \end{myremark}
 
 \section{Fractal dimensions}
 In the previous section we introduced the concept of dimension to quantify how the size of a figure is related to its scaling factor. We found that a figure in two dimensions, for example, is scaled into four parts when scaled by a factor of two. This is only one of many ways that we can quantify the scaling of a shape. We must remember:
@@ -160,7 +157,7 @@ In the previous section we introduced the concept of dimension to quantify how t
 
 That is, dimension is just some quantity that describes the scaling relationship of a shape. We call the quantity described in the previous section the \emph{similarity dimension}. We will use the understanding we develop here to understand box-counting dimension and similarity dimension.
 
-\subsection{Spaces, sets, and measures}
+\subsection{Spaces and sets}
 Before we venture further into classifying fractals by their dimension, we need the following definitions.
 
 We use the word ``set'' to more precisely refer to what might be simply called a shape; every shape is just a set, possibly infinite, of points. As seen above, whereas non-fractal sets have well-defined, intuitively understood geometric properties such as length or area, fractal sets can be characterized by various concepts of dimension. Here, we will discuss \textit{box-counting dimension} in the greatest detail.
@@ -170,42 +167,45 @@ We use the word ``set'' to more precisely refer to what might be simply called a
 \begin{mydef}
 An n-dimensional space $ \mathbb{R}^{n} $ is the set of all points that can be identified by an ordered n-ple of real numbers. Hence, for example, any point $ \alpha $ in $ \mathbb{R}^{5} $ can be identified by the ordered 5-ple $ \alpha = (\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}, \alpha_{5})$ where $ \alpha_{1} ... \alpha_{5} \in \mathbb{R} $.\end{mydef}
 
-We will now work by analogy to discuss the concept of a \textit{measure}\footnote{Analogy adapted from \citep{mandelbrotmultifractal}}. Consider a geographical map of some landmass, with a function $ \mu(\mathcal{S}) $ that denotes the volume of groundwater below any subset $ \mathcal{S} $ of the landmass. We note four intuitive properties of this measure $ \mu $:\begin{enumerate}
-\item The measure of any subset of the space---or the volume of groundwater under any plot of land on the landmass---gives a numerical indication of the plot of land's magnitude. That is, it describes the plot's size when measured by groundwater content.
-\item\label{measureofanullset} There should be no water under a plot of land with no size. 
-\item\label{measureofsubsets} If a plot of land $ A $ contains another plot of land $ B $, there should be less or as much groundwater under $B$ as there is under $A$. 
-\item\label{measureaddition} If we find the volume of groundwater under a plot of land on the landmass, we should get the same value or less than when we split the plot up into many pieces with overlap allowed and add up the volume of groundwater found under each piece. 
-\end{enumerate}
-We now formalize these properties below.
+A ``cube'' is not strictly three-dimensional; the shape has analogues in all other dimensions as well. 
+\begin{mydef}A cube in $\mathbb{R}^n$ is more generally a figure with $2n$ sides of equal size where each side is orthogonal to the others it touches, if the others exist, and each side is itself a cube in $\mathbb{R}^{n-1}$. Thus a cube in $\mathbb{R}^1$ is a line segment; a cube in $\mathbb{R}^2$ is a square; and a cube in $\mathbb{R}^4$ is a tesseract.\end{mydef}
 
-\begin{mydef}
-A measure $ \mu $ is a function on a space $ \mathbb{R}^{n} $ that assigns a positive number to each subset $ \mathcal{S} $ of $ \mathbb{R}^{n} $ such that:
+% We will now work by analogy to discuss the concept of a \textit{measure}\footnote{Analogy adapted from \citep{mandelbrotmultifractal}}. Consider a geographical map of some landmass, with a function $ \mu(\mathcal{S}) $ that denotes the volume of groundwater below any subset $ \mathcal{S} $ of the landmass. We note four intuitive properties of this measure $ \mu $:\begin{enumerate}
+% \item The measure of any subset of the space---or the volume of groundwater under any plot of land on the landmass---gives a numerical indication of the plot of land's magnitude. That is, it describes the plot's size when measured by groundwater content.
+% \item\label{measureofanullset} There should be no water under a plot of land with no size. 
+% \item\label{measureofsubsets} If a plot of land $ A $ contains another plot of land $ B $, there should be less or as much groundwater under $B$ as there is under $A$. 
+% \item\label{measureaddition} If we find the volume of groundwater under a plot of land on the landmass, we should get the same value or less than when we split the plot up into many pieces with overlap allowed and add up the volume of groundwater found under each piece. 
+% \end{enumerate}
+% We now formalize these properties below.
 
-\begin{itemize}
-\item Because $\mu$ should characterize a set by its size in some sense, it is meaningless to have a nonzero size for any set with no elements. This is reflected in Property \ref{measureofanullset} above.
-\begin{equation}
-\mu(\emptyset) = 0
-\end{equation}
-\item The size of a set should be smaller than (or equal to, if $ A = B $, i.e., $B$ is not a proper subset of $A$) the size of a set that contains the first set and other elements too. This is reflected in Property \ref{measureofsubsets} above.
-\begin{equation}
-\mu(B) \le \mu(A) \mathrm{ \quad if \quad }  B \subset A.
-\end{equation} 
-\item The measure of a union of subsets should never be larger than the sum of the measures of the individual subsets: 
-\begin{equation}
-\mu\left(\bigcup_{i=1}^{\infty} A_i\right) \le \sum_{i=1}^{\infty} \mu(A_i) 
-\end{equation}
-Allowing for the measure of the union to be smaller than the sum of the individual measures accounts for overlap between the subsets; if, for all pairs of subsets $A_1$ and $A_2$, $A_1 \cap A_2 = \emptyset$, the measure of the union should be equal to the sum of the individual measures. In short, the measure should be distributive over addition. This is reflected in Property 4 above.
-\end{itemize}
+% \begin{mydef}
+% A measure $ \mu $ is a function on a space $ \mathbb{R}^{n} $ that assigns a positive number to each subset $ \mathcal{S} $ of $ \mathbb{R}^{n} $ such that:
 
-We call the space on which the measure resides the \textit{support} of the measure.
-\end{mydef}
+% \begin{itemize}
+% \item Because $\mu$ should characterize a set by its size in some sense, it is meaningless to have a nonzero size for any set with no elements. This is reflected in Property \ref{measureofanullset} above.
+% \begin{equation}
+% \mu(\emptyset) = 0
+% \end{equation}
+% \item The size of a set should be smaller than (or equal to, if $ A = B $, i.e., $B$ is not a proper subset of $A$) the size of a set that contains the first set and other elements too. This is reflected in Property \ref{measureofsubsets} above.
+% \begin{equation}
+% \mu(B) \le \mu(A) \mathrm{ \quad if \quad }  B \subset A.
+% \end{equation} 
+% \item The measure of a union of subsets should never be larger than the sum of the measures of the individual subsets: 
+% \begin{equation}
+% \mu\left(\bigcup_{i=1}^{\infty} A_i\right) \le \sum_{i=1}^{\infty} \mu(A_i) 
+% \end{equation}
+% Allowing for the measure of the union to be smaller than the sum of the individual measures accounts for overlap between the subsets; if, for all pairs of subsets $A_1$ and $A_2$, $A_1 \cap A_2 = \emptyset$, the measure of the union should be equal to the sum of the individual measures. In short, the measure should be distributive over addition. This is reflected in Property 4 above.
+% \end{itemize}
+
+% We call the space on which the measure resides the \textit{support} of the measure.
+% \end{mydef}
 
 \subsection{Box-counting dimension}
 Recall that in the example of the Koch curve above, we failed to usefully classify the shape by non-fractal means. Though we could see that the figure filled a space, we lacked language to discuss precisely how it filled that space; we could not quantify its ``roughness''. We introduce the box-counting dimension as an analogy to the Euclidean dimension in order to quantify how a fractal set fills a space.
 
 We now seek to formalize our understanding of dimension. Furthermore, we wish to formalize this understanding in a way that allows us to discuss fractal objects that are not strictly self-similar\footnote{Fractals are not as concretely defined as one might hope. We tend only to classify a shape as a fractal when it possesses a reasonably large number of the fractal properties identified in Sec 1.1---when a shape has sufficient ``roughness'' that the language of fractal geometry becomes more useful in describing its characteristics.}. For this we introduce a specific dimension, the \textit{box-counting dimension}. In addition, the box-counting dimension is computationally much more simple than other fractal dimensions, such as the Hausdorff dimension \citep{fractaltextbook}.
 
-The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}: the fractal set is covered by a number of cubes\footnote{A ``cube'' here is not strictly three-dimensional; the shape has analogues in all other dimensions as well. A cube in $\mathbb{R}^n$ is more generally a figure with $2n$ sides of equal size where each side is orthogonal to the others it touches, if the others exist, and each side is itself a cube in $\mathbb{R}^{n-1}$. Thus a cube in $\mathbb{R}^1$ is a line segment; a cube in $\mathbb{R}^2$ is a square; and a cube in $\mathbb{R}^4$ is a tesseract.} with side length $\epsilon$. We extend the number of replacements $ n $ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. The box-counting dimension is given by the limit of this extension of Equation \ref{dimensionEqn} as the side $\epsilon$ approaches zero.
+The box-counting dimension gives an analogue of the dimension defined by Equation \ref{dimensionEqn}. To find it, the fractal set is covered by a number of cubes with side length $\epsilon$. We extend the number of replacements $ n $ from Equation \ref{dimensionEqn} to take the smallest number of cubes that can cover the fractal set. The box-counting dimension is given by the limit of this extension of Equation \ref{dimensionEqn} as the side $\epsilon$ approaches zero.
 
 \begin{mydef} The box-counting dimension of a fractal set $ F $, $\operatorname{dim}_B F $, is given by:
 \begin{equation}\label{boxcountingeqn}\operatorname{dim}_B F = \lim_{\epsilon \to 0} \frac{\log N_\epsilon(F)}{-\log\epsilon}
@@ -213,7 +213,12 @@ The box-counting dimension gives an analogue of the dimension defined by Equatio
 where $N_\epsilon(F)$ is the number of cubes of side-length $\epsilon$ that cover the fractal set $F$.
 \end{mydef}
 
-It is simple, computationally, to discretize the cubes---or, boxes---that cover the fractal set. In addition, it is simple to implement an algorithm that evaluates the limit in Eq. \ref{boxcountingeqn} by assessing which boxes do or do not cover the fractal set. A computational implementation of a box-counting algorithm is described in the following chapter. We use this implementation to examine the relationship between the box-counting and theoretical dimensions of the Koch curve.
+Note that the argument of this limit is almost identical to Eq. \ref{dimensionEqn}. If we make the substitution $-\log \epsilon = \log(1/\epsilon)$, we see
+\begin{equation}\label{boxcountingeqn2}\operatorname{dim}_B F = \lim_{\epsilon \to 0} \frac{\log N_\epsilon(F)}{\log(1/\epsilon)}
+\end{equation}
+which further accentuates the analogues between the two definitions of dimension. Instead of the replacement length $n$ used in the numerator of the similarity dimesnion, we have here the number of boxes needed to cover the fractal set. And, here, the $\epsilon$ represents the side length of the box used instead of the scaling length used in the similarity dimension.
+
+It is simple, computationally, to discretize the cubes---or, boxes---that cover the fractal set. In addition, it is simple to implement an algorithm that evaluates the limit in Eq. \ref{boxcountingeqn} by assessing which boxes do or do not cover the fractal set. A computational implementation of a box-counting algorithm is described in the following chapter. We use this implementation to examine the relationship between the box-counting and similarity dimensions of the Koch curve.
 
 
 

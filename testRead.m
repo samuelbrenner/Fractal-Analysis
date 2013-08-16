@@ -1,10 +1,10 @@
 clear all; close all; clc;
 
 % Load in the data
-filename = 'flame_data/n7d1r10t15b/n7d1r10t15b.bin_plot.txt';
+filename = 'fractal_data/2000px-Koch_curve.txt_plot.txt';
 [header,data] = hdrload(filename);
 
-% Initialize data to be read from header
+% Initialize  data to be read from header
 slope = 0;
 intercept = 0;
 
